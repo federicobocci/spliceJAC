@@ -3,22 +3,41 @@ plotting resources for sensitivity analysis
 '''
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
 
 from . import plotting_util
 
-def plot_regr_sens(adata,
+def regression_sens(adata,
                    font_size=10,
                    legend_font=10,
                    title_font=12,
                    legend_loc='best',
                    showfig=False,
                    savefig=True,
-                   figname='sens_summary.pdf',
+                   figname='inference_sens.pdf',
                    format='pdf',
                    figsize=(12,4)
                    ):
+    '''
+    Plot the summary of spliceJAC inference as a function of regression methods and parameters
 
+    Parameters
+    ----------
+    adata: anndata object
+    font_size: font size of figure (default=10)
+    legend_font: font size of legend (default=12)
+    title_font: font size of title (default=12)
+    legend_loc: legend location (default='best')
+    showfig: if True, show the figure (default=False)
+    savefig: if True, save the figure (default=True)
+    figname: name of saved figure including path (default='inference_sens.pdf')
+    format: format of saved figure (default='pdf')
+    figsize: size of figure (default=(12,4))
+
+    Returns
+    -------
+    None
+
+    '''
     [alpha_ridge, alpha_lasso, method_sens] = adata.uns['method_sens']
     x, y_reg, y_ridge, y_lasso = adata.uns['sens_coeff']
 
@@ -60,16 +79,36 @@ def plot_regr_sens(adata,
         plt.savefig(figname, format=format)
 
 
-def sampling_sens_summary(adata,
-                          font_size=10,
-                          legend_font=10,
-                          legend_loc='best',
-                          showfig=False,
-                          savefig=True,
-                          figname='sens_summary.pdf',
-                          format='pdf',
-                          figsize=(12,4)
-                          ):
+def sampling_sens(adata,
+                  font_size=10,
+                  legend_font=10,
+                  legend_loc='best',
+                  showfig=False,
+                  savefig=True,
+                  figname='sampling_sens.pdf',
+                  format='pdf',
+                  figsize=(12,4)
+                  ):
+    '''
+    Plot the summary of spliceJAC inference sensitivity to subsampling of cells in each cell state
+
+    Parameters
+    ----------
+    adata: anndata object
+    font_size: font size of figure (default=10)
+    legend_font: font size of legend (default=12)
+    legend_loc: legend location (default='best')
+    showfig: if True, show the figure (default=False)
+    savefig: if True, save the figure (default=True)
+    figname: name of saved figure including path (default='sampling_sens.pdf')
+    format: format of saved figure (default='pdf')
+    figsize: size of figure (default=(12,4))
+
+    Returns
+    -------
+    None
+
+    '''
 
     fig = plt.figure(figsize=figsize)
     ax1 = plt.subplot(131)
@@ -102,14 +141,32 @@ def sampling_sens_summary(adata,
 
 
 
-def plot_subsample_stability(adata,
-                          font_size=10,
-                          showfig=False,
-                          savefig=True,
-                          figname='subsample_robustness.pdf',
-                          format='pdf',
-                          figsize=(12,4)
-                          ):
+def subsample_stability(adata,
+                        font_size=10,
+                        showfig=False,
+                        savefig=True,
+                        figname='robustness.pdf',
+                        format='pdf',
+                        figsize=(12,4)
+                        ):
+    '''
+    Summary plot of the robustness of spliceJAC inference over multiple inferences with a fraction of the total number of cells in each cell state
+
+    Parameters
+    ----------
+    adata: anndata object
+    font_size: font size of figure (default=10)
+    showfig: if True, show the figure (default=False)
+    savefig: if True, save the figure (default=True)
+    figname: name of saved figure including path (default='robustness.pdf')
+    format: format of saved figure (default='pdf')
+    figsize: size of figure (default=(12,4))
+
+    Returns
+    -------
+    None
+
+    '''
 
     types = sorted(list(set(list(adata.obs['clusters']))))
 

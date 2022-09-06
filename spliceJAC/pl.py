@@ -2,4 +2,4 @@
 import plotting utilities
 '''
 
-from .plot import *
+from spliceJAC.plot import *

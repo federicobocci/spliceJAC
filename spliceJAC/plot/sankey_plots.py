@@ -1,20 +1,49 @@
-import numpy as np
+'''
+functions for Sankey diagrams
+'''
 import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
+import plotly.graph_objects as go
 
-import networkx as nx
-from scipy.sparse.csgraph import connected_components
-from pyvis.network import Network
+from . import plotting_util
 
-from . import plots
+def tg_bif_sankey(adata,
+                  start,
+                  end,
+                  width=400,
+                  height=600,
+                  font_size=15,
+                  label_columns=True,
+                  showfig=True,
+                  savefig=True,
+                  figname='sankey.pdf',
+                  format='pdf'
+                  ):
+    '''
+    Plot a Sankey diagram of the top transition genes involved in different cell state transitions
 
-def tg_bif_sankey(adata, start, end, alpha_cluster=0.5, show_node_name=True, label_columns=True,
-                  showfig=True, savefig=True, figname='sankey.pdf', format='pdf'):
+    Parameters
+    ----------
+    adata: anndata object
+    start: starting cell state
+    end: list of final cell states
+    width: width of plotly figure (default=400)
+    height: height of plotly figure (default=600)
+    font_size: font size of figure (default=15)
+    label_columns: if True, label the diagram columns (default=True)
+    showfig: if True, show the figure (default=TRue)
+    savefig: if True, save the figure (default=True)
+    figname: name of saved figure including path (default='sankey.pdf')
+    format: format of saved figure (default='pdf')
 
+    Returns
+    -------
+    None
+
+    '''
     assert 'transitions' in adata.uns.keys(), "Please run transition analysis before calling tg_bif_sankey()"
 
     if 'colors' not in adata.uns.keys():
-        plots.plot_setup(adata)
+        plotting_util.plot_setup(adata)
 
     # get TG of each cluster
     tg, cluster = [], []
@@ -85,11 +114,9 @@ def tg_bif_sankey(adata, start, end, alpha_cluster=0.5, show_node_name=True, lab
 
 
     ### about static export og images in python: https://plotly.com/python/static-image-export/
-    import plotly.graph_objects as go
-
     fig = go.Figure(data=[go.Sankey(
         # to cancel plotly labels
-        textfont=dict(color="rgba(0,0,0,0)", size=1),
+        # textfont=dict(color="rgba(0,0,0,0)", size=1),
         node=dict(
             pad=0,  # vertical gap between nodes
             thickness=40,  # width of nodes
@@ -107,12 +134,12 @@ def tg_bif_sankey(adata, start, end, alpha_cluster=0.5, show_node_name=True, lab
     # clst = ['Alpha', 'Beta', 'Delta', 'Epsilon']
     # y_pos = [0.125, 0.375, 0.625, 0.875]
     # for c, y in zip(clst, y_pos):
-    #     fig.add_annotation(text=c, xref="paper", yref="paper", x=1., y=y, showarrow=False, align='center', textangle=-90)
+    #     fig.add_annotation(text=c, xref="paper", yref="paper", x=0.95, y=y, showarrow=False, align='center', textangle=-90)
 
     if label_columns:
         fig.add_annotation(text='TG', xref="paper", yref="paper", x=0., y=1.1, showarrow=False, align='center')
         fig.add_annotation(text='Final State', xref="paper", yref="paper", x=1.05, y=1.1, showarrow=False, align='center')
-    fig.update_layout(autosize=False, width=400, height=600, font_size=15)
+    fig.update_layout(autosize=False, width=width, height=height, font_size=font_size)
 
     if savefig:
         fig.write_image(figname, format=format)
