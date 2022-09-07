@@ -2,4 +2,4 @@
 import tools
 '''
 
-from spliceJAC.tools import *
+from splicejac.tools import *
