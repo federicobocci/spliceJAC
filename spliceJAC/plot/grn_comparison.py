@@ -100,7 +100,7 @@ def adjecent_grn_score(adata, path, score='AUPRC', edges='all',
 
     plt.figure(figsize=figsize)
 
-    plt.plot(np.arange(0, path_score.size, 1), path_score, color=color, 'o--', label='Transition')
+    plt.plot(np.arange(0, path_score.size, 1), path_score, 'o--', color=color, label='Transition')
     plt.errorbar(np.arange(0, path_score.size, 1), average_score, yerr=std_score, fmt='o--', color=errorline_color, elinewidth=elinewidth, label='Average over dataset')
     plt.xticks(np.arange(0, path_score.size, 1), labs)
     plt.ylabel(score + ' score', fontsize=fontsize)
