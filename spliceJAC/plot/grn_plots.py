@@ -218,11 +218,31 @@ def visualize_network(adata,
 
 
 
-def diff_network(adata, cluster1, cluster2, genes=None,
-                    cc_id=0, node_size=500, edge_width='weight', font_size=10,
-                    weight_quantile=.5, pos_style='spring', base_node_size=300, diff_node_size=600,
-                      pos_edge_color='b', neg_edge_color='r', arrowsize=10, arrow_alpha=0.75, conn_style='straight', colorbar=True,
-                 title=True, showfig=False, savefig=True, figname='diff_grn.pdf', format='pdf', figsize=(3.5, 3)):
+def diff_network(adata,
+                 cluster1,
+                 cluster2,
+                 genes=None,
+                 cc_id=0,
+                 node_size=500,
+                 edge_width='weight',
+                 font_size=10,
+                 weight_quantile=.5,
+                 pos_style='spring',
+                 base_node_size=300,
+                 diff_node_size=600,
+                 pos_edge_color='b',
+                 neg_edge_color='r',
+                 arrowsize=10,
+                 arrow_alpha=0.75,
+                 conn_style='straight',
+                 colorbar=True,
+                 title=True,
+                 showfig=False,
+                 savefig=True,
+                 figname='diff_grn.pdf',
+                 format='pdf',
+                 figsize=(3.5, 3)
+                 ):
     '''
     Plot the differential network between two cell states
 
