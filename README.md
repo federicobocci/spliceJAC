@@ -2,6 +2,8 @@
 
 spliceJAC is a python-based toolkit to reconstruct cell state-specific gene regulatory networks (GRN) and predict transition driver genes leading to cell differentiation. 
 
+![](misc/synopsis_figure.png)
+
 ### Applications
 
 Application of spliceJAC include:
