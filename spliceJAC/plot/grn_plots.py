@@ -24,7 +24,8 @@ def plot_grn(G,
              arrowsize=10,
              arrow_alpha=0.75,
              conn_style='straight',
-             colorbar=True
+             colorbar=True,
+             fontweight='normal'
              ):
     '''Plot the GRN with positive and negative interactions
 
@@ -46,6 +47,7 @@ def plot_grn(G,
     arrow_alpha: shading of interaction arrows
     conn_style: style of interaction arrows
     colorbar: if True, show colorbar (required if node_size='expression')
+    fontweight: style of text (default='normal')
 
     Returns
     -------
@@ -107,7 +109,7 @@ def plot_grn(G,
 
     nx.draw_networkx_edges(G, pos, edgelist=epos, width=edge_width_pos + 0.5, edge_color=pos_edge_color, arrowsize=arrowsize, alpha=arrow_alpha, connectionstyle=connectionstyle)
     nx.draw_networkx_edges(G, pos, edgelist=eneg, width=edge_width_neg + 0.5, edge_color=neg_edge_color, arrowstyle="-[", arrowsize=arrowsize, alpha=arrow_alpha, connectionstyle=connectionstyle)
-    nx.draw_networkx_labels(G, pos, font_size=font_size, font_family="sans-serif")
+    nx.draw_networkx_labels(G, pos, font_size=font_size, font_family="sans-serif", font_weight=fontweight)
 
 
 def visualize_network(adata,
@@ -130,6 +132,7 @@ def visualize_network(adata,
                       arrow_alpha=0.75,
                       conn_style='straight',
                       colorbar=True,
+                      fontweight='normal',
                       showfig=False,
                       savefig=True,
                       figname='core_GRN.pdf',
@@ -161,6 +164,7 @@ def visualize_network(adata,
     arrow_alpha: shading of interaction arrows
     conn_style: style of interaction arrows
     colorbar: if True, show colorbar (required if node_size='expression')
+    fontweight: style of text (default='normal')
     showfig: if True, show the figure (default=False)
     savefig: if True, save the figure (default=True)
     figname: name of saved figure including path (default='core_GRN.pdf')
@@ -196,7 +200,7 @@ def visualize_network(adata,
     fig, ax = plt.subplots(figsize=figsize)
     plot_grn(subgraphs[cc_id], node_size=node_size, edge_width=edge_width, font_size=font_size, adata=adata, node_color=node_color, cluster_name=cluster_name, pos_style=pos_style,
              base_node_size=base_node_size, diff_node_size=diff_node_size, pos_edge_color=pos_edge_color, neg_edge_color=neg_edge_color,
-             arrowsize=arrowsize, arrow_alpha=arrow_alpha, conn_style=conn_style, colorbar=colorbar)
+             arrowsize=arrowsize, arrow_alpha=arrow_alpha, conn_style=conn_style, colorbar=colorbar, fontweight=fontweight)
 
     # Title/legend
     font = {"color": "k", "fontweight": "bold", "fontsize": 20}
@@ -236,6 +240,7 @@ def diff_network(adata,
                  arrow_alpha=0.75,
                  conn_style='straight',
                  colorbar=True,
+                 fontweight='normal',
                  title=True,
                  showfig=False,
                  savefig=True,
@@ -266,6 +271,7 @@ def diff_network(adata,
     arrow_alpha: shading of interaction arrows
     conn_style: style of interaction arrows
     colorbar: if True, show colorbar (required if node_size='expression')
+    fontweight: style of text (default='normal')
     title: if True, plot title (default=True)
     showfig: if True, show the figure (default=False)
     savefig: if True, save the figure (default=True)
@@ -312,7 +318,7 @@ def diff_network(adata,
              node_color=expr_change, cluster_name=None, pos_style=pos_style,
              base_node_size=base_node_size, diff_node_size=diff_node_size, pos_edge_color=pos_edge_color,
              neg_edge_color=neg_edge_color,
-             arrowsize=arrowsize, arrow_alpha=arrow_alpha, conn_style=conn_style, colorbar=colorbar)
+             arrowsize=arrowsize, arrow_alpha=arrow_alpha, conn_style=conn_style, colorbar=colorbar, fontweight=fontweight)
     plt.axis("off")
 
     # Title/legend
@@ -340,7 +346,7 @@ def diff_interactions(adata,
                       savefig=True,
                       figname='diff_interactions.pdf',
                       format='pdf',
-                      figsize=(5,4)
+                      figsize=(4,5)
                       ):
     '''
     Plot the top differential interactions between two cell states
@@ -399,8 +405,7 @@ def diff_interactions(adata,
     plt.yticks( np.arange(1, len(int_list)+1, 1), name )
     plt.xlabel('Interaction strenght change', fontsize=fontsize)
     plt.legend(loc=loc, fontsize=legend_font, ncol=legend_col)
-    plt.ylim([0, len(int_list) + 1])
-
+    plt.ylim([0, len(int_list) + 2])
 
     if title:
         plt.title(title, fontsize=fontsize)
@@ -432,6 +437,7 @@ def conserved_grn(adata,
                   arrow_alpha=0.75,
                   conn_style='straight',
                   colorbar=True,
+                  fontweight='normal',
                   showfig=False,
                   savefig=True,
                   figname='cons_grn.pdf',
@@ -462,6 +468,7 @@ def conserved_grn(adata,
     arrow_alpha: shading of interaction arrows
     conn_style: style of interaction arrows
     colorbar: if True, show colorbar (required if node_size='expression')
+    fontweight: style of text (default='normal')
     showfig: if True, show the figure (default=False)
     savefig: if True, save the figure (default=True)
     figname: name of saved figure including path (default='cons_grn.pdf')
@@ -512,7 +519,7 @@ def conserved_grn(adata,
              node_color=expr_change, cluster_name=None, pos_style=pos_style, base_node_size=base_node_size,
              diff_node_size=diff_node_size,
              pos_edge_color=pos_edge_color, neg_edge_color=neg_edge_color, arrowsize=arrowsize, arrow_alpha=arrow_alpha,
-             conn_style=conn_style, colorbar=colorbar)
+             conn_style=conn_style, colorbar=colorbar, fontweight=fontweight)
     plt.axis("off")
 
     # Title/legend
@@ -539,7 +546,7 @@ def top_conserved_int(adata,
                       savefig=True,
                       figname='conserved_interactions.pdf',
                       format='pdf',
-                      figsize=(5,4)
+                      figsize=(4,5)
                       ):
     '''
     Plot the top conserved interactions between two cell states

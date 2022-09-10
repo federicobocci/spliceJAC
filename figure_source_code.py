@@ -206,80 +206,80 @@ def GRN_similarity(adata):
 
     '''
     # differential network
-    sp.pl.diff_network(adata, 'Ductal', 'Ngn3 low EP', pos_style='circle', figsize=(8, 6),
+    sp.pl.diff_network(adata, 'Ductal', 'Ngn3 low EP', pos_style='circle', figsize=(7, 5), fontweight='bold',
                        weight_quantile=0.975, figname='results/pancreas/Diff_GRN_Ductal_to_lowEP.pdf')
-    sp.pl.diff_network(adata, 'Ngn3 low EP', 'Ngn3 high EP', pos_style='circle', figsize=(8, 6),
+    sp.pl.diff_network(adata, 'Ngn3 low EP', 'Ngn3 high EP', pos_style='circle', figsize=(7, 5),
                        weight_quantile=0.975, figname='results/pancreas/Diff_GRN_lowEP_to_highEP.pdf')
-    sp.pl.diff_network(adata, 'Ngn3 high EP', 'Pre-endocrine', pos_style='circle', figsize=(8, 6),
+    sp.pl.diff_network(adata, 'Ngn3 high EP', 'Pre-endocrine', pos_style='circle', figsize=(7, 5), fontweight='bold',
                        weight_quantile=0.975, figname='results/pancreas/Diff_GRN_highEP_to_Pre.pdf')
-    sp.pl.diff_network(adata, 'Pre-endocrine', 'Alpha', pos_style='circle', figsize=(8, 6),
+    sp.pl.diff_network(adata, 'Pre-endocrine', 'Alpha', pos_style='circle', figsize=(7, 5), fontweight='bold',
                        weight_quantile=0.975, figname='results/pancreas/Diff_GRN_Pre_to_Alpha.pdf')
-    sp.pl.diff_network(adata, 'Pre-endocrine', 'Beta', pos_style='circle', figsize=(8, 6),
+    sp.pl.diff_network(adata, 'Pre-endocrine', 'Beta', pos_style='circle', figsize=(7, 5), fontweight='bold',
                        weight_quantile=0.975, figname='results/pancreas/Diff_GRN_Pre_to_Beta.pdf')
-    sp.pl.diff_network(adata, 'Pre-endocrine', 'Delta', pos_style='circle', figsize=(8, 6),
+    sp.pl.diff_network(adata, 'Pre-endocrine', 'Delta', pos_style='circle', figsize=(7, 5), fontweight='bold',
                        weight_quantile=0.975, figname='results/pancreas/Diff_GRN_Pre_to_Delta.pdf')
-    sp.pl.diff_network(adata, 'Pre-endocrine', 'Epsilon', pos_style='circle', figsize=(8, 6),
+    sp.pl.diff_network(adata, 'Pre-endocrine', 'Epsilon', pos_style='circle', figsize=(7, 5), fontweight='bold',
                        weight_quantile=0.975, figname='results/pancreas/Diff_GRN_Pre_to_Epsilon.pdf')
 
     # top differential interactions
-    sp.pl.diff_interactions(adata, 'Ductal', 'Ngn3 low EP', figsize=(4, 6),
-                            title='Top 10 Differential Interactions', legend_font=8,
-                            legend_col=2, loc='upper center', figname='results/pancreas/Ductal_to_lowEP_change.pdf')
-    sp.pl.diff_interactions(adata, 'Ngn3 low EP', 'Ngn3 high EP', figsize=(4, 6),
-                            title='Top 10 Differential Interactions', legend_font=8,
-                            legend_col=2, loc='upper center', figname='results/pancreas/lowEP_to_highEP_change.pdf')
-    sp.pl.diff_interactions(adata, 'Ngn3 high EP', 'Pre-endocrine', figsize=(4, 6),
-                            title='Top 10 Differential Interactions', legend_font=8,
-                            legend_col=2, loc='upper center', figname='results/pancreas/highEP_to_Pre_change.pdf')
-    sp.pl.diff_interactions(adata, 'Pre-endocrine', 'Alpha', figsize=(4, 6),
-                            title='Top 10 Differential Interactions', legend_font=8,
-                            legend_col=2, loc='upper center', figname='results/pancreas/Pre_to_Alpha_change.pdf')
-    sp.pl.diff_interactions(adata, 'Pre-endocrine', 'Beta', figsize=(4, 6),
-                            title='Top 10 Differential Interactions', legend_font=8,
-                            legend_col=2, loc='upper center', figname='results/pancreas/Pre_to_Beta_change.pdf')
-    sp.pl.diff_interactions(adata, 'Pre-endocrine', 'Delta', figsize=(4, 6),
-                            title='Top 10 Differential Interactions', legend_font=8,
-                            legend_col=2, loc='upper center', figname='results/pancreas/Pre_to_Delta_change.pdf')
-    sp.pl.diff_interactions(adata, 'Pre-endocrine', 'Epsilon', figsize=(4, 6),
-                            title='Top 10 Differential Interactions', legend_font=8,
-                            legend_col=2, loc='upper center', figname='results/pancreas/Pre_to_Epsilon_change.pdf')
+    sp.pl.diff_interactions(adata, 'Ductal', 'Ngn3 low EP', figsize=(4, 5),
+                            title='Top 10 Differential Interactions',
+                            loc='upper center', figname='results/pancreas/Ductal_to_lowEP_change.pdf')
+    sp.pl.diff_interactions(adata, 'Ngn3 low EP', 'Ngn3 high EP', figsize=(4, 5),
+                            title='Top 10 Differential Interactions',
+                            loc='upper center', figname='results/pancreas/lowEP_to_highEP_change.pdf')
+    sp.pl.diff_interactions(adata, 'Ngn3 high EP', 'Pre-endocrine', figsize=(4, 5),
+                            title='Top 10 Differential Interactions',
+                            loc='upper center', figname='results/pancreas/highEP_to_Pre_change.pdf')
+    sp.pl.diff_interactions(adata, 'Pre-endocrine', 'Alpha', figsize=(4, 5),
+                            title='Top 10 Differential Interactions',
+                            loc='upper center', figname='results/pancreas/Pre_to_Alpha_change.pdf')
+    sp.pl.diff_interactions(adata, 'Pre-endocrine', 'Beta', figsize=(4, 5),
+                            title='Top 10 Differential Interactions',
+                            loc='upper center', figname='results/pancreas/Pre_to_Beta_change.pdf')
+    sp.pl.diff_interactions(adata, 'Pre-endocrine', 'Delta', figsize=(4, 5),
+                            title='Top 10 Differential Interactions',
+                            loc='upper center', figname='results/pancreas/Pre_to_Delta_change.pdf')
+    sp.pl.diff_interactions(adata, 'Pre-endocrine', 'Epsilon', figsize=(4, 5),
+                            title='Top 10 Differential Interactions',
+                            loc='upper center', figname='results/pancreas/Pre_to_Epsilon_change.pdf')
 
     # conserved GRN
-    sp.pl.conserved_grn(adata, 'Ductal', 'Ngn3 low EP', pos_style='circle', figsize=(8, 6),
+    sp.pl.conserved_grn(adata, 'Ductal', 'Ngn3 low EP', pos_style='circle', figsize=(7, 5), fontweight='bold',
                        weight_quantile=0.975, figname='results/pancreas/Cons_GRN_Ductal_to_lowEP.pdf')
-    sp.pl.conserved_grn(adata, 'Ngn3 low EP', 'Ngn3 high EP', pos_style='circle', figsize=(8, 6),
+    sp.pl.conserved_grn(adata, 'Ngn3 low EP', 'Ngn3 high EP', pos_style='circle', figsize=(7, 5), fontweight='bold',
                        weight_quantile=0.975, figname='results/pancreas/Cons_GRN_lowEP_to_highEP.pdf')
-    sp.pl.conserved_grn(adata, 'Ngn3 high EP', 'Pre-endocrine', pos_style='circle', figsize=(8, 6),
-                       weight_quantile=0.975, figname='results/pancreas/Cons_GRN_highEP_to_Pre.pdf')
-    sp.pl.conserved_grn(adata, 'Pre-endocrine', 'Alpha', pos_style='circle', figsize=(8, 6),
+    sp.pl.conserved_grn(adata, 'Ngn3 high EP', 'Pre-endocrine', pos_style='circle', figsize=(7, 5), fontweight='bold',
+                       weight_quantile=0.95, figname='results/pancreas/Cons_GRN_highEP_to_Pre.pdf')
+    sp.pl.conserved_grn(adata, 'Pre-endocrine', 'Alpha', pos_style='circle', figsize=(7, 5), fontweight='bold',
                        weight_quantile=0.975, figname='results/pancreas/Cons_GRN_Pre_to_Alpha.pdf')
-    sp.pl.conserved_grn(adata, 'Pre-endocrine', 'Beta', pos_style='circle', figsize=(8, 6),
+    sp.pl.conserved_grn(adata, 'Pre-endocrine', 'Beta', pos_style='circle', figsize=(7, 5), fontweight='bold',
                        weight_quantile=0.975, figname='results/pancreas/Cons_GRN_Pre_to_Beta.pdf')
-    sp.pl.conserved_grn(adata, 'Pre-endocrine', 'Delta', pos_style='circle', figsize=(8, 6),
+    sp.pl.conserved_grn(adata, 'Pre-endocrine', 'Delta', pos_style='circle', figsize=(7, 5), fontweight='bold',
                        weight_quantile=0.975, figname='results/pancreas/Cons_GRN_Pre_to_Delta.pdf')
-    sp.pl.conserved_grn(adata, 'Pre-endocrine', 'Epsilon', pos_style='circle', figsize=(8, 6),
+    sp.pl.conserved_grn(adata, 'Pre-endocrine', 'Epsilon', pos_style='circle', figsize=(7, 5), fontweight='bold',
                        weight_quantile=0.975, figname='results/pancreas/Cons_GRN_Pre_to_Epsilon.pdf')
 
     # top conserved interactions
-    sp.pl.top_conserved_int(adata, 'Ductal', 'Ngn3 low EP', figsize=(4, 6),
+    sp.pl.top_conserved_int(adata, 'Ductal', 'Ngn3 low EP', figsize=(4, 5),
                             title='Top 10 Conserved Interactions',
                             figname='results/pancreas/Ductal_to_lowEP_conserved.pdf')
-    sp.pl.top_conserved_int(adata, 'Ngn3 low EP', 'Ngn3 high EP', figsize=(4, 6),
+    sp.pl.top_conserved_int(adata, 'Ngn3 low EP', 'Ngn3 high EP', figsize=(4, 5),
                             title='Top 10 Conserved Interactions',
                             figname='results/pancreas/lowEP_to_highEP_conserved.pdf')
-    sp.pl.top_conserved_int(adata, 'Ngn3 high EP', 'Pre-endocrine', figsize=(4, 6),
+    sp.pl.top_conserved_int(adata, 'Ngn3 high EP', 'Pre-endocrine', figsize=(4, 5),
                             title='Top 10 Conserved Interactions',
                             figname='results/pancreas/highEP_to_Pre_conserved.pdf')
-    sp.pl.top_conserved_int(adata, 'Pre-endocrine', 'Alpha', figsize=(4, 6),
+    sp.pl.top_conserved_int(adata, 'Pre-endocrine', 'Alpha', figsize=(4, 5),
                             title='Top 10 Conserved Interactions',
                             figname='results/pancreas/Pre_to_Alpha_conserved.pdf')
-    sp.pl.top_conserved_int(adata, 'Pre-endocrine', 'Beta', figsize=(4, 6),
+    sp.pl.top_conserved_int(adata, 'Pre-endocrine', 'Beta', figsize=(4, 5),
                             title='Top 10 Conserved Interactions',
                             figname='results/pancreas/Pre_to_Beta_conserved.pdf')
-    sp.pl.top_conserved_int(adata, 'Pre-endocrine', 'Delta', figsize=(4, 6),
+    sp.pl.top_conserved_int(adata, 'Pre-endocrine', 'Delta', figsize=(4, 5),
                             title='Top 10 Conserved Interactions',
                             figname='results/pancreas/Pre_to_Delta_conserved.pdf')
-    sp.pl.top_conserved_int(adata, 'Pre-endocrine', 'Epsilon', figsize=(4, 6),
+    sp.pl.top_conserved_int(adata, 'Pre-endocrine', 'Epsilon', figsize=(4, 5),
                             title='Top 10 Conserved Interactions',
                             figname='results/pancreas/Pre_to_Epsilon_conserved.pdf')
 
@@ -364,12 +364,12 @@ def main():
 
     panc_data = load_and_preprocess()
     run_splicejac(panc_data)
-    state_GRN_figures(panc_data)
-    transition_figures(panc_data)
-    scvelo_scores(panc_data)
-    differentiation_plots(panc_data)
+    # state_GRN_figures(panc_data)
+    # transition_figures(panc_data)
+    # scvelo_scores(panc_data)
+    # differentiation_plots(panc_data)
     GRN_similarity(panc_data)
-    robustness(panc_data)
+    # robustness(panc_data)
 
 
 if __name__=='__main__':
