@@ -11,9 +11,8 @@ def regression_sens(adata,
                    legend_font=10,
                    title_font=12,
                    legend_loc='best',
-                   showfig=False,
-                   savefig=True,
-                   figname='inference_sens.pdf',
+                   showfig=None,
+                   savefig=None,
                    format='pdf',
                    figsize=(12,4)
                    ):
@@ -27,9 +26,8 @@ def regression_sens(adata,
     legend_font: font size of legend (default=12)
     title_font: font size of title (default=12)
     legend_loc: legend location (default='best')
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='inference_sens.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(12,4))
 
@@ -76,16 +74,15 @@ def regression_sens(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format)
+        plt.savefig(savefig, format=format)
 
 
 def sampling_sens(adata,
                   font_size=10,
                   legend_font=10,
                   legend_loc='best',
-                  showfig=False,
-                  savefig=True,
-                  figname='sampling_sens.pdf',
+                  showfig=None,
+                  savefig=None,
                   format='pdf',
                   figsize=(12,4)
                   ):
@@ -98,9 +95,8 @@ def sampling_sens(adata,
     font_size: font size of figure (default=10)
     legend_font: font size of legend (default=12)
     legend_loc: legend location (default='best')
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='sampling_sens.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(12,4))
 
@@ -137,15 +133,14 @@ def sampling_sens(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format)
+        plt.savefig(savefig, format=format)
 
 
 
 def subsample_stability(adata,
                         font_size=10,
-                        showfig=False,
-                        savefig=True,
-                        figname='robustness.pdf',
+                        showfig=None,
+                        savefig=None,
                         format='pdf',
                         figsize=(12,4)
                         ):
@@ -156,9 +151,8 @@ def subsample_stability(adata,
     ----------
     adata: anndata object
     font_size: font size of figure (default=10)
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='robustness.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(12,4))
 
@@ -210,4 +204,4 @@ def subsample_stability(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format)
+        plt.savefig(savefig, format=format)

@@ -139,18 +139,3 @@ def count_pos_eig(adata,
         w = w_list[i]
         pos_eig.append( 100 *np.real(w)[np.real(w) >0].size/float(m) )
     return pos_eig
-
-
-# def cluster_inst_score(adata, cluster):
-#     assert 'jacobian_lists' in adata.uns.keys(), 'Run cluster stability first'
-#
-#     w_list = adata.uns['jacobian_lists'][cluster][1]
-#     nsim = len(w_list)
-#     m = 2 * len(list(adata.var_names))
-#
-#     score = []
-#     for i in range(nsim):
-#         w = w_list[i]
-#         real_w = np.real(w)
-#         score.append( np.sum(np.linalg.norm(real_w[real_w>0]))/np.sum(np.linalg.norm(real_w)) )
-#     return score

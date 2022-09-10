@@ -19,9 +19,8 @@ def umap_scatter(adata,
                  legend_loc='upper center',
                  ncol=4,
                  figsize=(4, 4),
-                 showfig=False,
-                 savefig=True,
-                 figname='umap_scatter.pdf',
+                 showfig=None,
+                 savefig=None,
                  format='pdf'):
     '''2D UMAP plot of the data
 
@@ -31,18 +30,17 @@ def umap_scatter(adata,
     ax: pyplot axis, if False generate a new figure (default=False)
     order: order of cluster labels in the figure legend, if None the order is random (default=None)
     axis: if true, draw axes, otherwise do not show axes (default=False)
-    fontsize: fontsize of axes and legend labels
-    alpha: shading of inidividual cells
-    show_cluster_center: if True, plot the center of each cluster
-    s: size of individual cells
-    legens_pos: position of figure legend by axis coordinates
-    legend_loc: position of figure legend
-    ncol: number of columns in the figure legend
-    figsize: size of figure
-    showfig: if True, show the figure
-    savefig: if True, save the figure
-    figname: name of saved figure (any path for figure saving should be added gere)
-    format: figure format
+    fontsize: fontsize of axes and legend labels (default=10)
+    alpha: shading of individual cells (default=0.5)
+    show_cluster_center: if True, plot the center of each cluster (default=True)
+    s: size of individual cells (default=2)
+    legens_pos: position of figure legend by axis coordinates (default=(0.5, 1.2))
+    legend_loc: position of figure legend (default='upper center')
+    ncol: number of columns in the figure legend (default=4)
+    figsize: size of figure (default=(4,4))
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
+    format: figure format (default='pdf')
 
     Returns
     -------
@@ -90,4 +88,4 @@ def umap_scatter(adata,
         if showfig:
             plt.show()
         if savefig:
-            plt.savefig(figname, format=format, dpi=300)
+            plt.savefig(savefig, format=format, dpi=300)

@@ -11,9 +11,8 @@ def plot_trans_genes(adata,
                      fontsize=10,
                      color='r',
                      alpha=0.5,
-                     showfig=False,
-                     savefig=True,
-                     figname='trans_genes.pdf',
+                     showfig=None,
+                     savefig=None,
                      format='pdf',
                      figsize=(3,3)
                      ):
@@ -29,9 +28,8 @@ def plot_trans_genes(adata,
     fontsize: fontsize of figure (default=10)
     color: color for bar plot (default='r')
     alpha: shading for bar plot (default=0.5)
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='trans_genes.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(3,3))
 
@@ -61,7 +59,7 @@ def plot_trans_genes(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
+        plt.savefig(savefig, format=format, dpi=300)
 
 
 
@@ -70,9 +68,8 @@ def scatter_scores(adata,
                    cluster2,
                    fontsize=10,
                    color='b',
-                   showfig=False,
-                   savefig=True,
-                   figname='compare_DEG_scores.pdf',
+                   showfig=None,
+                   savefig=None,
                    format='pdf',
                    figsize=(3,3)
                    ):
@@ -86,9 +83,8 @@ def scatter_scores(adata,
     cluster2: final cell state
     fontsize: fontsize of figure (default=10)
     color: color for scatter plot (default='b')
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='compare_DEG_scores.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(3,3))
 
@@ -119,7 +115,7 @@ def scatter_scores(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
+        plt.savefig(savefig, format=format, dpi=300)
 
 
 
@@ -131,9 +127,8 @@ def compare_scvelo_scores(adata,
                           panel_length=3.5,
                           pan_per_row=4,
                           fontsize=10,
-                          showfig=False,
-                          savefig=True,
-                          figname='compare_scvelo_scores.pdf',
+                          showfig=None,
+                          savefig=None,
                           format='pdf'
                           ):
     '''
@@ -149,9 +144,8 @@ def compare_scvelo_scores(adata,
     panel_length: length of each panel (in inches) (default=3.5)
     pan_per_row: number of panels per row (default=4)
     fontsize: fontsize of figure (default=10)
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='compare_scvelo_scores.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
 
     Returns
@@ -215,4 +209,4 @@ def compare_scvelo_scores(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
+        plt.savefig(savefig, format=format, dpi=300)

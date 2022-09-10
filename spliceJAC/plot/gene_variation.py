@@ -50,11 +50,10 @@ def gene_variation(adata,
                    edge_width=1,
                    gene_label_rot=90,
                    fontsize=10,
-                   showfig=False,
-                   savefig=True,
-                   figsize=(6, 3),
-                   figname='gene_variation.pdf',
-                   format='pdf'
+                   showfig=None,
+                   savefig=None,
+                   format='pdf',
+                   figsize=(6, 3)
                    ):
     '''
     Bar plot of gene role variation across cell states
@@ -71,9 +70,8 @@ def gene_variation(adata,
     edge_width: edgewidth for bar plot (default=1)
     gene_label_rot: rotation of labels on x-axis (default=90)
     fontsize: fontsize of figure (default=10)
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='gene_variation.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(3.5,3))
 
@@ -134,7 +132,7 @@ def gene_variation(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
+        plt.savefig(savefig, format=format, dpi=300)
 
 
 def gene_var_detail(adata,
@@ -147,9 +145,8 @@ def gene_var_detail(adata,
                     legend=True,
                     legend_font=10,
                     gene_label_rot=45,
-                    showfig=False,
-                    savefig=True,
-                    figname='gene_var_detail.pdf',
+                    showfig=None,
+                    savefig=None,
                     format='pdf',
                     figsize=(5, 4)
                     ):
@@ -168,9 +165,8 @@ def gene_var_detail(adata,
     legend: if True, include legend (default=True)
     legend_font: font of legend (default=10)
     gene_label_rot: rotation of labels on x-axis (default=45)
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='gene_var_detail.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(3.5,3))
 
@@ -219,7 +215,7 @@ def gene_var_detail(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
+        plt.savefig(savefig, format=format, dpi=300)
 
 
 def gene_var_scatter(adata,
@@ -228,9 +224,8 @@ def gene_var_scatter(adata,
                      top_genes=5,
                      fontsize=10,
                      color='b',
-                     showfig=False,
-                     savefig=True,
-                     figname='gene_var_scatter.pdf',
+                     showfig=None,
+                     savefig=None,
                      format='pdf',
                      figsize=(5, 4)
                      ):
@@ -245,9 +240,8 @@ def gene_var_scatter(adata,
     top_genes: top genes to annotate
     fontsize: fontsize of figure (default=10)
     color: color of scatter plot (default='b')
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='gene_var_scatter.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(5,4))
 
@@ -283,7 +277,7 @@ def gene_var_scatter(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
+        plt.savefig(savefig, format=format, dpi=300)
 
 
 def compare_standout_genes(adata,
@@ -293,9 +287,8 @@ def compare_standout_genes(adata,
                            panel_height=1.5,
                            panel_length=5,
                            ylabel=False,
-                           showfig=False,
-                           savefig=True,
-                           figname='standout_genes.pdf',
+                           showfig=None,
+                           savefig=None,
                            format='pdf'
                            ):
     '''
@@ -310,9 +303,8 @@ def compare_standout_genes(adata,
     panel_height: height of each panel (in inches) (default=1.5)
     panel_length: length of each panel (in inches) (default=5)
     ylabel: if True, print label of y-axis (default=False)
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='standout_genes.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
 
     Returns
@@ -358,10 +350,8 @@ def compare_standout_genes(adata,
     fc = np.transpose(fc)
 
     # find 5 most differentiated genes based on betweenness
-    # print( np.unravel_index(fc.argmax(), fc.shape) )
     j = 0
     fig = plt.figure(figsize=(panel_length,top_genes*panel_height))
-    ax_list = [511, 512, 513, 514, 515]
 
     while j<top_genes:
         [a,b] = np.unravel_index(fc.argmax(), fc.shape)
@@ -392,6 +382,6 @@ def compare_standout_genes(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
+        plt.savefig(savefig, format=format, dpi=300)
 
 

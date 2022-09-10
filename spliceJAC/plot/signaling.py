@@ -10,9 +10,8 @@ def plot_signaling_hubs(adata,
                         top_genes=5,
                         show_top_genes=True,
                         criterium='weights',
-                        showfig=False,
-                        savefig=True,
-                        figname='signaling_hub.pdf',
+                        showfig=None,
+                        savefig=None,
                         format='pdf',
                         figsize=(3.5,3)
                         ):
@@ -27,9 +26,8 @@ def plot_signaling_hubs(adata,
     top_genes: number of top genes to label with gene name (default=5)
     show_top_genes: if True, annotate the top genes (default=True)
     criterium: criterium to rank top genes. "weights" ranks genes based on the weighted edges of the cell state GRN, "edges" ranks genes based on the number of edges (default='weights')
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='signaling_hub.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(3.5,3))
 
@@ -78,7 +76,7 @@ def plot_signaling_hubs(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
+        plt.savefig(savefig, format=format, dpi=300)
 
 
 
@@ -92,9 +90,8 @@ def plot_signaling_change(adata,
                           logscale_fc=True,
                           x_shift=0.05,
                           y_shift=0.05,
-                          showfig=False,
-                          savefig=True,
-                          figname='signaling_hub_change.pdf',
+                          showfig=None,
+                          savefig=None,
                           format='pdf',
                           figsize=(3.5,3)
                           ):
@@ -113,9 +110,8 @@ def plot_signaling_change(adata,
     logscale_fc: if True, rescale signaling change scores to logarithmic scale (default=True)
     x_shift: displacement on x-axis for gene annotations
     y_shift: displacement on y-axis for gene annotations
-    showfig: if True, show the figure (default=True)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='signaling_hub_change.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(3.5,3))
 
@@ -194,4 +190,4 @@ def plot_signaling_change(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
+        plt.savefig(savefig, format=format, dpi=300)

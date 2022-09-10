@@ -4,8 +4,17 @@ functions to quantitatively compare GRNs across cell states
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plot_grn_comparison(adata, score='AUPRC', edges='all', cmap='Reds', title=False, fontsize=10,
-                        showfig=False, savefig=True, figname='grn_scores.pdf', format='pdf', figsize=(5,4)):
+def plot_grn_comparison(adata,
+                        score='AUPRC',
+                        edges='all',
+                        cmap='Reds',
+                        title=False,
+                        fontsize=10,
+                        showfig=None,
+                        savefig=None,
+                        format='pdf',
+                        figsize=(5,4)
+                        ):
     '''
     Plot a heatmap of pairwise similarities between GRNs of different cell states
 
@@ -17,9 +26,8 @@ def plot_grn_comparison(adata, score='AUPRC', edges='all', cmap='Reds', title=Fa
     cmap: pyplot colormap (default='Reds')
     title: plot title, must be provided as a string (default='False')
     fontsize: font size of figure (default=10)
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='grn_scores.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(5,4))
 
@@ -52,11 +60,22 @@ def plot_grn_comparison(adata, score='AUPRC', edges='all', cmap='Reds', title=Fa
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
+        plt.savefig(savefig, format=format, dpi=300)
 
-def adjecent_grn_score(adata, path, score='AUPRC', edges='all',
-                       loc='best', fontsize=10, color='r', errorline_color='b', elinewidth=1,
-                       showfig=False, savefig=True, figname='adjacent_grn_score.pdf', format='pdf', figsize=(5,3)):
+def adjecent_grn_score(adata,
+                       path,
+                       score='AUPRC',
+                       edges='all',
+                       loc='best',
+                       fontsize=10,
+                       color='r',
+                       errorline_color='b',
+                       elinewidth=1,
+                       showfig=None,
+                       savefig=None,
+                       format='pdf',
+                       figsize=(5,3)
+                       ):
     '''
     Plot the pairwise GRN similarity between consecitive cell states along a transition
 
@@ -71,9 +90,8 @@ def adjecent_grn_score(adata, path, score='AUPRC', edges='all',
     color: color of plot (default='r')
     errorline_color: color of deviation bars (default='b')
     elinewidth: width of deviation bars (default=1)
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='grn_scores.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(5,4))
 
@@ -111,4 +129,4 @@ def adjecent_grn_score(adata, path, score='AUPRC', edges='all',
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
+        plt.savefig(savefig, format=format, dpi=300)

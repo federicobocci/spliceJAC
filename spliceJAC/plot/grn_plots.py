@@ -133,9 +133,8 @@ def visualize_network(adata,
                       conn_style='straight',
                       colorbar=True,
                       fontweight='normal',
-                      showfig=False,
-                      savefig=True,
-                      figname='core_GRN.pdf',
+                      showfig=None,
+                      savefig=None,
                       format='pdf',
                       figsize=(4, 3)
                       ):
@@ -165,9 +164,8 @@ def visualize_network(adata,
     conn_style: style of interaction arrows
     colorbar: if True, show colorbar (required if node_size='expression')
     fontweight: style of text (default='normal')
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='core_GRN.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(5,4))
 
@@ -218,7 +216,7 @@ def visualize_network(adata,
         nt.from_nx(subgraphs[cc_id])
         display(nt.show('nx.html'))
     if savefig:
-        plt.savefig(figname, format=format)
+        plt.savefig(savefig, format=format)
 
 
 
@@ -242,9 +240,8 @@ def diff_network(adata,
                  colorbar=True,
                  fontweight='normal',
                  title=True,
-                 showfig=False,
-                 savefig=True,
-                 figname='diff_grn.pdf',
+                 showfig=None,
+                 savefig=None,
                  format='pdf',
                  figsize=(3.5, 3)
                  ):
@@ -273,9 +270,8 @@ def diff_network(adata,
     colorbar: if True, show colorbar (required if node_size='expression')
     fontweight: style of text (default='normal')
     title: if True, plot title (default=True)
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='diff_grn.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(5,4))
 
@@ -330,7 +326,7 @@ def diff_network(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
+        plt.savefig(savefig, format=format, dpi=300)
 
 
 def diff_interactions(adata,
@@ -342,9 +338,8 @@ def diff_interactions(adata,
                       fontsize=10,
                       legend_font=10,
                       legend_col=1,
-                      showfig=False,
-                      savefig=True,
-                      figname='diff_interactions.pdf',
+                      showfig=None,
+                      savefig=None,
                       format='pdf',
                       figsize=(4,5)
                       ):
@@ -362,9 +357,8 @@ def diff_interactions(adata,
     fontsize: fontsize of figure (default=10)
     legend_font: fontsize of legend (default=10)
     legend_col: number of columns in legend (default=1)
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='diff_interactions.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(5,4))
 
@@ -415,7 +409,7 @@ def diff_interactions(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format)
+        plt.savefig(savefig, format=format)
 
 
 def conserved_grn(adata,
@@ -438,9 +432,8 @@ def conserved_grn(adata,
                   conn_style='straight',
                   colorbar=True,
                   fontweight='normal',
-                  showfig=False,
-                  savefig=True,
-                  figname='cons_grn.pdf',
+                  showfig=None,
+                  savefig=None,
                   format='pdf',
                   figsize=(3.5, 3)
                   ):
@@ -469,9 +462,8 @@ def conserved_grn(adata,
     conn_style: style of interaction arrows
     colorbar: if True, show colorbar (required if node_size='expression')
     fontweight: style of text (default='normal')
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='cons_grn.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(5,4))
 
@@ -531,8 +523,7 @@ def conserved_grn(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
-
+        plt.savefig(savefig, format=format, dpi=300)
 
 
 def top_conserved_int(adata,
@@ -542,9 +533,8 @@ def top_conserved_int(adata,
                       title=False,
                       fontsize=10,
                       alpha=0.5,
-                      showfig=False,
-                      savefig=True,
-                      figname='conserved_interactions.pdf',
+                      showfig=None,
+                      savefig=None,
                       format='pdf',
                       figsize=(4,5)
                       ):
@@ -560,9 +550,8 @@ def top_conserved_int(adata,
     title: if True, plot title (default=False)
     fontsize: fontsize of figure (default=10)
     alpha: shading of bar plot (default=0.5)
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='conserved_interactions.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(5,4))
 
@@ -614,7 +603,7 @@ def top_conserved_int(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format)
+        plt.savefig(savefig, format=format)
 
 
 def robust_mean(X):
@@ -677,7 +666,10 @@ def circle_pos(G):
     return pos
 
 
-def subset_jacobian(J, genes, genelist):
+def subset_jacobian(J,
+                    genes,
+                    genelist
+                    ):
     '''
     select gene-gene interactions for genes in the genelist
 
@@ -720,9 +712,8 @@ def core_GRN(adata,
              axis=False,
              xlim=[-1.2, 1.2],
              ylim=None,
-             showfig=False,
-             savefig=True,
-             figname='core_GRN.pdf',
+             showfig=None,
+             savefig=None,
              format='pdf',
              figsize=(3,3)
              ):
@@ -749,9 +740,8 @@ def core_GRN(adata,
     axis: if True, plot axes (default=False)
     xlim: inteval on x-axis (default=[-1.2, 1.2])
     ylim: inteval on y-axis (default=None)
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='core_GRN.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(3,3))
 
@@ -820,7 +810,7 @@ def core_GRN(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
+        plt.savefig(savefig, format=format, dpi=300)
 
 
 
@@ -840,9 +830,8 @@ def bif_GRN(adata, start, end, pos_edge_color='b',
              axis=True,
              xlim=[-1.2, 1.2],
              ylim=None,
-             showfig=False,
-             savefig=True,
-             figname='bif_GRN.pdf',
+             showfig=None,
+             savefig=None,
              format='pdf',
              figsize=(6,6)
             ):
@@ -869,9 +858,8 @@ def bif_GRN(adata, start, end, pos_edge_color='b',
     axis: if True, plot axes (default=False)
     xlim: inteval on x-axis (default=[-1.2, 1.2])
     ylim: inteval on y-axis (default=None)
-    showfig: if True, show the figure (default=False)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='bif_GRN.pdf')
+    showfig: if True, show the figure (default=None)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
     figsize: size of figure (default=(6,6))
 
@@ -961,7 +949,7 @@ def bif_GRN(adata, start, end, pos_edge_color='b',
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(figname, format=format, dpi=300)
+        plt.savefig(savefig, format=format, dpi=300)
 
 
 

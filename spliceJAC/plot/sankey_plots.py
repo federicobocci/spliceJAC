@@ -14,8 +14,7 @@ def tg_bif_sankey(adata,
                   font_size=15,
                   label_columns=True,
                   showfig=True,
-                  savefig=True,
-                  figname='sankey.pdf',
+                  savefig=None,
                   format='pdf'
                   ):
     '''
@@ -30,9 +29,8 @@ def tg_bif_sankey(adata,
     height: height of plotly figure (default=600)
     font_size: font size of figure (default=15)
     label_columns: if True, label the diagram columns (default=True)
-    showfig: if True, show the figure (default=TRue)
-    savefig: if True, save the figure (default=True)
-    figname: name of saved figure including path (default='sankey.pdf')
+    showfig: if True, show the figure (default=True)
+    savefig: if True, save the figure using the savefig path (default=None)
     format: format of saved figure (default='pdf')
 
     Returns
@@ -115,13 +113,11 @@ def tg_bif_sankey(adata,
 
     ### about static export og images in python: https://plotly.com/python/static-image-export/
     fig = go.Figure(data=[go.Sankey(
-        # to cancel plotly labels
-        # textfont=dict(color="rgba(0,0,0,0)", size=1),
         node=dict(
             pad=0,  # vertical gap between nodes
             thickness=40,  # width of nodes
             line=dict(color="black", width=0.5),
-            label=label, #genes+clusters,
+            label=label,
             color= gene_colors + cluster_colors
         ),
         link=dict(
@@ -131,17 +127,12 @@ def tg_bif_sankey(adata,
             color=link_color
         ))])
 
-    # clst = ['Alpha', 'Beta', 'Delta', 'Epsilon']
-    # y_pos = [0.125, 0.375, 0.625, 0.875]
-    # for c, y in zip(clst, y_pos):
-    #     fig.add_annotation(text=c, xref="paper", yref="paper", x=0.95, y=y, showarrow=False, align='center', textangle=-90)
-
     if label_columns:
         fig.add_annotation(text='TG', xref="paper", yref="paper", x=0., y=1.1, showarrow=False, align='center')
         fig.add_annotation(text='Final State', xref="paper", yref="paper", x=1.05, y=1.1, showarrow=False, align='center')
     fig.update_layout(autosize=False, width=width, height=height, font_size=font_size)
 
     if savefig:
-        fig.write_image(figname, format=format)
+        fig.write_image(savefig, format=format)
     if showfig:
         fig.show()
