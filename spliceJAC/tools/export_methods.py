@@ -5,15 +5,20 @@ import os
 import numpy as np
 import pandas as pd
 
-def grn_to_csv(adata, cluster, filename):
-    '''
-    Export the GRN of clusters to a csv file
+def grn_to_csv(adata,
+               cluster,
+               filename
+               ):
+    '''Export the GRN of clusters to a csv file
 
     Parameters
     ----------
-    adata: anndata object of cell counts
-    cluster: cell state
-    filename: the name of export file, including path and .csv extension
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster: `str`
+        cell state
+    filename: `str`
+        the name of export file, including path and .csv extension
 
     Returns
     -------
@@ -43,16 +48,23 @@ def grn_to_csv(adata, cluster, filename):
 
     grn_pd.to_csv(filename, index=False)
 
-def export_grn(adata, cluster, filename=None):
-    '''
-    Export the GRN of a cell state to a csv file
+def export_grn(adata,
+               cluster,
+               filename=None
+               ):
+    '''Export the GRN of a cell state to a csv file
+
+    If no filename is provided, a local folder results/exported_results/ will be created (if not existing) and the GRN
+    file will be saved with default name "grn" + cluster + ".csv"
 
     Parameters
     ----------
-    adata: anndata object of cell counts
-    cluster: cell state
-    filename: the name of export file, including path and .csv extension. If filename==None, a local folder
-    results/exported_results/ will be created (if not existing) and the GRN will be saved with default name "grn" + cluster + ".csv"
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster: `str`
+        cell state
+    filename: `str` (defaul: None)
+        the name of export file, including path and .csv extension
 
     Returns
     -------
@@ -69,7 +81,26 @@ def export_grn(adata, cluster, filename=None):
     grn_to_csv(adata, cluster, filename)
 
 
-def export_transition_scores(adata, filename=None):
+def export_transition_scores(adata,
+                             filename=None
+                             ):
+    ''' Export gene transition scores for all transitions in a csv file
+
+    If no filename is provided, a local folder results/exported_results/ will be created (if not existing) and the GRN
+    file will be saved with default name "grn" + cluster + ".csv"
+
+    Parameters
+    ----------
+    adata: `~anndata.AnnData`
+        count matrix
+    filename: `str` (defaul: None)
+        the name of export file, including path and .csv extension
+
+    Returns
+    -------
+    None
+
+    '''
     if filename==None:
         if not os.path.exists('results'):
             os.mkdir('results')

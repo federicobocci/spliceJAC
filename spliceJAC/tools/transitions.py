@@ -8,22 +8,26 @@ def find_dir(w,
              dir_method='top_eig',
              eig_number=5
              ):
-    '''
-    Identify the unstable transition directions given the eigenspectrum of the starting cell state
+    '''Identify the unstable transition directions given the eigenspectrum of the starting cell state
 
     Parameters
     ----------
-    w: eigenvalues of cell state Jacobian
-    v: eigenvectors of cell state Jacobian
-    dir_method: method to select the unstable directions. 'top_eig' uses the largest eigenvalues irrespective of sign; 'positive' strictly uses positive eigenvalues (default=top_eig)
-    eig_number: number of largest eigenvalues to consider, required only if dir_method='top_eig' (default=5)
+    w: `~numpy.ndarray`
+        eigenvalues of cell state Jacobian
+    v: `~numpy.ndarray`
+        eigenvectors of cell state Jacobian
+    dir_method: `str` (default: 'top_eig')
+        method to select the unstable directions, choose between 'top_eig' and 'positive'.
+        'top_eig' uses the largest eigenvalues irrespective of sign; 'positive' strictly uses positive eigenvalues
+    eig_number: `int` (default: 5)
+        number of largest eigenvalues to consider, required for dir_method='top_eig'
 
     Returns
     -------
-    dir: set of unstable directions
+    dir: `~numpy.ndarray`
+        set of unstable directions
 
     '''
-
     ind = np.flip(np.argsort(np.real(w)))
     dir = np.zeros(w.size)
 
@@ -32,12 +36,15 @@ def find_dir(w,
             dir = dir + np.real(np.ndarray.flatten(v[:, ind[i]]))
         dir = dir/eig_number
 
-    # look only at positive eigenvalues
+    # look only at positive eigenvalues, raise an error of no positive eigenvalues were detected
     elif dir_method == 'positive':
         w = np.real(w)
-        for i in range(w.size):
-            if w[i] > 0.:
-                dir = dir + np.real(np.ndarray.flatten(v[:, i]))
+        if np.amax(w)<0.:
+            raise Exception("No positive eigenvalues were detected, please set dir_method='top_eig'")
+        else:
+            for i in range(w.size):
+                if w[i] > 0.:
+                    dir = dir + np.real(np.ndarray.flatten(v[:, i]))
     return dir
 
 
@@ -48,24 +55,30 @@ def find_trans_genes(adata,
                      eig_number=5,
                      first_moment=True
                      ):
-    '''
-    Compute the gene instability scores for transition from cluster1 to cluster2
+    '''Compute the gene instability scores for transition from cluster1 to cluster2
 
     Parameters
     ----------
-    adata: anndata object
-    cluster1: starting cell state
-    cluster2: final cell states
-    dir_method: method to select the unstable directions. 'top_eig' uses the largest eigenvalues irrespective of sign; 'positive' strictly uses positive eigenvalues (default=top_eig)
-    eig_number: number of largest eigenvalues to consider, required only if dir_method='top_eig' (default=5)
-    first_moment: if True, use first moments of unspliced/spliced counts (default=True)
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster1: `str`
+        starting cell state
+    cluster2: `str`
+        final cell states
+    dir_method: `str` (default: 'top_eig')
+        method to select the unstable directions, choose between 'top_eig' and 'positive'.
+        'top_eig' uses the largest eigenvalues irrespective of sign; 'positive' strictly uses positive eigenvalues
+    eig_number: `int` (default: 5)
+        number of largest eigenvalues to consider, required for dir_method='top_eig'
+    first_moment: `Bool` (default: True)
+        if True, use first moments of unspliced/spliced counts
 
     Returns
     -------
-    weight of each gene for the specified transition
+    weight: `~numpy.ndarray`
+        weight of each gene for the specified transition
 
     '''
-
     assert dir_method=='top_eig' or dir_method=='positive', "Please choose between dir_method='top_eig' or dir_method='positive'"
 
     if 'transitions' not in adata.uns.keys():
@@ -91,12 +104,12 @@ def find_trans_genes(adata,
     w, v = avg_jac[cluster1][1], avg_jac[cluster1][2]
     dir = find_dir(w, v, dir_method=dir_method, eig_number=eig_number)
     proj = np.sum(dir * b) * b
-    # normalize
+    # normalize weights
     m = int(proj.size / 2)
     proj = proj[0:m] + proj[m:]
     proj = proj / np.linalg.norm(proj)
-    return np.sqrt(proj ** 2)
-
+    weight = np.sqrt(proj ** 2)
+    return weight
 
 
 def select_top_trans_genes(adata,
@@ -105,19 +118,25 @@ def select_top_trans_genes(adata,
                      top_DEG=5,
                      top_TG=5
                      ):
-    '''
-    Returns lists of top differentially expressed genes (DEG), transition genes (TF), and both for transition from cluster1 to cluster2
+    '''Returns lists of top differentially expressed genes (DEG), transition genes (TF), and both for transition from
+    cluster1 to cluster2
+
     If some genes are both top DEG and top TG, they are classified in the both_list,
     and n genes are selected until a total of top_DEG+top_TG genes are selected
     Results are stored in adata.uns['transitions']
 
     Parameters
     ----------
-    adata: anndata object
-    cluster1: starting cell state
-    cluster2: final cell state
-    top_DEG: number of top DEG to select (default: top_DEG=5)
-    top_TG: number of top TG to select (default: top_TG=5)
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster1: `str`
+        starting cell state
+    cluster2: `str`
+        final cell states
+    top_DEG: `int` (default: 5)
+        number of top DEG to select
+    top_TG: `int` (default: 5)
+        number of top TG to select
 
     Returns
     -------
@@ -174,20 +193,28 @@ def transition_genes(adata,
                      top_TG=5,
                      first_moment=True
                      ):
-    '''
-    Compute the gene instability scores for transition from cluster1 to cluster2
+    '''Compute the gene instability scores for transition from cluster1 to cluster2
     Results are stored in adata.uns['transitions']
 
     Parameters
     ----------
-    adata: anndata object
-    cluster1: starting cell state
-    cluster2: final cell states
-    dir_method: method to select the unstable directions. 'top_eig' uses the largest eigenvalues irrespective of sign; 'positive' strictly uses positive eigenvalues (default=top_eig)
-    eig_number: number of largest eigenvalues to consider, required only if dir_method='top_eig' (default=5)
-    top_DEG: number of top DEG to select (default: top_DEG=5)
-    top_TG: number of top TG to select (default: top_TG=5)
-    first_moment: if True, use first moments of unspliced/spliced counts (default=True)
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster1: `str`
+        starting cell state
+    cluster2: `str`
+        final cell states
+    dir_method: `str` (default: 'top_eig')
+        method to select the unstable directions, choose between 'top_eig' and 'positive'.
+        'top_eig' uses the largest eigenvalues irrespective of sign; 'positive' strictly uses positive eigenvalues
+    eig_number: `int` (default: 5)
+        number of largest eigenvalues to consider, required for dir_method='top_eig'
+    top_DEG: `int` (default: 5)
+        number of top DEG to select
+    top_TG: `int` (default: 5)
+        number of top TG to select
+    first_moment: `Bool` (default: True)
+        if True, use first moments of unspliced/spliced counts
 
     Returns
     -------
@@ -207,19 +234,25 @@ def trans_from_PAGA(adata,
                     top_TG=5,
                     first_moment=True
                     ):
-    '''
-    Compute the gene instability scores for all transitions identified with PAGA
+    '''Compute the gene instability scores for all transitions identified with PAGA
     PAGA transitions must be stored as a dataframe in adata.uns['PAGA_paths']
     results are stored in adata.uns['transitions']
 
     Parameters
     ----------
-    adata: anndata object
-    dir_method: method to select the unstable directions. 'top_eig' uses the largest eigenvalues irrespective of sign; 'positive' strictly uses positive eigenvalues (default=top_eig)
-    eig_number: number of largest eigenvalues to consider, required only if dir_method='top_eig' (default=5)
-    top_DEG: number of top DEG to select (default: top_DEG=5)
-    top_TG: number of top TG to select (default: top_TG=5)
-    first_moment: if True, use first moments of unspliced/spliced counts (default=True)
+    adata: `~anndata.AnnData`
+        count matrix
+    dir_method: `str` (default: 'top_eig')
+        method to select the unstable directions, choose between 'top_eig' and 'positive'.
+        'top_eig' uses the largest eigenvalues irrespective of sign; 'positive' strictly uses positive eigenvalues
+    eig_number: `int` (default: 5)
+        number of largest eigenvalues to consider, required for dir_method='top_eig'
+    top_DEG: `int` (default: 5)
+        number of top DEG to select
+    top_TG: `int` (default: 5)
+        number of top TG to select
+    first_moment: `Bool` (default: True)
+        if True, use first moments of unspliced/spliced counts
 
     Returns
     -------

@@ -1,15 +1,20 @@
+'''
+functions to quantify grn similarity across cell states
+'''
 import numpy as np
-import matplotlib.pyplot as plt
 from sklearn import metrics
 
-def edge_detection_score(m1, m2):
-    '''
-    Compute AUROC/AUPRC related metrics between matrices m1 and m2 disregarding the interaction signs
+def edge_detection_score(m1,
+                         m2
+                         ):
+    '''Compute AUROC/AUPRC related metrics between matrices m1 and m2 disregarding the interaction signs
 
     Parameters
     ----------
-    m1: observation matrix
-    m2: ground truth matrix
+    m1: `~numpy.ndarray`
+        observation matrix
+    m2: `~numpy.ndarray`
+        ground truth matrix
 
     Returns
     -------
@@ -32,9 +37,10 @@ def edge_detection_score(m1, m2):
 
     return fpr, tpr, auroc, precision, recall, auprc
 
-def sign_detection_score(m1, m2):
-    '''
-    Compute AUROC/AUPRC related metrics between matrices m1 and m2 when considering the interaction signs
+def sign_detection_score(m1,
+                         m2
+                         ):
+    '''Compute AUROC/AUPRC related metrics between matrices m1 and m2 when considering the interaction signs
 
     Parameters
     ----------
@@ -43,15 +49,20 @@ def sign_detection_score(m1, m2):
 
     Returns
     -------
-    fpr: false positive rate
-    tpr: true positive rate
-    auroc: area under the receiver characteristic curve
-    precision: precision
-    recall: recall
-    auprc: area under the precision recall curve
+    fpr: `float`
+        false positive rate
+    tpr: `float`
+        true positive rate
+    auroc: `float`
+        area under the receiver characteristic curve
+    precision: `float`
+        precision
+    recall: `float`
+        recall
+    auprc: `float`
+        area under the precision recall curve
 
     '''
-
     obs = np.ndarray.flatten(m1)
     truth = np.ndarray.flatten(np.sign(m2))
 
@@ -77,13 +88,13 @@ def sign_detection_score(m1, m2):
 
 
 def grn_comparison(adata):
-    '''
-    Compute AUROC/AUPRC scores for all pairs of state-specific gene regulatory networks
+    '''Compute AUROC/AUPRC scores for all pairs of state-specific gene regulatory networks
     Results are stored in adata.uns['comparison_scores']
 
     Parameters
     ----------
-    adata: anndata object
+    adata: `~anndata.AnnData`
+        count matrix
 
     Returns
     -------

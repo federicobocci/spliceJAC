@@ -11,3 +11,4 @@ from .instability import plot_trans_genes, scatter_scores, compare_scvelo_scores
 from .gene_variation import gene_variation, gene_var_detail, gene_var_scatter, compare_standout_genes
 from .umap_scatter import umap_scatter
 from .grn_comparison import adjecent_grn_score, plot_grn_comparison
+from .plotting_util import plot_setup

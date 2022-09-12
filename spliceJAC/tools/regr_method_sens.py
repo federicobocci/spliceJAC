@@ -5,13 +5,27 @@ test the sensitivity to the regression method and parameters
 import numpy as np
 
 from .aux_functions import parameter_regression
-# from . import analysis
 
-def coeff_dist(J, x = np.logspace(-5, 0, num=100)):
+def coeff_dist(G,
+               x = np.logspace(-5, 0, num=100)
+               ):
+    '''Construct the coefficient distribution for the gene-gene interaction matrix G
 
-    pars = np.abs(np.ndarray.flatten(J))
+    Parameters
+    ----------
+    G: `~numpy.ndarray`
+        interaction matrix
+    x: `~numpy.ndarray` (default: numpy.logspace(-5, 0, num=100))
+        vector of thresholds to group matrix coefficients
+
+    Returns
+    -------
+    y: `~numpy.ndarray`
+        The distribution of coefficients
+
+    '''
+    pars = np.abs(np.ndarray.flatten(G))
     coeffs = pars/np.amax(pars)
-    # x = np.logspace(-5, 0, num=100)
     y = np.zeros(x.size)
     for i in range(x.size):
         y[i] = coeffs[coeffs > x[i]].size
@@ -20,18 +34,20 @@ def coeff_dist(J, x = np.logspace(-5, 0, num=100)):
 
 
 def regr_method_sens(adata,
-                         alpha_ridge = np.array([0.01, 0.1, 1, 10, 100]),
-                         alpha_lasso = np.array([0.0001, 0.001, 0.01, 0.1, 1])
-                         ):
-    '''
-    Compare methods for gene-gene interaction parameter regression
+                     alpha_ridge = np.array([0.01, 0.1, 1, 10, 100]),
+                     alpha_lasso = np.array([0.0001, 0.001, 0.01, 0.1, 1])
+                     ):
+    '''Compare methods for gene-gene interaction parameter regression
     Results are stored in adata.uns['method_sens'] and adata.uns['sens_coeff']
 
     Parameters
     ----------
-    adata:  anndata object of mRNA counts
-    alpha_ridge: array of shrinkage coefficients to test for Ridge regression
-    alpha_lasso: array of shrinkage coefficients to test for Lasso regression
+    adata: `~anndata.AnnData`
+        count matrix
+    alpha_ridge: `~numpy.ndarray` (default: numpy.array([0.01, 0.1, 1, 10, 100]))
+        array of shrinkage coefficients to test for Ridge regression
+    alpha_lasso: `~numpy.ndarray` (default: numpy.array([0.0001, 0.001, 0.01, 0.1, 1]))
+        array of shrinkage coefficients to test for Lasso regression
 
     Returns
     -------
@@ -69,7 +85,6 @@ def regr_method_sens(adata,
             B_lasso, C, G = parameter_regression(U, S, method='Lasso', alpha=alpha_lasso[j])
             lasso_jac.append(B_lasso)
             y_lasso[j] = coeff_dist(B_lasso)
-
 
         method_sens[types[i]] = [B_lin, ridge_jac, lasso_jac]
     adata.uns['method_sens'] = [alpha_ridge, alpha_lasso, method_sens]

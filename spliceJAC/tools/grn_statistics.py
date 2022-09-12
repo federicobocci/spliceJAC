@@ -8,6 +8,21 @@ import networkx as nx
 from scipy.stats import iqr
 
 def signaling_score(adata):
+    '''Compute the signaling scores of all genes in each cell states
+
+    Scores are defined based on number of incoming/outgoing edges and weighted sum of incoming/outgoing edges
+    Results are saved in  adata.uns['signaling_scores']
+
+    Parameters
+    ----------
+    adata: `~anndata.AnnData`
+        count matrix
+
+    Returns
+    -------
+    None
+
+    '''
     types = sorted(list(set(list(adata.obs['clusters']))))
     n = len(list(adata.var_names))
 
@@ -32,11 +47,13 @@ def compute_metrics(dat):
 
     Parameters
     ----------
-    dat: 1D array of measurements
+    dat: `~numpy.ndarray`
+        1D array of measurements
 
     Returns
     -------
-    dataframe of metrics
+    metrics_df: `~pandas.dataFrame`
+        dataframe of metrics
 
     '''
     SD, rng, int_qrt = np.zeros(dat[0].size), np.zeros(dat[0].size), np.zeros(dat[0].size)
@@ -49,18 +66,18 @@ def compute_metrics(dat):
     int_qrt = iqr(dat, axis=0)
 
     d = {'SD':SD, 'range':rng, 'inter_range':int_qrt}
-
-    return pd.DataFrame(d)
+    metrics_df = pd.DataFrame(d)
+    return metrics_df
 
 
 def GRN_cluster_variation(adata):
-    '''
-    Compute state=specific GRN statistics including gene centrality, incoming, outgoing and total signaling strength
+    '''Compute state-specific GRN statistics including gene centrality, incoming, outgoing and total signaling strength
     Results are stored in adata.uns['cluster_variation'] and adata.uns['cluster_average']
 
     Parameters
     ----------
-    adata: anndata object
+    adata: `~anndata.AnnData`
+        count matrix
 
     Returns
     -------
@@ -97,27 +114,35 @@ def grn_statistics(adata,
                    seed=None
                    ):
     '''
-    Computes various statistics on the cell state specific GRNs. The statistics are added to adata.uns['GRN_statistics'].
-    For a more detailed discussion of several of the parameters, please see the betweenness_centrality function from Networkx
+    Computes various statistics on the cell state specific GRNs. The statistics are added to adata.uns['GRN_statistics']
+
+    For a more detailed discussion of several of the parameters, please see the betweenness_centrality from Networkx
     (https://networkx.org/documentation/networkx-1.10/reference/generated/networkx.algorithms.centrality.betweenness_centrality.html)
     Results are stored in adata.uns['GRN_statistics'], adata.uns['cluster_variation'] and adata.uns['cluster_average']
 
     Parameters
     ----------
-    adata: anndata object
-    weight_quantile: cutoff for weak gene-gene interactions between 0 and 1 (default=0.5)
-    k: number of nodes considered to compute betweenness centrality. k=NOne implies that all edges are used (default=None)
-    normalized: if True, betweenness values are normalized (default=True)
-    weight: If None, all edge weights are considered equal (default=None)
-    endpoints: If True, include the endpoints in the shortest path counts during betweenness centrality calculation (default=False)
-    seed: seed for betweenness centrality calculation (default=None)
+    adata: `~anndata.AnnData`
+        count matrix
+    weight_quantile: `float` (default: 0.5)
+        cutoff for weak gene-gene interactions between 0 and 1
+    k: `int` or `None` (default=`None`)
+        number of nodes considered to compute betweenness centrality. k=None implies that all edges are used
+    normalized: `Bool` (default: True)
+        if True, betweenness centrality values are normalized
+    weight: `str` (default: `None`)
+        If None, all edge weights are considered equal
+    endpoints: `Bool` (default: False)
+        If True, include the endpoints in the shortest path counts during betweenness centrality calculation
+    seed: `int` (default: None)
+        seed for betweenness centrality calculation
 
     Returns
     -------
     None
 
     '''
-    assert 'jacobian_lists' in adata.uns.keys(), "Please run the 'estimate_jacobian' function before calling 'grn_statistics'"
+    assert 'jacobian_lists' in adata.uns.keys(), "Please run 'tl.estimate_jacobian' before calling 'grn_statistics'"
 
     genes = list(adata.var_names)
     n = len(genes)
@@ -129,7 +154,8 @@ def grn_statistics(adata,
 
     # repeat analysis for all clusters
     for t in types:
-        df_bc, df_inc, df_out, df_tot = pd.DataFrame( index=genes ), pd.DataFrame( index=genes ), pd.DataFrame( index=genes ), pd.DataFrame( index=genes )
+        df_bc, df_inc = pd.DataFrame( index=genes ), pd.DataFrame( index=genes )
+        df_out, df_tot = pd.DataFrame( index=genes ), pd.DataFrame( index=genes )
 
         jacs = jacobian_lists[t][0]
         for j in range(len(jacs)):

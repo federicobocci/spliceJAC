@@ -4,13 +4,20 @@ plotting utilities
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plot_setup(adata):
-    '''Assign a color to each cluster
+def plot_setup(adata,
+               cmap=plt.cm.Set2.colors
+               ):
+    '''Assign a color to each cluster from a colormap
     Results are stored in adata.uns['colors']
 
     Parameters
     ----------
-    adata: anndata object of gene counts
+    adata: `~anndata.AnnData`
+        count matrix
+    cmap: `pyplot colormap` (default: plt.cm.Set2.colors)
+        Colormap for cell state. To use another colormap, provide argument following the same syntax:
+        plt.cm. + chosen_colormap + .colors. A list of accepted colormaps can be found at:
+        https://matplotlib.org/stable/tutorials/colors/colormaps.html
 
     Returns
     -------
@@ -19,17 +26,21 @@ def plot_setup(adata):
     '''
     clusters = list(adata.obs['clusters'])
     types = sorted(list(set(clusters)))
-    colors = list(plt.cm.Set2.colors)[0:len(types)]
+    colors = list(cmap)[0:len(types)]
     adata.uns['colors'] = {types[i]: colors[i] for i in range(len(types))}
 
-def jac_regr_cons(adata, cluster):
-    '''
-    Check the consistency of Jacobian regression by computing element-wise distance between Jacobians from different simulations for the same cell state
+def jac_regr_cons(adata,
+                  cluster
+                  ):
+    '''Check the consistency of Jacobian regression by computing element-wise distance between Jacobians from different
+    simulations for the same cell state
 
     Parameters
     ----------
-    adata: anndata object
-    cluster: cell state
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster: `str`
+        cell state
 
     Returns
     -------
@@ -58,9 +69,12 @@ def compare_wrong_signs(j1,
 
     Parameters
     ----------
-    j1: matrix 1
-    j2: matrix 2
-    eps: cutoff quantile to select only the largest elements (in absolute value) in the two matrices in the range [0,1] (default=0.9)
+    j1: `~numpy.ndarray`
+        matrix 1
+    j2: `~numpy.ndarray`
+        matrix 2
+    eps: `float` (default: 0.9)
+        cutoff quantile to select only the largest elements (in absolute value) in the two matrices in the range [0,1]
 
     Returns
     -------
@@ -85,14 +99,16 @@ def count_wrong_signs(adata,
                       cluster,
                       eps=0.9
                       ):
-    '''
-    Quantify the fraction of wring signs between Jacobians of different simulations for the same cell state
+    '''Quantify the fraction of wring signs between Jacobians of different simulations for the same cell state
 
     Parameters
     ----------
-    adata: anndata object
-    cluster: cell state
-    eps: cutoff quantile to select only the largest elements (in absolute value) in the two matrices in the range [0,1] (default=0.9)
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster: `str`
+        cell state
+    eps: `float` (default: 0.9)
+        cutoff quantile to select only the largest elements (in absolute value) in the two matrices in the range [0,1]
 
     Returns
     -------
@@ -120,8 +136,10 @@ def count_pos_eig(adata,
 
     Parameters
     ----------
-    adata: anndata object
-    cluster: cell state
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster: `str`
+        cell state
 
     Returns
     -------

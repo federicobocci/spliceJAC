@@ -9,29 +9,52 @@ from . import plotting_util
 def tg_bif_sankey(adata,
                   start,
                   end,
+                  gene_colormap = plt.cm.Set3.colors,
                   width=400,
                   height=600,
                   font_size=15,
+                  pad=0,
+                  thickness=40,
                   label_columns=True,
                   showfig=True,
                   savefig=None,
                   format='pdf'
                   ):
-    '''
-    Plot a Sankey diagram of the top transition genes involved in different cell state transitions
+    '''Plot a Sankey diagram of the top transition genes involved in different cell state transitions
+
+    More details about static export of images in python can be found at: https://plotly.com/python/static-image-export/
+    More details about the arguments of plotly objects can be fount at: https://plotly.com/python/graph-objects/
 
     Parameters
     ----------
-    adata: anndata object
-    start: starting cell state
-    end: list of final cell states
-    width: width of plotly figure (default=400)
-    height: height of plotly figure (default=600)
-    font_size: font size of figure (default=15)
-    label_columns: if True, label the diagram columns (default=True)
-    showfig: if True, show the figure (default=True)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
+    adata: `~anndata.AnnData`
+        count matrix
+    start: `str`
+        starting cell state
+    end: `list`
+        list of final cell states
+    gene_colormap: `pyplot colormap` (default: plt.cm.Set3.colors)
+        Colormap for transition genes on the left side of the Sankey diagram. To use another colormap, provide argument
+        following the same syntax: plt.cm. + chosen_colormap + .colors. A list of accepted colormaps can be found at:
+        https://matplotlib.org/stable/tutorials/colors/colormaps.html
+    width: `int` (default=400)
+        width of plotly figure
+    height: `int` (default=600)
+        height of plotly figure
+    font_size: `int` (default: 15)
+        font size of figure
+    pad: `float` (default: 0)
+        vertical gap between nodes of the Sankey plot
+    thickness: `float` (default: 40)
+        line thickness of the Sankey plot
+    label_columns: `Bool` (default=True)
+        if True, label the diagram columns
+    showfig: `Bool` (default=True)
+        if True, show the figure
+    savefig: `Bool` or `None` (default=None)
+        if True, save the figure using the savefig path
+    format: `str` (default='pdf')
+        format of saved figure
 
     Returns
     -------
@@ -81,18 +104,16 @@ def tg_bif_sankey(adata,
     genes=list(set(tg))
 
     # define genes colors
-    col_scale = list(plt.cm.Set3.colors)
+    col_scale = list(gene_colormap)
     if len(col_scale)>len(set(source)):
-        colors = list(plt.cm.Set3.colors)[0:len(set(source))]
+        colors = list(gene_colormap)[0:len(set(source))]
     else:
         colors = []
         for i in range( len(set(source))//len(col_scale) ):
             for c in col_scale:
                 colors.append(c)
-        # colors.append( col_scale[0:len(set(source))%len(col_scale)] )
         for c in col_scale[0:len(set(source))%len(col_scale)]:
             colors.append(c)
-
 
     gene_colors = []
     for i in range(len(genes)):
@@ -110,12 +131,10 @@ def tg_bif_sankey(adata,
     for t in target:
         link_color.append( cluster_colors[t-n_s] )
 
-
-    ### about static export og images in python: https://plotly.com/python/static-image-export/
     fig = go.Figure(data=[go.Sankey(
         node=dict(
-            pad=0,  # vertical gap between nodes
-            thickness=40,  # width of nodes
+            pad=pad,  # vertical gap between nodes
+            thickness=thickness,  # width of nodes
             line=dict(color="black", width=0.5),
             label=label,
             color= gene_colors + cluster_colors

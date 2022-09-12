@@ -12,24 +12,31 @@ def visualize_jacobian(adata,
                        cmap='RdBu_r',
                        showfig=None,
                        savefig=None,
-                       format='pdf',
-                       dpi=300
+                       format='pdf'
                        ):
-    '''
-    Plot the inferred gene-gene interaction matrices of each cell state
+    '''Plot the inferred gene-gene interaction matrices of each cell state
 
     Parameters
     ----------
-    adata: anndata object
-    panel_height: height of each panel (in inches) (default=3)
-    panel_length: length of each panel (in inches) (default=3.5)
-    pan_per_row: number of panels per row (default=4)
-    fontsize: fontsize for labels (default=10)
-    cmap: colormap for Jacobian visualization, any pyplot colormap name can be provided (default='RdBu_r')
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of figure file to save (default='pdf')
-    dpi: dpi of saved figure (default=300)
+    adata: `~anndata.AnnData`
+        count matrix
+    panel_height: `float` (default: 3)
+        height of each panel (in inches)
+    panel_length: `float` (default: 3.5)
+        length of each panel (in inches)
+    pan_per_row: `int` (default: 4)
+        number of panels per row
+    fontsize: `int` (default: 10)
+        fontsize for labels
+    cmap: `str` (default: 'RdBu_r')
+        colormap for Jacobian visualization. Accepted colormaps ca be found at:
+        https://matplotlib.org/stable/tutorials/colors/colormaps.html
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
 
     Returns
     -------
@@ -69,7 +76,7 @@ def visualize_jacobian(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(savefig, format=format, dpi=dpi)
+        plt.savefig(savefig, format=format)
 
 
 def eigen_spectrum(adata,
@@ -82,26 +89,35 @@ def eigen_spectrum(adata,
                    show_zero=True,
                    showfig=None,
                    savefig=None,
-                   format='pdf',
-                   dpi=300
+                   format='pdf'
                    ):
-    '''
-    Plot the eigenvalues of each cell state
+    '''Plot the eigenvalues of each cell state
 
     Parameters
     ----------
-    adata: anndata object
-    panel_height: height of each panel (in inches) (default=3)
-    panel_length: length of each panel (in inches) (default=3.5)
-    pan_per_row: number of panels per row (default=4)
-    fontsize: fontsize for labels (default=10)
-    show_frac: show legend with fraction of positive eigenvalues (default=True)
-    loc: location of legend (default='lower right')
-    show_zero: plot horizontal line to highlight change of sign (default=True)
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of figure file to save (default='pdf')
-    dpi: dpi of saved figure (default=300)
+    adata: `~anndata.AnnData`
+        count matrix
+    panel_height: `float` (default: 3)
+        height of each panel (in inches)
+    panel_length: `float` (default: 3.5)
+        length of each panel (in inches)
+    pan_per_row: `int` (default: 4)
+        number of panels per row
+    fontsize: `int` (default: 10)
+        fontsize for labels
+    show_frac: `Bool` (default: True)
+        show legend with fraction of positive eigenvalues
+    loc: `str` (default: 'lower right')
+        location of legend. Accepted legend positions can be found at:
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+    show_zero: `Bool` (default: True)
+        plot horizontal line to highlight change of sign
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
 
     Returns
     -------
@@ -130,7 +146,7 @@ def eigen_spectrum(adata,
     if showfig:
         plt.show()
     if savefig:
-        plt.savefig(savefig, format=format, dpi=dpi)
+        plt.savefig(savefig, format=format)
 
 
 def spectrum_plot(ax,
@@ -141,18 +157,25 @@ def spectrum_plot(ax,
                   show_zero=True,
                   fontsize=10
                   ):
-    '''
-    Plot the eigenspectrum of a cell state on a matplotlib axis
+    '''Plot the eigenspectrum of a cell state on a matplotlib axis
 
     Parameters
     ----------
-    ax: axis objext
-    v: ranked real components of eigenvalues
-    title: title of plot
-    show_frac: show legend with fraction of positive eigenvalues (default=True)
-    loc: location of legend (default='lower right')
-    show_zero: plot horizontal line to highlight change of sign (default=True)
-    fontsize: fontsize for labels (default=10)
+    ax: pyplot axis
+        axis to plot
+    v: `~numpy.ndarray`
+        ranked real components of eigenvalues
+    title: `str`
+        title of plot
+    show_frac: `Bool` (default: True)
+        show legend with fraction of positive eigenvalues
+    loc: `str` (default: 'lower right')
+        location of legend. Accepted legend positions can be found at:
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+    show_zero: `Bool` (default: True)
+        plot horizontal line to highlight change of sign
+    fontsize: `int` (default: 10)
+        fontsize for labels
 
     Returns
     -------

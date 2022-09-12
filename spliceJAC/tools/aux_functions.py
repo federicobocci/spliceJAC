@@ -11,24 +11,32 @@ def parameter_regression(U_data,
                          alpha=1,
                          fit_int=True
                          ):
-    '''run regression to infer spliced-unspliced interaction coefficients
+    '''Run regression to infer spliced-unspliced interaction coefficients
 
     Parameters
     ----------
-    U_data: n_obs x n_genes count matrix of unspliced counts
-    S_data: n_obs x n_genes count matrix of spliced counts
-    method: regression method, either Linear, Ridge or Lasso (default=Ridge)
-    alpha: regularization coefficient
-    fit_int: if True, set the fit_intercept parameter to True (default=True)
+    U_data: `~numpy.ndarray`
+        count matrix of unspliced counts
+    S_data: `~numpy.ndarray`
+        count matrix of spliced counts
+    method: `str` (default: Ridge)
+        regression method, choose between Linear, Ridge or Lasso
+    alpha: `float` (default: 1)
+        regularization coefficient for Ridge and Lasso
+    fit_int: `Bool` (default: True)
+        if True, set the fit_intercept parameter to True
 
     Returns
     -------
-    mat: gene-gene interaction matrix
-    interc: intercept vector
-    degr: degradation coefficient vector
+    mat: `~numpy.ndarray`
+        gene-gene interaction matrix
+    interc: `~numpy.ndarray`
+        intercept vector
+    degr: `~numpy.ndarray`
+        degradation coefficient vector
 
     '''
-    assert method == 'Ridge' or method == 'Lasso' or method=='Linear', 'Please choose either Ridge or Lasso as method option'
+    assert method == 'Ridge' or method == 'Lasso' or method=='Linear', "Please choose method='Ridge', 'Lasso' or 'Linear' "
 
     if method=='Linear':
         reg = LinearRegression(fit_intercept=fit_int)
@@ -51,7 +59,7 @@ def parameter_regression(U_data,
         mat[i][i + 1:] = coeffs[i:]
         interc[i] = reg.intercept_
 
-        # fit spliced degradation rate
+        # fit spliced degradation rate - degradation rate sin spliceJAC are computed globally, so this step is optional
         reg_g = LinearRegression(fit_intercept=False)
         reg_g.fit(S_data[:, [i]], U_data[:, i])
         degr[i] = reg_g.coef_
@@ -66,12 +74,15 @@ def estimate_degr(adata,
 
     Parameters
     ----------
-    adata: anndata object of mRNA counts
-    first_moment: if True, use first moment of U and S to run regression
+    adata: `~anndata.AnnData`
+        count matrix
+    first_moment: `Bool` (default: True)
+        if True, use first moment of U and S to run regression
 
     Returns
     -------
-    degr: degradation coefficient vector
+    degr: `~numpy.ndarray`
+        degradation coefficient vector
 
     '''
     if first_moment:
@@ -84,6 +95,7 @@ def estimate_degr(adata,
     ncell, ngene = U_data.shape
     degr = np.zeros(ngene)
 
+    # global fit using all cells since degradation rates are global
     for i in range(ngene):
         reg_g = LinearRegression(fit_intercept=False)
         reg_g.fit(S_data[:, [i]], U_data[:, i])
@@ -99,9 +111,12 @@ def construct_jac(mat,
 
     Parameters
     ----------
-    mat: matrix of gene-gene interactions computed with parameter_regression()
-    degr: degradation coefficient vector computed with estimate_degr()
-    b: splicing rate constant (default=1)
+    mat: `~numpy.ndarray`
+        matrix of gene-gene interactions
+    degr: `~numpy.ndarray`
+        degradation coefficient vector
+    b: `float` (default: 1)
+        splicing rate constant
 
     Returns
     -------
@@ -126,7 +141,8 @@ def set_gene_axes(adata):
 
     Parameters
     ----------
-    adata: anndata object of mRNA counts
+    adata: `~anndata.AnnData`
+        count matrix
 
     Returns
     -------
@@ -143,11 +159,13 @@ def set_gene_axes(adata):
 
 def instability_scores(adata):
     '''
-    Construct an instability score for each gene in each cluster by looking at eigenvector components in the cluster unstable manifold
-    results are saved in adata.uns['inst_scores']
+    Construct an instability score for each gene in each cluster by looking at eigenvector components in the cluster
+    unstable manifold. Results are saved in adata.uns['inst_scores']
+
     Parameters
     ----------
-    adata: anndata object
+    adata: `~anndata.AnnData`
+        count matrix
 
     Returns
     -------

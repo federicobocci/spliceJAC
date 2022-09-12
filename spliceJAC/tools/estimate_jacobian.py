@@ -1,7 +1,6 @@
 '''
 tools for jacobian inference
 '''
-
 import numpy as np
 import collections
 
@@ -14,15 +13,19 @@ def initial_check(adata,
                   frac,
                   n_top_genes
                   ):
-    '''
-    Check that the selected number of top genes (n_top_genes) is not larger than
-    the number of observables for spliceJAC inference
+    '''Check that the selected number of genes (n_top_genes) does not exceed the number of observables
+
+    The maximum value admitted for the n_top_genes variable to ensure a unique solution is given by the number of cells
+    in the smaller cluster times the fraction of cells per cluster used during each iteration of inference (frac)
 
     Parameters
     ----------
-    adata: anndata object of mRNA counts
-    frac: fraction of cell selected from each cluster for bootstrapping inference
-    n_top_genes: number of top genes to keep when running spliceJAC
+    adata: `~anndata.AnnData`
+        count matrix
+    frac: `float`
+        fraction of cell selected from each cluster for bootstrapping inference
+    n_top_genes: `int`
+        number of top genes to keep when running spliceJAC
 
     Returns
     -------
@@ -32,7 +35,8 @@ def initial_check(adata,
     clusters = list(adata.obs['clusters'])
     counter = collections.Counter(clusters)
     if n_top_genes>int( frac*min(list(counter.values())) ):
-        raise Exception('The selected number of n_top_genes is too large given the size of the smallest cluster (n=' + str( min(list(counter.values())) ) + ' cells) . Either decrease "n_top_genes" or increase "frac"')
+        raise Exception('The selected number of n_top_genes is too large given the size of the smallest cluster (n=' +
+                        str( min(list(counter.values())) ) + ' cells) . Decrease "n_top_genes" or increase "frac"')
 
 
 def rescale_counts(mat):
@@ -41,17 +45,20 @@ def rescale_counts(mat):
 
     Parameters
     ----------
-    mat: mRNA count matrix
+    mat: `~numpy.ndarray`
+        count matrix
 
     Returns
     -------
-    rescaled count matrix
+    rescaled: `~numpy.ndarray`
+        rescaled count matrix
 
     '''
     ncell, ngene = mat.shape
     avg = np.mean(mat, axis=0)
     center = np.asarray([avg]*ncell)
-    return mat-center
+    rescaled = mat-center
+    return rescaled
 
 
 
@@ -62,18 +69,23 @@ def quick_regression(adata,
                      beta=1.,
                      rescale=True
                      ):
-    '''
-    Run a quick cluster-wise Jacobian regression using all cells in each cluster
+    '''Run a single cluster-wise regression using all cells in each cluster
     Results are saved in adata.uns['all_cells']
 
     Parameters
     ----------
-    adata: anndata object of mRNA counts
-    first_moment: if True, use first moment of U and S to run regression
-    method: regression method (Linear, Ridge, Lasso, default= Ridge)
-    alpha: regularization strength coefficient for Ridge/Lasso (default= 1)
-    beta: mRNA splicing rate constant (default= 1)
-    rescale: if True, center counts on zero (default= True). If True, regression will enforce fit_int=False
+    adata: `~anndata.AnnData`
+        count matrix
+    first_moment: `Bool` (default: True)
+        if True, use first moment of U and S to run regression
+    method: `str` (default: Ridge)
+        regression method, choose between Linear, Ridge or Lasso
+    alpha: `float` (default: 1)
+        regularization coefficient for Ridge and Lasso
+    beta: `float` (default: 1)
+        mRNA splicing rate constant
+    rescale: `Bool` (default: True)
+        if True, center counts on zero (default= True). rescale=True enforces fit_int=False
 
     Returns
     -------
@@ -115,28 +127,34 @@ def long_regression(adata,
                     nsim=10,
                     frac=0.9
                     ):
-    '''
-    Cluster-wise Jacobian regression multiple times with a randomly-selected subset of cells
+    '''Run cluster-wise Jacobian regression multiple times with a randomly-selected subset of cells
     results are saved in adata.uns['jacobian_lists']
 
     Parameters
     ----------
-    adata: anndata object of mRNA counts
-    first_moment: if True, use first moment of U and S to run regression
-    method: regression method (Linear, Ridge, Lasso, default: Ridge)
-    alpha: regularization strength coefficient for Ridge/Lasso (default: 1)
-    beta: mRNA splicing rate constant (default: 1)
-    rescale: if True, center counts on zero (default: True). If True, regression will enforce fit_int=False
-    nsim: number of independent regressions per cluster (default: 10)
-    frac: fraction of cells to randomly select (default: 0.9)
+    adata: `~anndata.AnnData`
+        count matrix
+    first_moment: `Bool` (default: True)
+        if True, use first moment of U and S to run regression
+    method: `str` (default: Ridge)
+        regression method, choose between Linear, Ridge or Lasso
+    alpha: `float` (default: 1)
+        regularization coefficient for Ridge and Lasso
+    beta: `float` (default: 1)
+        mRNA splicing rate constant
+    rescale: `Bool` (default: True)
+        if True, center counts on zero (default= True). rescale=True enforces fit_int=False
+    nsim: `int` (default: 10)
+        number of independent regressions per cluster
+    frac: `float` (default: 0.9)
+        fraction of cells to randomly select (bound in [0,1])
 
     Returns
     -------
     None
 
     '''
-
-    types = list(set(list(adata.obs['clusters'])))  # assumes location of cluster labels
+    types = list(set(list(adata.obs['clusters'])))
     degr = adata.uns['degr_rates']
 
     jacobian_lists = {}
@@ -169,6 +187,7 @@ def long_regression(adata,
             jac_list.append(J)
             w_list.append(w)
             v_list.append(v)
+        # for each cluster, save vectors of Jacobians, engenvalues, and eigenvectors from multiple inferences
         jacobian_lists[types[i]] = [jac_list, w_list, v_list]
     adata.uns['jacobian_lists'] = jacobian_lists
 
@@ -176,14 +195,15 @@ def long_regression(adata,
 def compute_avg_jac(adata,
                     eps=0.9
                     ):
-    '''
-    Compute average Jacobian matrix from long_regression() results
-    sets the fraction of smallest Jacobian elements to zero (by absolute value)
+    '''Compute average Jacobian matrix from long_regression() results
+    The percentage of smallest Jacobian elements (by absolute value) are set to zero based on the parameter epsilon
 
     Parameters
     ----------
-    adata: anndata object of mRNA counts
-    eps: fraction of weak interactions that are set to zero (default= 0.9)
+    adata: `~anndata.AnnData`
+        count matrix
+    eps: `float` (default= 0.9)
+        fraction of weakest Jacobian elements that are set to zero (by absolute value)
 
     Returns
     -------
@@ -200,6 +220,8 @@ def compute_avg_jac(adata,
         coeffs = np.sort(np.abs(np.ndarray.flatten(J)))
         t = coeffs[int(eps*coeffs.size)]
 
+        # change this to only the GRN part of the Jacobian?
+        # compute eigenspecturm before this?
         J_filter = np.copy(J)
         n = J_filter.shape[0]
         for k in range(n):
@@ -276,30 +298,44 @@ def estimate_jacobian(adata,
                       eps=0.9,
                       seed=100
                       ):
-    '''
-    Run cluster-wise Jacobian inference
+    '''Run cluster-wise Jacobian inference
 
     Parameters
     ----------
-    adata: anndata object of mRNA counts
-    first_moment: if True, use first moment of U and S to run regression
-    method: regression method (Linear, Ridge, Lasso, default=Ridge)
-    alpha: regularization strength coefficient for Ridge/Lasso (default=1)
-    beta: mRNA splicing rate constant (default=1)
-    rescale: if True, center counts on zero (default=True). If True, regression will enforce fit_int=False
-    nsim: number of independent regressions per cluster (default=10)
-    frac: fraction of cells to randomly select (default=0.9)
-    filter_and_norm: if True, apply scvelo filter_and_normalize function
-    min_shared_count: minimum number of shared count for scvelo filter_and_normalize function (degfault=20)
-    n_top_genes: number of top genes to keep for scvelo filter_and_normalize function (default=20)
-    eps: fraction of weak interactions that are set to zero (default=0.9)
-    seed: seed for numpy random number generator (default=100)
+    adata: `~anndata.AnnData`
+        count matrix
+    first_moment: `Bool` (default: True)
+        if True, use first moment of U and S to run regression
+    method: `str` (default: Ridge)
+        regression method, choose between Linear, Ridge or Lasso
+    alpha: `float` (default: 1)
+        regularization coefficient for Ridge and Lasso
+    beta: `float` (default: 1)
+        mRNA splicing rate constant
+    rescale: `Bool` (default: True)
+        if True, center counts on zero (default= True). rescale=True enforces fit_int=False
+    nsim: `int` (default: 10)
+        number of independent regressions per cluster
+    frac: `float` (default: 0.9)
+        fraction of cells to randomly select (bound in [0,1])
+    filter_and_norm: `Bool` (default: True)
+        if True, apply scvelo filter_and_normalize function to the count matrix
+    min_shared_count: `int` (default: 20)
+        minimum number of shared count for the scvelo filter_and_normalize function
+    n_top_genes: `int` (default: 20)
+        number of top genes for the scvelo filter_and_normalize function
+    eps: `float` (default= 0.9)
+        fraction of weakest Jacobian elements that are set to zero (by absolute value)
+    seed: `int` (default: 100)
+        seed for numpy random number generator (for reproducibility)
 
     Returns
     -------
     None
 
     '''
+    assert eps>0 and eps<1, "The parameter `epsilon` must be bound in [0,1] (default: 0.9)"
+    assert frac>0 and frac<1, "The parameter `frac` must be bound in [0,1] (default: 0.9)"
     np.random.seed(seed)
 
     initial_check(adata, frac, n_top_genes)
@@ -319,13 +355,15 @@ def estimate_jacobian(adata,
     adata.uns['degr_rates'] = estimate_degr(adata, first_moment=first_moment)
 
     # step 2: run regression once with all cells
+    # should this step be canceled?
     print('Running quick regression...')
     quick_regression(adata, first_moment=first_moment, method=method, alpha=alpha, beta=beta, rescale=rescale)
 
-    # step 3: run regression nsim times with only a fraction of cells per cluster - results saved in adata.uns['jacobian_lists']
-    long_regression(adata, first_moment=first_moment, method=method, alpha=alpha, beta=beta, rescale=rescale, nsim=nsim, frac=frac)
+    # step 3: run regression nsim times
+    long_regression(adata, first_moment=first_moment, method=method, alpha=alpha, beta=beta, rescale=rescale, nsim=nsim,
+                    frac=frac)
 
-    # step 4: take average jacobian - results saved in adata.uns['average_jac']
+    # step 4: Compute average Jacobian
     compute_avg_jac(adata, eps=eps)
 
     # step 5: instability scores of individual genes

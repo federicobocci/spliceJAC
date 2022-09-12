@@ -7,18 +7,21 @@ import matplotlib.pyplot as plt
 def set_plot_name(method,
                   measure
                   ):
-    '''
-    Set the plot name based on method and measure used
+    '''Set the plot name based on method and measure used
 
     Parameters
     ----------
-    method: method used
-    measure: measure used
+    method: `str`
+        method used
+    measure: `str`
+        measure used
 
     Returns
     -------
-    measure_name: string with name of measure
-    method_name: string with name of method
+    measure_name: `str`
+        string with name of measure
+    method_name: `str`
+        string with name of method
 
     '''
     if measure=='centrality':
@@ -55,25 +58,42 @@ def gene_variation(adata,
                    format='pdf',
                    figsize=(6, 3)
                    ):
-    '''
-    Bar plot of gene role variation across cell states
+    '''Bar plot of gene role variation across cell states
 
     Parameters
     ----------
-    adata: anndata object
-    n_genes: umber of genes to consider. If an integer (n) is provided, the top n genes are selected. Otherwise, all genes are used if n_genes='all' (default n_genes='all')
-    method: method to estimate gene role variation across cell states, choose between standard deviation (SD), range, and interquartile range (default="SD")
-    measure: measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling' (default='centrality')
-    bar_color: color for bar plot (default='paleturquoise')
-    alpha: shading of bar plot (default=1)
-    edge_color: edgecolor for bar plot (default='paleturquoise')
-    edge_width: edgewidth for bar plot (default=1)
-    gene_label_rot: rotation of labels on x-axis (default=90)
-    fontsize: fontsize of figure (default=10)
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(3.5,3))
+    adata: `~anndata.AnnData`
+        count matrix
+    n_genes: `str` or `int` (default n_genes='all')
+        number of genes to consider. If an integer (n) is provided, the top n genes are selected.
+        Otherwise, all genes are used if n_genes='all'
+    method: `float` (default: "SD")
+        method to estimate gene role variation across cell states, choose between standard deviation (SD), range,
+        and interquartile range
+    measure: `float` (default: 'centrality')
+        measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
+    bar_color: `str` (default: 'paleturquoise')
+        color for bar plot. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    alpha: `float` (default: 1)
+        shading of bar plot between 0 and 1
+    edge_color: `str` (default: 'paleturquoise')
+        edge color for bar plot. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    edge_width: `float` (default: 1)
+        edge width for bar plot
+    gene_label_rot: `int` (default: 90)
+        rotation of labels on x-axis
+    fontsize: `int` (default: 10)
+        fontsize of figure
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (6,3))
+        size of figure
 
     Returns
     -------
@@ -81,7 +101,8 @@ def gene_variation(adata,
 
     '''
     assert 'GRN_statistics' in adata.uns.keys(), "Please run 'grn_statistics' before calling gene_variation()"
-    assert measure in ['centrality', 'incoming', 'outgoing', 'signaling'], "Please choose method from the list ['centrality', 'incoming', 'outgoing', 'signaling']"
+    assert measure in ['centrality', 'incoming', 'outgoing', 'signaling'], \
+        "Please choose method from the list ['centrality', 'incoming', 'outgoing', 'signaling']"
 
     measure_name, method_name = set_plot_name(method, measure)
 
@@ -103,8 +124,10 @@ def gene_variation(adata,
 
     bars = np.asarray(y[ind])
 
-    ax1.bar(np.arange(1, top+1, 1), bars[0:top], width=1, align='center', color=bar_color, alpha=alpha, edgecolor=edge_color, lw=edge_width)
-    ax2.bar(np.arange(bars.size-top+1, bars.size+1, 1), bars[bars.size-top:], width=1, align='center', color=bar_color, alpha=alpha, edgecolor=edge_color, lw=edge_width,
+    ax1.bar(np.arange(1, top+1, 1), bars[0:top], width=1, align='center', color=bar_color, alpha=alpha,
+            edgecolor=edge_color, lw=edge_width)
+    ax2.bar(np.arange(bars.size-top+1, bars.size+1, 1), bars[bars.size-top:], width=1, align='center',
+            color=bar_color, alpha=alpha, edgecolor=edge_color, lw=edge_width,
             label=measure_name + '\n' + method_name + '\nacross Cell Types')
 
     ax1.set_xticks(np.arange(1, top + 1, 1))
@@ -150,25 +173,41 @@ def gene_var_detail(adata,
                     format='pdf',
                     figsize=(5, 4)
                     ):
-    '''
-    Plot the detailed variation in gene signaling role for the top genes in the dataset
+    '''Plot the detailed variation in gene signaling role for the top genes in the dataset
 
     Parameters
     ----------
-    adata: anndata object
-    n_genes: number of top genes (default=5)
-    select: choose to select genes with larger variation between cell states (select='top') or small variation (select='bottom')
-    method: method to estimate gene role variation across cell states, choose between standard deviation (SD), range, and interquartile range (default="SD")
-    measure: measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling' (default='centrality')
-    loc: location of legend (default='best')
-    fontsize: fontsize of figure (default=10)
-    legend: if True, include legend (default=True)
-    legend_font: font of legend (default=10)
-    gene_label_rot: rotation of labels on x-axis (default=45)
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(3.5,3))
+    adata: `~anndata.AnnData`
+        count matrix
+    n_genes: `int` (default:5)
+        number of top genes
+    select: `str` (default: 'top')
+        choose to select genes with larger variation between cell states (select='top')
+        or small variation (select='bottom')
+    method: `float` (default: "SD")
+        method to estimate gene role variation across cell states, choose between standard deviation (SD), range,
+        and interquartile range
+    measure: `float` (default: 'centrality')
+        measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
+    legend_loc: `str` (default: 'best')
+        legend location.  Details on legend location can be found at:
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+    fontsize: `int` (default: 10)
+        fontsize of figure
+    legend: `Bool` (default: True)
+        if True, include legend
+    legend_font: `int` (default: 10)
+        font of legend
+    gene_label_rot: `int` (default: 45)
+        rotation of labels on x-axis
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (5,4))
+        size of figure
 
     Returns
     -------
@@ -176,7 +215,8 @@ def gene_var_detail(adata,
 
     '''
     assert 'GRN_statistics' in adata.uns.keys(), "Please run 'grn_statistics' before calling gene_variation()"
-    assert measure in ['centrality', 'incoming', 'outgoing','signaling'], "Please choose method from the list ['centrality', 'incoming', 'outgoing', 'signaling']"
+    assert measure in ['centrality', 'incoming', 'outgoing','signaling'], \
+        "Please choose method from the list ['centrality', 'incoming', 'outgoing', 'signaling']"
 
     genes = list(adata.var_names)
     types = sorted(list(set(list(adata.obs['clusters']))))
@@ -229,28 +269,38 @@ def gene_var_scatter(adata,
                      format='pdf',
                      figsize=(5, 4)
                      ):
-    '''
-    Scatter plot of gene role variation across cell states
+    '''Scatter plot of gene role variation across cell states
 
     Parameters
     ----------
-    adata: anndata object
-    method: method to estimate gene role variation across cell states, choose between standard deviation (SD), range, and interquartile range (default="SD")
-    measure: measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling' (default='centrality')
-    top_genes: top genes to annotate
-    fontsize: fontsize of figure (default=10)
-    color: color of scatter plot (default='b')
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(5,4))
+    adata: `~anndata.AnnData`
+        count matrix
+    method: `float` (default: "SD")
+        method to estimate gene role variation across cell states, choose between standard deviation (SD),
+        range, and interquartile range
+    measure: `float` (default: 'centrality')
+        measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
+    top_genes: `int` (default: 5)
+        top genes to annotate
+    fontsize: `int` (default: 10)
+        fontsize of figure
+    color: `str` (default: 'b')
+        color of scatter plot. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (5,4))
+        size of figure
 
     Returns
     -------
     None
 
     '''
-
     genes = list(adata.var_names)
 
     measure_name, method_name = set_plot_name(method, measure)
@@ -296,16 +346,26 @@ def compare_standout_genes(adata,
 
     Parameters
     ----------
-    adata: anndata object
-    cluster_list: lits of cell states to compare
-    top_genes: number of top geens to consider (default=5)
-    criterium: measure to use to evaluate gene role, choose between 'centrality', 'incoming', 'outgoing', 'signaling' (default='centrality')
-    panel_height: height of each panel (in inches) (default=1.5)
-    panel_length: length of each panel (in inches) (default=5)
-    ylabel: if True, print label of y-axis (default=False)
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster_list: `str`
+        list of cell states to compare
+    top_genes: `str` (default: 5)
+        number of top genes to consider
+    criterium: `str` (default='centrality')
+        measure to use to evaluate gene role, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
+    panel_height: `float` (default: 1.5)
+        height of each panel (in inches)
+    panel_length: `float` (default: 5)
+        length of each panel (in inches)
+    ylabel: `Bool` (default: False)
+        if True, print label of y-axis
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
 
     Returns
     -------

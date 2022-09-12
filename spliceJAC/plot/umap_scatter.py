@@ -15,6 +15,8 @@ def umap_scatter(adata,
                  alpha=0.5,
                  show_cluster_center=True,
                  s=2,
+                 s_center=50,
+                 line_width=0.5,
                  legens_pos=(0.5, 1.2),
                  legend_loc='upper center',
                  ncol=4,
@@ -24,23 +26,46 @@ def umap_scatter(adata,
                  format='pdf'):
     '''2D UMAP plot of the data
 
+    Parameters of matplotlib.pyplot.scatter are explained at:
+    https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html
+
     Parameters
     ----------
-    adata: anndata object of gene counts
-    ax: pyplot axis, if False generate a new figure (default=False)
-    order: order of cluster labels in the figure legend, if None the order is random (default=None)
-    axis: if true, draw axes, otherwise do not show axes (default=False)
-    fontsize: fontsize of axes and legend labels (default=10)
-    alpha: shading of individual cells (default=0.5)
-    show_cluster_center: if True, plot the center of each cluster (default=True)
-    s: size of individual cells (default=2)
-    legens_pos: position of figure legend by axis coordinates (default=(0.5, 1.2))
-    legend_loc: position of figure legend (default='upper center')
-    ncol: number of columns in the figure legend (default=4)
-    figsize: size of figure (default=(4,4))
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: figure format (default='pdf')
+    adata: `~anndata.AnnData`
+        count matrix
+    ax: `pyplot axis` or `False` (default: False)
+        if False generate a new figure
+    order: `list` (default: `None`)
+        ordered list of cluster labels in the figure legend, if `None` the order is alphabetical
+    axis: `Bool` (default: False)
+        if true draw axes, otherwise do not show axes
+    fontsize: `int` (default: 10)
+        fontsize of axes and legend labels.
+    alpha: `float` (default=0.5)
+        shading of individual cells between [0,1]
+    show_cluster_center: `Bool` (default: True)
+        if True, plot the center of each cluster
+    s: `int` (default=2)
+        size of individual cells
+    s_center: `int` (default=50)
+        size of cluster center
+    line_width: `float` (default=0.5)
+        line width for cluster centers
+    legens_pos: `tuple` (default: (0.5, 1.2))
+        position of figure legend by axis coordinates. Details on legend location can be found at:
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+    legend_loc: `str` (default='upper center')
+        position of figure legend
+    ncol: `int` (default: 4)
+        number of columns in the figure legend
+    figsize: `tuple` (default: (4,4))
+        size of figure
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
 
     Returns
     -------
@@ -72,7 +97,7 @@ def umap_scatter(adata,
         x_umap[i], y_umap[i] = np.mean(sel_data.obsm['X_umap'][:,0]), np.mean(sel_data.obsm['X_umap'][:,1])
 
     if show_cluster_center:
-        plt.scatter(x_umap, y_umap, c=list(adata.uns['colors'].values()), s=50, edgecolors='k', linewidths=0.5)
+        plt.scatter(x_umap, y_umap, c=list(adata.uns['colors'].values()), s=s_center, edgecolors='k', linewidths=line_width)
     patches = [mpatches.Patch(color=adata.uns['colors'][types[i]], label=types[i]) for i in range(len(types))]
     plt.legend(bbox_to_anchor=legens_pos, handles=patches, loc=legend_loc, ncol=ncol, fontsize=fontsize)
 
@@ -81,7 +106,6 @@ def umap_scatter(adata,
         plt.ylabel('$Y_{UMAP}$', fontsize=fontsize)
     else:
         plt.axis('off')
-
 
     if plot_figure:
         plt.tight_layout()

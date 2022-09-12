@@ -15,21 +15,31 @@ def plot_grn_comparison(adata,
                         format='pdf',
                         figsize=(5,4)
                         ):
-    '''
-    Plot a heatmap of pairwise similarities between GRNs of different cell states
+    '''Plot a heatmap of pairwise similarities between GRNs of different cell states
 
     Parameters
     ----------
-    adata: anndata object
-    score: metric to use, choose between 'AUROC' and 'AUPRC' (default='AUPRC')
-    edges: which edges to consider for similarity, choose between 'all', 'positive', 'negative' (default='all')
-    cmap: pyplot colormap (default='Reds')
-    title: plot title, must be provided as a string (default='False')
-    fontsize: font size of figure (default=10)
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(5,4))
+    adata: `~anndata.AnnData`
+        count matrix
+    score: `str` (default: 'AUPRC')
+        metric to use, choose between 'AUROC' and 'AUPRC'
+    edges: `str` (default: 'all')
+        which edges to consider for similarity, choose between 'all', 'positive', 'negative'
+    cmap: `pyplot colormap` (default='Reds')
+        colormap to use. A list of accepted colormaps can be found at:
+        https://matplotlib.org/stable/tutorials/colors/colormaps.html
+    title: `str` or `Bool` (default='False')
+        plot title, must be provided as a string
+    fontsize: `int` (default: 10)
+        fontsize for figure
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (5,4))
+        size of figure
 
     Returns
     -------
@@ -81,19 +91,35 @@ def adjecent_grn_score(adata,
 
     Parameters
     ----------
-    adata: anndata object
-    path: list of cell states along the transition path
-    score: metric to use, choose between 'AUROC' and 'AUPRC' (default='AUPRC')
-    edges: which edges to consider for similarity, choose between 'all', 'positive', 'negative' (default='all')
-    loc: legend location (default='best')
-    fontsize: font size of figure (default=10)
-    color: color of plot (default='r')
-    errorline_color: color of deviation bars (default='b')
-    elinewidth: width of deviation bars (default=1)
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(5,4))
+    adata: `~anndata.AnnData`
+        count matrix
+    path: `list`
+        list of cell states along the transition path
+    score: `str` (default: 'AUPRC')
+        metric to use, choose between 'AUROC' and 'AUPRC'
+    edges: `str` (default: 'all')
+        which edges to consider for similarity, choose between 'all', 'positive', 'negative'
+    loc: `str` (default='best')
+        location of legend. Details on legend location can be found at:
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+    fontsize: `int` (default: 10)
+        fontsize for figure
+    color: `str` (default: 'r')
+        color of plot. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    errorline_color: `str` (default: 'b')
+        color of deviation bars. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    elinewidth: `float` (default: 1)
+        width of deviation bars
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (5,3))
+        size of figure
 
     Returns
     -------

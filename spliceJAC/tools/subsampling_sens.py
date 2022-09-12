@@ -6,20 +6,21 @@ import numpy as np
 import pandas as pd
 
 from .aux_functions import parameter_regression
-# from . import analysis
 
 def count_sign_change(v1, v2):
-    '''
-    Count the number of sign changes between two matrices
+    '''Count the number of sign changes between two matrices
 
     Parameters
     ----------
-    v1: matrix 1
-    v2: matrix 2
+    v1: `~numpy.ndarray`
+        matrix 1
+    v2: `~numpy.ndarray`
+        matrix 2
 
     Returns
     -------
-    fraction of changed signs
+    sign_frac: `float`
+        fraction of changed signs
 
     '''
     assert v1.shape == v2.shape, 'Matrices with different shapes'
@@ -28,38 +29,48 @@ def count_sign_change(v1, v2):
         for j in range(n):
             if np.sign(v1[i][j])!=np.sign(v2[i][j]):
                 c = c + 1
-    return float(c)/(n*n)
+    sign_frac = float(c)/(n*n)
+    return sign_frac
 
-def mat_distance(v1, v2):
-    '''
-    Compute the distance between two matrices by summing element-wise difference
+def mat_distance(v1,
+                 v2
+                 ):
+    '''Compute the distance between two matrices by summing element-wise difference
 
     Parameters
     ----------
-    v1: matrix 1
-    v2: matrix 2
+    v1: `~numpy.ndarray`
+        matrix 1
+    v2: `~numpy.ndarray`
+        matrix 2
 
     Returns
     -------
-    matrix distance normalized by number of elements
+    mat_dist: `float`
+        matrix distance normalized by number of elements
 
     '''
     assert v1.shape==v2.shape, 'Matrices with different shapes'
     n = v1.shape[0]
-    return np.sum( np.abs(v1-v2) )/(n*n)
+    mat_dist = np.sum( np.abs(v1-v2) )/(n*n)
+    return mat_dist
 
-def count_weight_sign(v1, v2):
-    '''
-    Computes the distance between two matrices by summing element-wise difference
+def count_weight_sign(v1,
+                      v2
+                      ):
+    '''Computes the distance between two matrices by summing element-wise difference
 
     Parameters
     ----------
-    v1: matrix 1
-    v2: matrix 2
+    v1: `~numpy.ndarray`
+        matrix 1
+    v2: `~numpy.ndarray`
+        matrix 2
 
     Returns
     -------
-    matrix distance normalized by number of elements
+    elem_dist: `~numpy.ndarray`
+        matrix distance normalized by number of elements
 
     '''
     assert v1.shape == v2.shape, 'Matrices with different shapes'
@@ -68,28 +79,35 @@ def count_weight_sign(v1, v2):
         for j in range(n):
             if np.sign(v1[i][j])!=np.sign(v2[i][j]):
                 c = c + np.abs(v1[i][j]-v2[i][j])
-    return float(c)/(n*n)
+    elem_dist = float(c)/(n*n)
+    return elem_dist
 
 def test_sub_sampling(adata,
                       cluster,
                       frac,
                       nsim=10
                       ):
-    '''
-    Test the inference of gene-gene interaction matrix with subsampling for a cluster
+    '''Test the inference of gene-gene interaction matrix with subsampling for a cluster
 
     Parameters
     ----------
-    adata: anndata object of mRNA counts
-    cluster: cluster selected for inference
-    frac: fraction of cells to randomly select
-    nsim: number of independent simulations
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster: `str`
+        cluster selected for inference
+    frac: `float`
+        fraction of cells to randomly select between [0,1]
+    nsim: `int` (default: 10)
+        number of independent simulations
 
     Returns
     -------
-    sign_frac: fraction of correct signs
-    dist: distance between reference gene-gene interaction matrix (using all cluster cells) and inferred matrix using only a fraction of cells
-    weight_sign: distance based on weighted sum of correct signs
+    sign_frac: `~numpy.ndarray`
+        fraction of correct signs
+    dist: `~numpy.ndarray`
+        distance between reference gene-gene interaction matrix and inferred matrix using only a fraction of cells
+    weight_sign: `~numpy.ndarray`
+        distance based on weighted sum of correct signs
 
     '''
     sel_adata = adata[adata.obs['clusters'] == cluster]
@@ -115,16 +133,19 @@ def subsampling_sens(adata,
                   seed=100,
                   nsim=10
                   ):
-    '''
-    Test the inference of gene-gene interaction matrix as a function of fraction of selected cells
+    '''Test the inference of gene-gene interaction matrix as a function of fraction of selected cells
     Results are stored in adata.uns['sens_summary']
 
     Parameters
     ----------
-    adata: anndata object of mRNA counts
-    frac: fraction of cells to randomly select (default=np.arange(0.1, 0.91, 0.1))
-    seed: seed for random cell selection (default=100)
-    nsim: number oof independent simulations (default=10)
+    adata: `~anndata.AnnData`
+        count matrix
+    frac: `~numpy.ndarray` (default: numpy.arange(0.1, 0.91, 0.1))
+        fraction of cells to randomly select
+    seed: `int` (default=100)
+        seed for random cell selection for reproducibility
+    nsim: `int` (default: 10)
+        number of independent simulations
 
     Returns
     -------

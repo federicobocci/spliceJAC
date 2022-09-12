@@ -16,20 +16,28 @@ def regression_sens(adata,
                    format='pdf',
                    figsize=(12,4)
                    ):
-    '''
-    Plot the summary of spliceJAC inference as a function of regression methods and parameters
+    '''Plot the summary of spliceJAC inference as a function of regression methods and parameters
 
     Parameters
     ----------
-    adata: anndata object
-    font_size: font size of figure (default=10)
-    legend_font: font size of legend (default=12)
-    title_font: font size of title (default=12)
-    legend_loc: legend location (default='best')
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(12,4))
+    adata: `~anndata.AnnData`
+        count matrix
+    font_size: `int` (default: 10)
+        fontsize of axes and legend labels
+    legend_font: `int` (default=12)
+        font size of legend
+    title_font: `int` (default=12)
+        font size of title
+    legend_loc: `str` (default='best')
+        legend location
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (12,4))
+        size of figure
 
     Returns
     -------
@@ -86,26 +94,32 @@ def sampling_sens(adata,
                   format='pdf',
                   figsize=(12,4)
                   ):
-    '''
-    Plot the summary of spliceJAC inference sensitivity to subsampling of cells in each cell state
+    '''Plot the summary of spliceJAC inference sensitivity to subsampling of cells in each cell state
 
     Parameters
     ----------
-    adata: anndata object
-    font_size: font size of figure (default=10)
-    legend_font: font size of legend (default=12)
-    legend_loc: legend location (default='best')
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(12,4))
+    adata: `~anndata.AnnData`
+        count matrix
+    font_size: `int` (default: 10)
+        fontsize of axes and legend labels
+    legend_font: `int` (default=10)
+        font size of legend
+    legend_loc: `str` (default='best')
+        legend location
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (12,4))
+        size of figure
 
     Returns
     -------
     None
 
     '''
-
     fig = plt.figure(figsize=figsize)
     ax1 = plt.subplot(131)
     ax2 = plt.subplot(132)
@@ -136,32 +150,48 @@ def sampling_sens(adata,
         plt.savefig(savefig, format=format)
 
 
-
 def subsample_stability(adata,
                         font_size=10,
+                        dist_color='firebrick',
+                        sign_color='seagreen',
+                        eig_color='mediumturquoise',
                         showfig=None,
                         savefig=None,
                         format='pdf',
                         figsize=(12,4)
                         ):
-    '''
-    Summary plot of the robustness of spliceJAC inference over multiple inferences with a fraction of the total number of cells in each cell state
+    '''Summary plot of the robustness of spliceJAC inference over multiple inferences with a fraction of the total
+    number of cells in each cell state
+
+    Details on accepted colors for pyplot boxplot can be found at:
+    https://matplotlib.org/stable/gallery/color/named_colors.html
 
     Parameters
     ----------
-    adata: anndata object
-    font_size: font size of figure (default=10)
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(12,4))
+    adata: `~anndata.AnnData`
+        count matrix
+    font_size: `int` (default: 10)
+        fontsize of axes and legend labels
+    dist_color: `str` (default: 'firebrick')
+        face color for jacobian distance boxplot
+    sign_color: `str` (default: 'seagreen')
+        face color for wrong sign boxplot
+    eig_color: `str` (default: 'mediumturquoise')
+        face color for positive eigenvalues boxplot
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (12,4))
+        size of figure
 
     Returns
     -------
     None
 
     '''
-
     types = sorted(list(set(list(adata.obs['clusters']))))
 
     dev_list = [[] for i in range(len(types))]
@@ -181,21 +211,21 @@ def subsample_stability(adata,
     ax1 = plt.subplot(131)
     bpt = plt.boxplot(dev_list, patch_artist=True)
     for patch in bpt['boxes']:
-        patch.set_facecolor('firebrick')
+        patch.set_facecolor(dist_color)
     plt.xticks(np.arange(1, len(dev_list) + 1, 1), types, rotation=45)
     plt.ylabel('Jacobian distance', fontsize=font_size)
 
     ax2 = plt.subplot(132)
     bpt = plt.boxplot(wrong_list, patch_artist=True)
     for patch in bpt['boxes']:
-        patch.set_facecolor('seagreen')
+        patch.set_facecolor(sign_color)
     plt.xticks(np.arange(1, len(wrong_list) + 1, 1), types, rotation=45)
     plt.ylabel('Wrong signs (%)', fontsize=font_size)
 
     ax3 = plt.subplot(133)
     bpt = plt.boxplot(pos_eig_list, patch_artist=True)
     for patch in bpt['boxes']:
-        patch.set_facecolor('mediumturquoise')
+        patch.set_facecolor(eig_color)
     plt.xticks(np.arange(1, len(pos_eig_list) + 1, 1), types, rotation=45)
     plt.ylabel('Positive eigenvalues (%)', fontsize=font_size)
 

@@ -16,29 +16,39 @@ def plot_trans_genes(adata,
                      format='pdf',
                      figsize=(3,3)
                      ):
-    '''
-    Plot the top transition genes between two cell states
+    '''Plot the top transition genes between two cell states
 
     Parameters
     ----------
-    adata: anndata object
-    cluster1: starting cell state
-    cluster2: final cell state
-    top_trans_genes: top genes to include in the bar plot
-    fontsize: fontsize of figure (default=10)
-    color: color for bar plot (default='r')
-    alpha: shading for bar plot (default=0.5)
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(3,3))
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster1: `str`
+        starting cell state
+    cluster2: `str`
+        final cell state
+    top_trans_genes: `int` (default: 10)
+        top genes to include in the bar plot
+    fontsize: `int` (default: 10)
+        fontsize for labels
+    color: `str` (default: 'r')
+        color for bar plot. A list of named pyplot colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    alpha: `float` (default=0.5)
+        shading for bar plot in [0,1]
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (3,3))
+        size of figure
 
     Returns
     -------
     None
 
     '''
-
     weight = adata.uns['transitions'][cluster1 + '-' + cluster2]['weights']
     genes = list(adata.var_names)
 
@@ -62,7 +72,6 @@ def plot_trans_genes(adata,
         plt.savefig(savefig, format=format, dpi=300)
 
 
-
 def scatter_scores(adata,
                    cluster1,
                    cluster2,
@@ -73,27 +82,35 @@ def scatter_scores(adata,
                    format='pdf',
                    figsize=(3,3)
                    ):
-    '''
-    Scatter plot to compare the spliceJAC transition scores with scanpy's DEG scores of the starting cell state
+    '''Scatter plot to compare the spliceJAC transition scores with scanpy's DEG scores of the starting cell state
 
     Parameters
     ----------
-    adata: anndata object
-    cluster1: starting cell state
-    cluster2: final cell state
-    fontsize: fontsize of figure (default=10)
-    color: color for scatter plot (default='b')
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(3,3))
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster1: `str`
+        starting cell state
+    cluster2: `str`
+        final cell state
+    fontsize: `int` (default: 10)
+        fontsize for labels
+    color: `str` (default: 'b')
+        color for scatter plot. A list of named pyplot colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (3,3))
+        size of figure
 
     Returns
     -------
     None
 
     '''
-
     # get gene instability scores along transition direction
     weight = adata.uns['transitions'][cluster1 + '-' + cluster2]['weights']
 
@@ -118,7 +135,6 @@ def scatter_scores(adata,
         plt.savefig(savefig, format=format, dpi=300)
 
 
-
 def compare_scvelo_scores(adata,
                           annotate=True,
                           top=5,
@@ -131,22 +147,33 @@ def compare_scvelo_scores(adata,
                           savefig=None,
                           format='pdf'
                           ):
-    '''
-    Scatter plots to compare spliceJAC's transition scores with scVelo's gene likelihood scores
+    '''Scatter plots to compare spliceJAC's transition scores with scVelo's gene likelihood scores
 
     Parameters
     ----------
-    adata: anndata object
-    annotate: if True, annotate the genes with highest sum of scores (default=True)
-    top: number of top genes to annotate (default=5)
-    color: color for scatter plot (default='b')
-    panel_height: height of each panel (in inches) (default=3)
-    panel_length: length of each panel (in inches) (default=3.5)
-    pan_per_row: number of panels per row (default=4)
-    fontsize: fontsize of figure (default=10)
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
+    adata: `~anndata.AnnData`
+        count matrix
+    annotate: `Bool` (default=True)
+        if True, annotate the genes with highest sum of scores
+    top: `int` (default=5)
+        number of top genes to annotate
+    color: `str` (default: 'b')
+        color for scatter plot. A list of named pyplot colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    panel_height: `float` (default: 3)
+        height of each panel (in inches)
+    panel_length: `float` (default: 3.5)
+        length of each panel (in inches)
+    pan_per_row: `int` (default: 4)
+        number of panels per row
+    fontsize: `int` (default: 10)
+        fontsize for labels
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
 
     Returns
     -------

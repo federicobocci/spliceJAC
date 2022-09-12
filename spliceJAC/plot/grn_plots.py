@@ -31,23 +31,47 @@ def plot_grn(G,
 
     Parameters
     ----------
-    G: networkx graph object
-    node_size: size of nodes. If node_size='expression', the node size is scaled based on gene expression. Otherwise, node_size can be an integer (default=200)
-    edge_width: width of connection arrows
-    font_size: font size for node labels
-    adata: gene count anndata object, must be provided if node_size == 'expression'
-    node_color: color of nodes. If node_color='centrality', the color is based on the node centrality. Otherwise, a matplotlib color name can be provided (default='centrality')
-    cluster_name: name of considered cluster (must be provided if node_size='expression')
-    pos_style: position of nodes. The options are 'spring' and 'circle'. 'spring' uses the networkx spring position function, whereas 'circle' arranges the nodes in a circle.
-    base_node_size: Minimum node size (used if node_size='expression')
-    diff_node_size: difference betwene minimum and maximal node size (used if node_size='expression')
-    pos_edge_color: color for positive regulation arrow
-    neg_edge_color: color for negative regulation arrow
-    arrowsize: size of interaction arrows
-    arrow_alpha: shading of interaction arrows
-    conn_style: style of interaction arrows
-    colorbar: if True, show colorbar (required if node_size='expression')
-    fontweight: style of text (default='normal')
+    G: `networkx graph object`
+        network to plot
+    node_size: `int` or `str` (default: 200)
+        size of nodes. If node_size='expression', the node size is scaled based on gene expression.
+        Otherwise, node_size can be a fixed integer
+    edge_width: `float` (default: 1)
+        width of connection arrows
+    fontsize: `int` (default: 10)
+        fontsize for node labels.
+    adata: `~anndata.AnnData` or `None` (default: `None`)
+        count matrix, must be provided if node_size == 'expression'
+    node_color: `str` (default: 'centrality')
+        color of nodes. If node_color='centrality', the color is based on the node centrality.
+        Otherwise, a matplotlib color name can be provided. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    cluster_name: `str` or `None` (default: `None`)
+        name of considered cluster (must be provided if node_size='expression')
+    pos_style: `str` (default: 'spring')
+        position of nodes. The options are 'spring' and 'circle'. 'spring' uses the networkx spring position function,
+        whereas 'circle' arranges the nodes in a circle.
+    base_node_size: `float` (default: 300)
+        Minimum node size (used if node_size='expression')
+    diff_node_size: `float` (default: 600)
+        difference between minimum and maximal node size (used if node_size='expression')
+    pos_edge_color: `str` (default: 'b')
+        color for positive regulation arrow. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    neg_edge_color: `str` (default: 'r')
+        color for negative regulation arrow. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    arrowsize: `float` (default: 10)
+        size of interaction arrows
+    arrow_alpha: `float` (default: 0.75)
+        shading of interaction arrows in [0,1]
+    conn_style: `str` (default: 'straight')
+        style of interaction arrows. The admissible styles for networkx graphs can be found at:
+        https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html
+    colorbar: `Bool` (default: True)
+        if True, show colorbar (required if node_size='expression')
+    fontweight: `str` (default: 'normal')
+        style of text. Can select 'bold' for bold text.
 
     Returns
     -------
@@ -107,8 +131,10 @@ def plot_grn(G,
         edge_width_pos = edge_width
         edge_width_neg = edge_width
 
-    nx.draw_networkx_edges(G, pos, edgelist=epos, width=edge_width_pos + 0.5, edge_color=pos_edge_color, arrowsize=arrowsize, alpha=arrow_alpha, connectionstyle=connectionstyle)
-    nx.draw_networkx_edges(G, pos, edgelist=eneg, width=edge_width_neg + 0.5, edge_color=neg_edge_color, arrowstyle="-[", arrowsize=arrowsize, alpha=arrow_alpha, connectionstyle=connectionstyle)
+    nx.draw_networkx_edges(G, pos, edgelist=epos, width=edge_width_pos + 0.5, edge_color=pos_edge_color,
+                           arrowsize=arrowsize, alpha=arrow_alpha, connectionstyle=connectionstyle)
+    nx.draw_networkx_edges(G, pos, edgelist=eneg, width=edge_width_neg + 0.5, edge_color=neg_edge_color,
+                           arrowstyle="-[", arrowsize=arrowsize, alpha=arrow_alpha, connectionstyle=connectionstyle)
     nx.draw_networkx_labels(G, pos, font_size=font_size, font_family="sans-serif", font_weight=fontweight)
 
 
@@ -143,38 +169,70 @@ def visualize_network(adata,
 
     Parameters
     ----------
-    adata: anndata object
-    cluster_name: cell state
-    genes: list of genes to include (default=None). If None, all genes are included
-    cc_id: connected component of the GRN to plot (default=0)
-    node_size: size of nodes in the GRN (default='expression'). If node_size='expression', the node size is proportional to the gene expression in the cell state. Otherwise, a number can be specified
-    edge_width: width of GRN edges (default='weight'). If edge_width='weight', the edge width is proportional to the interaction strength
-    font_size: font size of the figure (default=10)
-    plot_interactive: plot the GRN interactively (default=True)
-    weight_quantile: threshold to filter weak interactions between 0 and 1 (default=0.5)
-    node_color: color of nodes. If node_color='centrality', the color is based on the node centrality. Otherwise, a matplotlib color name can be provided (default='centrality')
-    pos_style: position of nodes. The options are 'spring' and 'circle'. 'spring' uses the networkx spring position function, whereas 'circle' arranges the nodes in a circle
-    title: if True, plot title (default=True)
-    base_node_size: Minimum node size (used if node_size='expression')
-    diff_node_size: difference betwene minimum and maximal node size (used if node_size='expression')
-    pos_edge_color: color for positive regulation arrow
-    neg_edge_color: color for negative regulation arrow
-    arrowsize: size of interaction arrows
-    arrow_alpha: shading of interaction arrows
-    conn_style: style of interaction arrows
-    colorbar: if True, show colorbar (required if node_size='expression')
-    fontweight: style of text (default='normal')
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(5,4))
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster_name: `str`
+        cell state
+    genes: `list` (default: `None`)
+        list of genes to include. If None, all genes are included
+    cc_id: `int` (default: 0)
+        connected component of the GRN to plot
+    node_size: `int` or `str` (default: 200)
+        size of nodes. If node_size='expression', the node size is scaled based on gene expression.
+        Otherwise, node_size can be a fixed integer
+    edge_width: `float` (default: 1)
+        width of connection arrows
+    fontsize: `int` (default: 10)
+        fontsize for node labels.
+    plot_interactive: `Bool` (default=True)
+        plot the GRN interactively in notebook of figure
+    weight_quantile: `float` (default=0.5)
+        threshold to filter weak interactions between 0 and 1
+    node_color: `str` (default: 'centrality')
+        color of nodes. If node_color='centrality', the color is based on the node centrality.
+        Otherwise, a matplotlib color name can be provided. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    pos_style: `str` (default: 'spring')
+        position of nodes. The options are 'spring' and 'circle'. 'spring' uses the networkx spring position function,
+        whereas 'circle' arranges the nodes in a circle.
+    title: `Bool` (default=True)
+        if True, plot title
+    base_node_size: `float` (default: 300)
+        Minimum node size (used if node_size='expression')
+    diff_node_size: `float` (default: 600)
+        difference between minimum and maximal node size (used if node_size='expression')
+    pos_edge_color: `str` (default: 'b')
+        color for positive regulation arrow. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    neg_edge_color: `str` (default: 'r')
+        color for negative regulation arrow. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    arrowsize: `float` (default: 10)
+        size of interaction arrows
+    arrow_alpha: `float` (default: 0.75)
+        shading of interaction arrows in [0,1]
+    conn_style: `str` (default: 'straight')
+        style of interaction arrows. The admissible styles for networkx graphs can be found at:
+        https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html
+    colorbar: `Bool` (default: True)
+        if True, show colorbar (required if node_size='expression')
+    fontweight: `str` (default: 'normal')
+        style of text. Can select 'bold' for bold text.
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (5,4))
+        size of figure
 
     Returns
     -------
     None
 
     '''
-    assert conn_style=='straight' or conn_style=='curved', "Please choose between conn_style=='straight' and conn_style=='curved'"
+    assert conn_style=='straight' or conn_style=='curved', "Choose conn_style=='straight' or conn_style=='curved'"
 
     if genes == None:
         genes = list(adata.var_names)
@@ -196,9 +254,11 @@ def visualize_network(adata,
         print("There exist multiple connected components. Choose the parameter cc_id to show other components")
 
     fig, ax = plt.subplots(figsize=figsize)
-    plot_grn(subgraphs[cc_id], node_size=node_size, edge_width=edge_width, font_size=font_size, adata=adata, node_color=node_color, cluster_name=cluster_name, pos_style=pos_style,
-             base_node_size=base_node_size, diff_node_size=diff_node_size, pos_edge_color=pos_edge_color, neg_edge_color=neg_edge_color,
-             arrowsize=arrowsize, arrow_alpha=arrow_alpha, conn_style=conn_style, colorbar=colorbar, fontweight=fontweight)
+    plot_grn(subgraphs[cc_id], node_size=node_size, edge_width=edge_width, font_size=font_size, adata=adata,
+             node_color=node_color, cluster_name=cluster_name, pos_style=pos_style,
+             base_node_size=base_node_size, diff_node_size=diff_node_size, pos_edge_color=pos_edge_color,
+             neg_edge_color=neg_edge_color, arrowsize=arrowsize, arrow_alpha=arrow_alpha, conn_style=conn_style,
+             colorbar=colorbar, fontweight=fontweight)
 
     # Title/legend
     font = {"color": "k", "fontweight": "bold", "fontsize": 20}
@@ -250,37 +310,66 @@ def diff_network(adata,
 
     Parameters
     ----------
-    adata: anndata object
-    cluster1: first cell state
-    cluster2: second cell state
-    genes: list of genes to consider. If None, all genes are considered (default=None)
-    cc_id: connected component of the GRN to plot (default=0)
-    node_size: size of nodes in the GRN (default=500)
-    edge_width: width of GRN edges (default='weight'). If edge_width='weight', the edge width is proportional to the interaction strength
-    font_size: font size of the figure (default=10)
-    weight_quantile: threshold to filter weak interactions between 0 and 1 (default=0.5)
-    pos_style: position of nodes. The options are 'spring' and 'circle'. 'spring' uses the networkx spring position function, whereas 'circle' arranges the nodes in a circle
-    base_node_size: Minimum node size (used if node_size='expression')
-    diff_node_size: difference betwene minimum and maximal node size (used if node_size='expression')
-    pos_edge_color: color for positive regulation arrow
-    neg_edge_color: color for negative regulation arrow
-    arrowsize: size of interaction arrows
-    arrow_alpha: shading of interaction arrows
-    conn_style: style of interaction arrows
-    colorbar: if True, show colorbar (required if node_size='expression')
-    fontweight: style of text (default='normal')
-    title: if True, plot title (default=True)
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(5,4))
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster1: `str`
+        first cell state
+    cluster2: `str`
+        second cell state
+    genes: `list` (default: `None`)
+        list of genes to include. If None, all genes are included
+    cc_id: `int` (default: 0)
+        connected component of the GRN to plot
+    node_size: `float` (default=500)
+        size of nodes in the GRN
+    edge_width: `float` or `str` (default='weight')
+         width of GRN edges. If edge_width='weight', the edge width is proportional to the interaction strength.
+    fontsize: `int` (default: 10)
+        fontsize for figure.
+    weight_quantile: `float` (default: 0.5)
+        threshold to filter weak interactions between 0 and 1
+    pos_style: `str` (default: 'spring')
+        position of nodes. The options are 'spring' and 'circle'. 'spring' uses the networkx spring position function,
+        whereas 'circle' arranges the nodes in a circle.
+    base_node_size: `float` (default: 300)
+        Minimum node size (used if node_size='expression')
+    diff_node_size: `float` (default: 600)
+        difference between minimum and maximal node size (used if node_size='expression')
+    pos_edge_color: `str` (default: 'b')
+        color for positive regulation arrow. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    neg_edge_color: `str` (default: 'r')
+        color for negative regulation arrow. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    arrowsize: `float` (default: 10)
+        size of interaction arrows
+    arrow_alpha: `float` (default: 0.75)
+        shading of interaction arrows in [0,1]
+    conn_style: `str` (default: 'straight')
+        style of interaction arrows. The admissible styles for networkx graphs can be found at:
+        https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html
+    colorbar: `Bool` (default: True)
+        if True, show colorbar (required if node_size='expression')
+    fontweight: `str` (default: 'normal')
+        style of text. Can select 'bold' for bold text.
+    title: `Bool` (default: True)
+        if True, plot title
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (3.5,3))
+        size of figure
 
     Returns
     -------
     None
 
     '''
-    assert conn_style == 'straight' or conn_style == 'curved', "Please choose between conn_style=='straight' and conn_style=='curved'"
+    assert conn_style == 'straight' or conn_style == 'curved', \
+        "Please choose between conn_style=='straight' and conn_style=='curved'"
 
     if genes == None:
         genes = list(adata.var_names)
@@ -311,10 +400,10 @@ def diff_network(adata,
     expr_change = list(np.mean(data2, axis=0) - np.mean(data1, axis=0))
 
     plot_grn(subgraphs[cc_id], node_size=node_size, edge_width=edge_width, font_size=font_size, adata=adata,
-             node_color=expr_change, cluster_name=None, pos_style=pos_style,
-             base_node_size=base_node_size, diff_node_size=diff_node_size, pos_edge_color=pos_edge_color,
-             neg_edge_color=neg_edge_color,
-             arrowsize=arrowsize, arrow_alpha=arrow_alpha, conn_style=conn_style, colorbar=colorbar, fontweight=fontweight)
+             node_color=expr_change, cluster_name=None, pos_style=pos_style, base_node_size=base_node_size,
+             diff_node_size=diff_node_size, pos_edge_color=pos_edge_color, neg_edge_color=neg_edge_color,
+             arrowsize=arrowsize, arrow_alpha=arrow_alpha, conn_style=conn_style, colorbar=colorbar,
+             fontweight=fontweight)
     plt.axis("off")
 
     # Title/legend
@@ -348,19 +437,33 @@ def diff_interactions(adata,
 
     Parameters
     ----------
-    adata: anndata object
-    cluster1: first cell state
-    cluster2: second cell state
-    top_int: number of top chnaged interactions to plot (default=10)
-    loc: location of legend (default='best')
-    title: if True, plot title (default=False)
-    fontsize: fontsize of figure (default=10)
-    legend_font: fontsize of legend (default=10)
-    legend_col: number of columns in legend (default=1)
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(5,4))
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster1: `str`
+        first cell state
+    cluster2: `str`
+        second cell state
+    top_int: `int` (default=10)
+        number of top changed interactions to plot
+    loc: `str` (default='best')
+        location of legend. Details on legend location can be found at:
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+    title: `Bool` (default: False)
+        if True, plot title
+    fontsize: `int` (default: 10)
+        fontsize for figure.
+    legend_font: `int` (default: 10)
+        fontsize of legend
+    legend_col: `int` (default: 1)
+        number of columns in legend
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (4,5))
+        size of figure
 
     Returns
     -------
@@ -394,7 +497,8 @@ def diff_interactions(adata,
     plt.plot( np.zeros(len(int_list)), np.linspace(0, len(int_list) + 1, len(int_list)), 'k--' )
 
     for i in range(len(old)):
-        plt.arrow( old[i], i+1, 0.95*(new[i]-old[i]), 0, head_length=0.05, head_width=0.5, length_includes_head=True, color='grey')
+        plt.arrow( old[i], i+1, 0.95*(new[i]-old[i]), 0, head_length=0.05, head_width=0.5,
+                   length_includes_head=True, color='grey')
 
     plt.yticks( np.arange(1, len(int_list)+1, 1), name )
     plt.xlabel('Interaction strenght change', fontsize=fontsize)
@@ -442,30 +546,58 @@ def conserved_grn(adata,
 
     Parameters
     ----------
-    adata: anndata object
-    cluster1: first cell state
-    cluster2: second cell state
-    genes: list of genes to consider. If None, all genes are considered (default=None)
-    cc_id: connected component of the GRN to plot (default=0)
-    node_size: size of nodes in the GRN (default=500)
-    edge_width: width of GRN edges (default='weight'). If edge_width='weight', the edge width is proportional to the interaction strength
-    font_size: font size of the figure (default=10)
-    weight_quantile: threshold to filter weak interactions between 0 and 1 (default=0.5)
-    pos_style: pos_style: position of nodes. The options are 'spring' and 'circle'. 'spring' uses the networkx spring position function, whereas 'circle' arranges the nodes in a circle
-    title: if True, plot title (default=True)
-    base_node_size: Minimum node size (used if node_size='expression')
-    diff_node_size: difference betwene minimum and maximal node size (used if node_size='expression')
-    pos_edge_color: color for positive regulation arrow
-    neg_edge_color: color for negative regulation arrow
-    arrowsize: size of interaction arrows
-    arrow_alpha: shading of interaction arrows
-    conn_style: style of interaction arrows
-    colorbar: if True, show colorbar (required if node_size='expression')
-    fontweight: style of text (default='normal')
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(5,4))
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster1: `str`
+        first cell state
+    cluster2: `str`
+        second cell state
+    genes: `list` or `None` (default: `None`)
+        list of genes to consider. If None, all genes are considered
+    cc_id: `int` (default: 0)
+        connected component of the GRN to plot
+    node_size: `int` (default: 500)
+        size of nodes in the GRN
+    edge_width: `str` or `int` (default: 'weight')
+        width of GRN edges. If edge_width='weight', the edge width is proportional to the interaction strength.
+    fontsize: `int` (default: 10)
+        fontsize for figure.
+    weight_quantile: `float` (default: 0.5)
+        threshold to filter weak interactions between 0 and 1
+    pos_style: `str` (default: 'spring')
+        position of nodes. The options are 'spring' and 'circle'. 'spring' uses the networkx spring position function,
+        whereas 'circle' arranges the nodes in a circle.
+    title: `Bool` (default: True)
+        if True, plot title
+    base_node_size: `float` (default: 300)
+        Minimum node size (used if node_size='expression')
+    diff_node_size: `float` (default: 600)
+        difference between minimum and maximal node size (used if node_size='expression')
+    pos_edge_color: `str` (default: 'b')
+        color for positive regulation arrow. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    neg_edge_color: `str` (default: 'r')
+        color for negative regulation arrow. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    arrowsize: `float` (default: 10)
+        size of interaction arrows
+    arrow_alpha: `float` (default: 0.75)
+        shading of interaction arrows in [0,1]
+    conn_style: `str` (default: 'straight')
+        style of interaction arrows. The admissible styles for networkx graphs can be found at:
+        https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html
+    colorbar: `Bool` (default: True)
+        if True, show colorbar (required if node_size='expression')
+    fontweight: `str` (default: 'normal')
+        style of text. Can select 'bold' for bold text.
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (3.5,3))
+        size of figure
 
     Returns
     -------
@@ -543,17 +675,28 @@ def top_conserved_int(adata,
 
     Parameters
     ----------
-    adata: anndata object
-    cluster1: first cell state
-    cluster2: second cell state
-    top_int: number of top chnaged interactions to plot (default=10)
-    title: if True, plot title (default=False)
-    fontsize: fontsize of figure (default=10)
-    alpha: shading of bar plot (default=0.5)
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(5,4))
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster1: `str`
+        first cell state
+    cluster2: `str`
+        second cell state
+    top_int: `int` (default=10)
+        number of top chnaged interactions to plot
+    title: `Bool` (default: False)
+        if True, plot title
+    fontsize: `int` (default: 10)
+        fontsize for figure.
+    alpha: `float` (default=0.5)
+        shading of bar plot
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (4,5))
+        size of figure
 
     Returns
     -------
@@ -607,34 +750,36 @@ def top_conserved_int(adata,
 
 
 def robust_mean(X):
-    '''
-    Calculate gene expression mean based on quantile selection
+    '''Calculate gene expression mean based on quantile selection
 
     Parameters
     ----------
-    X: array of gene expression values
+    X: ~numpy.ndarray`
+        array of gene expression values
 
     Returns
     -------
-    robust mean: array of mean gene expression
+    robust mean: ~numpy.ndarray`
+        array of mean gene expression
 
     '''
-    rob_mean = 0.25 * np.quantile(X, q=0.75, axis=0) + 0.25 * np.quantile(X, q=0.25, axis=0) + 0.5 * np.quantile(X, q=0.5,
-                                                                                                             axis=0)
+    rob_mean = 0.25 * np.quantile(X, q=0.75, axis=0) + 0.25 * np.quantile(X, q=0.25, axis=0) + \
+               0.5 * np.quantile(X, q=0.5, axis=0)
     return rob_mean
 
 
 def NormalizeData(data):
-    '''
-    normalize gene expression data
+    '''normalize the gene expression data
 
     Parameters
     ----------
-    data: data array
+    data: ~numpy.ndarray`
+        data array
 
     Returns
     -------
-    scaled: normalized data
+    scaled: ~numpy.ndarray`
+        normalized data
 
     '''
     scaled = (data - np.min(data)) / (np.max(data) - np.min(data))
@@ -642,16 +787,17 @@ def NormalizeData(data):
 
 
 def circle_pos(G):
-    '''
-    Compute coordinates along a unit circle for GRN node positions
+    '''Compute coordinates along a unit circle for GRN node positions
 
     Parameters
     ----------
-    G: networkx object
+    G: `networkx object`
+        the networkx network
 
     Returns
     -------
-    pos: array of positions
+    pos: ~numpy.ndarray`
+        array of positions
 
     '''
     nodes = list(G.nodes)
@@ -670,18 +816,21 @@ def subset_jacobian(J,
                     genes,
                     genelist
                     ):
-    '''
-    select gene-gene interactions for genes in the genelist
+    '''select gene-gene interactions for genes in the genelist
 
     Parameters
     ----------
-    J: gene-gene interaction matrix
-    genes: full lits of genes
-    genelist: list of selected genes
+    J: `~numpy.ndarray`
+        gene-gene interaction matrix
+    genes: `list`
+        full list of genes
+    genelist: `list`
+        list of selected genes
 
     Returns
     -------
-    B_subset: reduced gene-gene interaction matrix
+    B_subset: `~numpy.ndarray`
+        reduced gene-gene interaction matrix
 
     '''
     ind = []
@@ -717,33 +866,61 @@ def core_GRN(adata,
              format='pdf',
              figsize=(3,3)
              ):
-    '''
-    Plot a reduced GRN including the top DEG of the starting cluster and the top transition genes
+    ''' Plot a reduced GRN including the top DEG of the starting cluster and the top transition genes
+
     Parameters
     ----------
-    adata: anndata object
-    cluster1: starting cluster
-    cluster2: final cluster
-    type_color: colors for nodes that are DEG, transition genes and both (default=['orange', 'plum', 'yellowgreen'])
-    pos_edge_color: color for positive regulation arrow
-    neg_edge_color: color for negative regulation arrow
-    node_size: size of nodes (default=500)
-    node_alpha: shading of nodes (default=0.5)
-    arrowsize: size of interaction arrow (default=10)
-    arrow_alpha: shading of interaction arrows (default=0.75)
-    conn_style: arrow connection style (default='arc3, rad=0.1')
-    node_font: font size of node labels (default=8)
-    legend: if True, include legend (default=True)
-    legend_font: font size for legend (default=10)
-    legend_ncol: number of columns in legend (default=2)
-    legend_loc: legend location (default='lower center')
-    axis: if True, plot axes (default=False)
-    xlim: inteval on x-axis (default=[-1.2, 1.2])
-    ylim: inteval on y-axis (default=None)
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(3,3))
+    adata: `~anndata.AnnData`
+        count matrix
+    cluster1: `str`
+        first cell state
+    cluster2: `str`
+        second cell state
+    type_color: `list` (default=['orange', 'plum', 'yellowgreen'])
+        colors for nodes that are DEG, transition genes and both. A list of accepted colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    pos_edge_color: `str` (default: 'b')
+        color for positive regulation arrow. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    neg_edge_color: `str` (default: 'r')
+        color for negative regulation arrow. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    node_size: 'int' (default: 500)
+        size of nodes
+    node_alpha: `float` (default: 0.5)
+        shading of nodes
+    arrowsize: `float` (default: 10)
+        size of interaction arrows
+    arrow_alpha: `float` (default: 0.75)
+        shading of interaction arrows in [0,1]
+    conn_style: `str` (default: 'arc3, rad=0.1')
+        style of interaction arrows. The admissible styles for networkx graphs can be found at:
+        https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html
+    fontsize: `int` (default: 8)
+        fontsize for node labels.
+    legend: `Bool` (default=True)
+        if True, include legend
+    legend_font: `int` (default=10)
+        font size for legend
+    legend_ncol: `int` (default=2)
+        number of columns in legend
+    legend_loc: `str` (default: 'lower center')
+        legend location.  Details on legend location can be found at:
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+    axis: `Bool` (default=False)
+        if True, plot axes
+    xlim: `list` (default=[-1.2, 1.2])
+        inteval on x-axis
+    ylim: `list` or `None` (default=None)
+        inteval on y-axis
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (3,3))
+        size of figure
 
     Returns
     -------
@@ -754,7 +931,8 @@ def core_GRN(adata,
 
     # 1) select reduced Jacobian with top DEG and TG
     sel_genes = deg_list+tg_list+both_list
-    node_color = [type_color[0] for d in deg_list] + [type_color[1] for t in tg_list] + [type_color[2] for b in both_list]
+    node_color = [type_color[0] for d in deg_list] + [type_color[1] for t in tg_list] + \
+                 [type_color[2] for b in both_list]
 
     B_core = subset_jacobian(adata.uns['average_jac'][cluster1][0], list(adata.var_names), sel_genes)
 
@@ -789,8 +967,10 @@ def core_GRN(adata,
     ax = plt.subplot(111)
 
     nx.draw_networkx_nodes(G, pos, node_size=node_size, node_color=node_color, alpha=node_alpha)
-    nx.draw_networkx_edges(G, pos, edgelist=epos, edge_color=pos_edge_color, arrowsize=arrowsize, alpha=arrow_alpha, connectionstyle=conn_style)
-    nx.draw_networkx_edges(G, pos, edgelist=eneg, edge_color=neg_edge_color, arrowstyle="-[", arrowsize=arrowsize, alpha=arrow_alpha, connectionstyle=conn_style)
+    nx.draw_networkx_edges(G, pos, edgelist=epos, edge_color=pos_edge_color, arrowsize=arrowsize,
+                           alpha=arrow_alpha, connectionstyle=conn_style)
+    nx.draw_networkx_edges(G, pos, edgelist=eneg, edge_color=neg_edge_color, arrowstyle="-[", arrowsize=arrowsize,
+                           alpha=arrow_alpha, connectionstyle=conn_style)
 
     nx.draw_networkx_labels(G, pos, font_size=node_font)
 
@@ -835,33 +1015,58 @@ def bif_GRN(adata, start, end, pos_edge_color='b',
              format='pdf',
              figsize=(6,6)
             ):
-    '''
-    Plot the reduced GRN of transition genes involved in different cell state transitions
+    '''Plot the reduced GRN of transition genes involved in different cell state transitions
 
     Parameters
     ----------
-    adata: anndata object
-    start: starting cell state
-    end: list of ending cell states
-    pos_edge_color: color for positive regulation arrow
-    neg_edge_color: color for negative regulation arrow
-    node_size: size of nodes (default=500)
-    node_alpha: shading of nodes (default=0.5)
-    arrowsize: size of interaction arrow (default=10)
-    arrow_alpha: shading of interaction arrows (default=0.75)
-    conn_style: arrow connection style (default='arc3, rad=0.1')
-    node_font: font size of node labels (default=8)
-    legend: if True, include legend (default=True)
-    legend_font: font size for legend (default=10)
-    legend_ncol: number of columns in legend (default=2)
-    legend_loc: legend location (default='lower center')
-    axis: if True, plot axes (default=False)
-    xlim: inteval on x-axis (default=[-1.2, 1.2])
-    ylim: inteval on y-axis (default=None)
-    showfig: if True, show the figure (default=None)
-    savefig: if True, save the figure using the savefig path (default=None)
-    format: format of saved figure (default='pdf')
-    figsize: size of figure (default=(6,6))
+    adata: `~anndata.AnnData`
+        count matrix
+    start: `str`
+        starting cell state
+    end: `list`
+        list of ending cell states
+    pos_edge_color: `str` (default: 'b')
+        color for positive regulation arrow. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    neg_edge_color: `str` (default: 'r')
+        color for negative regulation arrow. A full list of accepted named colors can be found at:
+        https://matplotlib.org/stable/gallery/color/named_colors.html
+    node_size: `int` (default: 500)
+        size of nodes
+    node_alpha: `float` (default: 0.5)
+        shading of nodes
+    arrowsize: `float` (default: 10)
+        size of interaction arrows
+    arrow_alpha: `float` (default: 0.75)
+        shading of interaction arrows in [0,1]
+    conn_style: `str` (default: 'arc3, rad=0.1')
+        style of interaction arrows. The admissible styles for networkx graphs can be found at:
+        https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html
+    node_font: `int` (default=8)
+        font size of node labels
+    legend: `Bool` (default=True)
+        if True, include legend
+    legend_font: `int` (default=10)
+        font size for legend
+    legend_ncol: `int` (default=2)
+        number of columns in legend
+    legend_loc: `str` (default='lower center')
+        legend location.  Details on legend location can be found at:
+        https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+    axis: `Bool` (default=False)
+        if True, plot axes
+    xlim: `list` (default=[-1.2, 1.2])
+        inteval on x-axis
+    ylim: `list` or `None` (default=None)
+        inteval on y-axis
+    showfig: `Bool` or `None` (default: `None`)
+        if True, show the figure
+    savefig: `Bool` or `None` (default: `None`)
+         if True, save the figure using the savefig path
+    format: `str` (default: 'pdf')
+        figure format
+    figsize: `tuple` (default: (6,6))
+        size of figure
 
     Returns
     -------
@@ -922,8 +1127,10 @@ def bif_GRN(adata, start, end, pos_edge_color='b',
     ax = plt.subplot(111)
 
     nx.draw_networkx_nodes(G, pos, node_size=node_size, node_color=node_color, alpha=node_alpha)
-    nx.draw_networkx_edges(G, pos, edgelist=epos, edge_color=pos_edge_color, arrowsize=arrowsize, alpha=arrow_alpha, connectionstyle=arrowstyle)
-    nx.draw_networkx_edges(G, pos, edgelist=eneg, edge_color=neg_edge_color, arrowstyle="-[", arrowsize=arrowsize, alpha=arrow_alpha, connectionstyle=arrowstyle)
+    nx.draw_networkx_edges(G, pos, edgelist=epos, edge_color=pos_edge_color, arrowsize=arrowsize,
+                           alpha=arrow_alpha, connectionstyle=arrowstyle)
+    nx.draw_networkx_edges(G, pos, edgelist=eneg, edge_color=neg_edge_color, arrowstyle="-[", arrowsize=arrowsize,
+                           alpha=arrow_alpha, connectionstyle=arrowstyle)
 
     nx.draw_networkx_labels(G, pos, font_size=node_font)
 

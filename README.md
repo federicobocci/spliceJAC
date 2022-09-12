@@ -20,7 +20,7 @@ Details coming up shortly.
 
 ### References
 
-Federico bocci, Peijie Zhou, Qing Nie, spliceJAC: Identify transition driver genes and cell state specific regulatory interactions from single-cell transcriptome data, Preprint (2022).
+Federico Bocci, Peijie Zhou, Qing Nie, spliceJAC: Identify transition driver genes and cell state specific regulatory interactions from single-cell transcriptome data, Preprint (2022).
 
 ### Further reading
 
