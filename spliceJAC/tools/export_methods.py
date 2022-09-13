@@ -63,7 +63,7 @@ def export_grn(adata,
         count matrix
     cluster: `str`
         cell state
-    filename: `str` (defaul: None)
+    filename: `str` (default: None)
         the name of export file, including path and .csv extension
 
     Returns

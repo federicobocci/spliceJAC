@@ -68,8 +68,8 @@ def gene_variation(adata,
         number of genes to consider. If an integer (n) is provided, the top n genes are selected.
         Otherwise, all genes are used if n_genes='all'
     method: `float` (default: "SD")
-        method to estimate gene role variation across cell states, choose between standard deviation (SD), range,
-        and interquartile range
+        method to estimate gene role variation across cell states, choose between standard deviation ('SD'),
+        range ('range'), and interquartile range ('inter_range')
     measure: `float` (default: 'centrality')
         measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
     bar_color: `str` (default: 'paleturquoise')
@@ -185,8 +185,8 @@ def gene_var_detail(adata,
         choose to select genes with larger variation between cell states (select='top')
         or small variation (select='bottom')
     method: `float` (default: "SD")
-        method to estimate gene role variation across cell states, choose between standard deviation (SD), range,
-        and interquartile range
+        method to estimate gene role variation across cell states, choose between standard deviation ('SD'),
+        range ('range'), and interquartile range ('inter_range')
     measure: `float` (default: 'centrality')
         measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
     legend_loc: `str` (default: 'best')
@@ -276,8 +276,8 @@ def gene_var_scatter(adata,
     adata: `~anndata.AnnData`
         count matrix
     method: `float` (default: "SD")
-        method to estimate gene role variation across cell states, choose between standard deviation (SD),
-        range, and interquartile range
+        method to estimate gene role variation across cell states, choose between standard deviation ('SD'),
+        range ('range'), and interquartile range ('inter_range')
     measure: `float` (default: 'centrality')
         measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
     top_genes: `int` (default: 5)
