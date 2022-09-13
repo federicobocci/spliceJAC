@@ -1,6 +1,10 @@
 ## spliceJAC: Identify transition driver genes and cell state specific regulatory interactions from single-cell transcriptome data
 
-spliceJAC is a python-based toolkit to reconstruct cell state-specific gene regulatory networks (GRN) and predict transition driver genes leading to cell differentiation. 
+spliceJAC is a python-based toolkit to reconstruct cell state-specific gene regulatory networks (GRN) and predict transition driver genes leading to cell differentiation.
+
+### Overview of spliceJAC
+
+spliceJAC requires the spliced (S) and unspliced (U) count matrices from single cell RNA-sequencing (scRNA-seq) experiment as well as cell annotations that are used to identify the cell states in the dataset. Starting from this information, spliceJAC builds a local mRNA splicing model that provides information about cell state specific gene regulatory interactions and driver genes that induce cell state transitions.
 
 ![spliceJAC schematic](misc/spliceJAC.png)
 
@@ -16,7 +20,34 @@ Application of spliceJAC include:
 
 ### Use and installation
 
-Details coming up shortly.
+#### Install the package from PyPl
+
+spliceJAC can be installed using pip:
+
+```console
+pip install -U splicejac
+```
+
+#### Working within the spliceJAC repository
+
+Alternatively, you can zip download the spliceJAC repository from the green 'Code' bottom at the top right corner of this page and run your custom code and notebooks from within the repository.
+
+#### Setting up a virtual environment 
+
+Whether you decide to install the package or to work within the spliceJAC Repo, we suggest to work within a virtual environment to avoid conflict and ensure that all dependencies are updated to the required version. Guidelines to create a virtual environment in Python can be found [here](https://docs.python.org/3/library/venv.html).
+
+spliceJAC requires the installation of dependencies including [Numpy](https://numpy.org), [Matplotlib](https://matplotlib.org), [Pandas](https://pandas.pydata.org), [Scanpy](https://pandas.pydata.org) and [scVelo](https://scvelo.readthedocs.io). The full list of required packages can be found in the requirements.txt file within this folder. Once your virtual environment is set up, you can install all required dependencies by running:
+
+```console
+pip install -r requirements.txt
+```
+
+### Getting started
+
+This repository includes two in-depth notebook tutorials to demonstrate spliceJAC's applications in inferring cell state specific gene regulatory networks and analyze cell state transitions:
+
+- GRN inference
+- Transitions
 
 ### References
 
