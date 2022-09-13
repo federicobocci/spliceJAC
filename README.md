@@ -22,11 +22,13 @@ Details coming up shortly.
 
 Federico Bocci, Peijie Zhou, Qing Nie, spliceJAC: Identify transition driver genes and cell state specific regulatory interactions from single-cell transcriptome data, Preprint (2022).
 
+The detailed testing and benchmarking of spliceJAC is publicly available [here](https://github.com/cliffzhou92/jacobian-inference-benchmarking).
+
 ### Further reading
 
 Bergen et al. (2020), Generalizing RNA velocity to transient cell states through dynamical modeling, [Nature Biotechnology](https://www.nature.com/articles/s41587-020-0591-3).
 
-Pratap et al. (2020), Benchmarking algorithms for gene regulatory network inference from single cell transcriptomic data, [Nature Methods](https://www.nature.com/articles/s41592-019-0690-6).
+Pratapa et al. (2020), Benchmarking algorithms for gene regulatory network inference from single cell transcriptomic data, [Nature Methods](https://www.nature.com/articles/s41592-019-0690-6).
 
 Wolf et al. (2018), SCANPY: large-scale single-cell gene expression data analysis, [Genome Biology](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1382-0).
 
