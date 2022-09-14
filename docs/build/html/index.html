@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Welcome to spliceJAC’s documentation! &#8212; spliceJAC 0.1 documentation</title>
+    <title>spliceJAC: Identify transition driver genes and cell state specific regulatory interactions from single-cell transcriptome data &#8212; spliceJAC 0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -31,18 +31,74 @@
 
           <div class="body" role="main">
             
-  <section id="welcome-to-splicejac-s-documentation">
-<h1>Welcome to spliceJAC’s documentation!<a class="headerlink" href="#welcome-to-splicejac-s-documentation" title="Permalink to this headline">¶</a></h1>
+  <section id="splicejac-identify-transition-driver-genes-and-cell-state-specific-regulatory-interactions-from-single-cell-transcriptome-data">
+<h1>spliceJAC: Identify transition driver genes and cell state specific regulatory interactions from single-cell transcriptome data<a class="headerlink" href="#splicejac-identify-transition-driver-genes-and-cell-state-specific-regulatory-interactions-from-single-cell-transcriptome-data" title="Permalink to this headline">¶</a></h1>
+<p>spliceJAC is a python-based toolkit to reconstruct cell state-specific gene regulatory networks (GRN) and predict transition driver genes leading to cell differentiation.</p>
+<section id="overview-of-splicejac">
+<h2>Overview of spliceJAC<a class="headerlink" href="#overview-of-splicejac" title="Permalink to this headline">¶</a></h2>
+<p>spliceJAC requires the spliced (S) and unspliced (U) count matrices from single cell RNA-sequencing (scRNA-seq) experiment as well as cell annotations that are used to identify the cell states in the dataset. Starting from this information, spliceJAC builds a local mRNA splicing model that provides information about cell state specific gene regulatory interactions and driver genes that induce cell state transitions.</p>
+<p><img alt="spliceJAC schematic" src="_images/spliceJAC.png" /></p>
+</section>
+<section id="applications">
+<h2>Applications<a class="headerlink" href="#applications" title="Permalink to this headline">¶</a></h2>
+<p>Application of spliceJAC include:</p>
+<ul class="simple">
+<li><p>Investigate the context-specific signaling role of genes in different cell states.</p></li>
+<li><p>Analyze multi-stable systems where several cell states can coexist.</p></li>
+<li><p>Distinguish the transition driver genes leading to distinct differentiation paths stemming from a common initial state.</p></li>
+</ul>
+</section>
+<section id="use-and-installation">
+<h2>Use and installation<a class="headerlink" href="#use-and-installation" title="Permalink to this headline">¶</a></h2>
+<section id="install-the-package-from-pypl">
+<h3>Install the package from PyPl<a class="headerlink" href="#install-the-package-from-pypl" title="Permalink to this headline">¶</a></h3>
+<p>spliceJAC can be installed using pip:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install -U splicejac</span>
+</pre></div>
+</div>
+</section>
+<section id="working-within-the-splicejac-repository">
+<h3>Working within the spliceJAC repository<a class="headerlink" href="#working-within-the-splicejac-repository" title="Permalink to this headline">¶</a></h3>
+<p>Alternatively, you can zip download the spliceJAC repository from the green ‘Code’ bottom at the top right corner of this page and run your custom code and notebooks from within the repository.</p>
+</section>
+<section id="setting-up-a-virtual-environment">
+<h3>Setting up a virtual environment<a class="headerlink" href="#setting-up-a-virtual-environment" title="Permalink to this headline">¶</a></h3>
+<p>Whether you decide to install the package or to work within the spliceJAC Repo, we suggest to work within a virtual environment to avoid conflict and ensure that all dependencies are updated to the required version. Guidelines to create a virtual environment in Python can be found <a class="reference external" href="https://docs.python.org/3/library/venv.html">here</a>.</p>
+<p>spliceJAC requires the installation of dependencies including <a class="reference external" href="https://numpy.org">Numpy</a>, <a class="reference external" href="https://matplotlib.org">Matplotlib</a>, <a class="reference external" href="https://pandas.pydata.org">Pandas</a>, <a class="reference external" href="https://pandas.pydata.org">Scanpy</a> and <a class="reference external" href="https://scvelo.readthedocs.io">scVelo</a>. The full list of required packages can be found in the requirements.txt file within this folder. Once your virtual environment is set up, you can install all required dependencies by running:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install -r requirements.txt</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>This repository includes two in-depth notebook tutorials to demonstrate spliceJAC’s applications in inferring cell state specific gene regulatory networks and analyze cell state transitions:</p>
+<ul class="simple">
+<li><p>GRN inference</p></li>
+<li><p>Transitions</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p>Federico Bocci, Peijie Zhou, Qing Nie, spliceJAC: Identify transition driver genes and cell state specific regulatory interactions from single-cell transcriptome data, Preprint (2022).</p>
+<p>The detailed testing and benchmarking of spliceJAC is publicly available <a class="reference external" href="https://github.com/cliffzhou92/jacobian-inference-benchmarking">here</a>.</p>
+</section>
+<section id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<p>Bergen et al. (2020), Generalizing RNA velocity to transient cell states through dynamical modeling, <a class="reference external" href="https://www.nature.com/articles/s41587-020-0591-3">Nature Biotechnology</a>.</p>
+<p>Pratapa et al. (2020), Benchmarking algorithms for gene regulatory network inference from single cell transcriptomic data, <a class="reference external" href="https://www.nature.com/articles/s41592-019-0690-6">Nature Methods</a>.</p>
+<p>Wolf et al. (2018), SCANPY: large-scale single-cell gene expression data analysis, <a class="reference external" href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1382-0">Genome Biology</a>.</p>
+</section>
+<section id="contact-and-support">
+<h2>Contact and support<a class="headerlink" href="#contact-and-support" title="Permalink to this headline">¶</a></h2>
+<p>Questions or suggestions are welcomed and highly appreciated. You can contact us by opening an issue or via email at fbocci&#64;uci.edu.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This library is under heavy developemnt.</p>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </section>
-<section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
 </section>
 
 
