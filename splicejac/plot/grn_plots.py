@@ -896,7 +896,7 @@ def core_GRN(adata,
     conn_style: `str` (default: 'arc3, rad=0.1')
         style of interaction arrows. The admissible styles for networkx graphs can be found at:
         https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html
-    fontsize: `int` (default: 8)
+    node_font: `int` (default: 8)
         fontsize for node labels.
     legend: `Bool` (default=True)
         if True, include legend
@@ -986,6 +986,8 @@ def core_GRN(adata,
 
     if not(axis):
         plt.axis("off")
+        
+    plt.tight_layout()
 
     if showfig:
         plt.show()

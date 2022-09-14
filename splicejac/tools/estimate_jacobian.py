@@ -235,55 +235,6 @@ def compute_avg_jac(adata,
     adata.uns['average_jac'] = avg_jac
 
 
-### do we need this function??? ###
-# def vary_ngenes(adata,
-#                 first_moment=True,
-#                 method='Ridge',
-#                 alpha=1, beta=1.,
-#                 rescale=True,
-#                 frac=0.9,
-#                 ngenes=None,
-#                 min_shared_counts=20
-#                 ):
-#     '''
-#     Run regression for variable number of top_genes, results are saved in adata.uns['vary_ngenes']
-#
-#     Parameters
-#     ----------
-#     adata: anndata object of mRNA counts
-#     first_moment: if True, use first moment of U and S to run regression
-#     method:  regression method (Linear, Ridge, Lasso, default: Ridge)
-#     alpha: regularization strength coefficient for Ridge/Lasso (default=1)
-#     beta: mRNA splicing rate constant (default=1)
-#     rescale: if True, center counts on zero (default=True). If True, regression will enforce fit_int=False
-#     frac: fraction of cells to randomly select (default: 0.9)
-#     ngenes: array with number of genes to use
-#     min_shared_counts: minimum number of counts (unspliced+spliced) to keep a gene during filtering
-#
-#     Returns
-#     -------
-#     None
-#
-#     '''
-#     clusters = list(adata.obs['clusters'])
-#     counter = collections.Counter(clusters)
-#     lim = int(frac * min(list(counter.values())))
-#     if ngenes.any()==None:
-#         ngenes = np.arange(10, lim, 10)
-#     else:
-#         assert ngenes[-1]<lim, f"The maximum number of genes that could used for Jacobian inference is {str(lim)} with the current setting: frac={str(frac)}"
-#
-#     scv.settings.verbosity = 0  #only show errors
-#     ngene_var = []
-#     for n in ngenes:
-#         adata_copy = scv.pp.filter_and_normalize(adata, min_shared_counts=min_shared_counts, n_top_genes=n, copy=True)
-#         adata_copy.uns['degr_rates'] = estimate_degr(adata_copy, first_moment=first_moment)
-#         quick_regression(adata_copy, first_moment=first_moment, method=method, alpha=alpha, beta=beta, rescale=rescale)
-#         ngene_var.append(adata_copy.uns['all_cells'])
-#         del adata_copy
-#     adata.uns['vary_ngenes'] = [ngenes, ngene_var]
-
-
 def estimate_jacobian(adata,
                       first_moment=True,
                       method='Ridge',
