@@ -1,0 +1,722 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>GRN Inference &#8212; spliceJAC 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+</style>
+<section id="GRN-Inference">
+<h1>GRN Inference<a class="headerlink" href="#GRN-Inference" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial introduces the basic workflow of spliceJAC and the inference of cell state specific gene regulatory networks (GRNs). We will mostly discuss the main applications, whereas the theoretical foundation and motivations can be found elsewhere. Specifically, we will cover:</p>
+<ul class="simple">
+<li><p>How to prepare your dataset to input the spliceJAC algorithm</p></li>
+<li><p>Which considerations must be made when selecting spliceJAC parameters</p></li>
+<li><p>Visualizing cell state specific GRNs</p></li>
+<li><p>Quantifying the different genes’ signaling roles across cell states</p></li>
+<li><p>Exporting spliceJAC’s results for your own downstream analysis</p></li>
+</ul>
+<p>We first import spliceJAC, as well as scanpy and scvelo:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scvelo</span> <span class="k">as</span> <span class="nn">scv</span>
+<span class="kn">import</span> <span class="nn">splicejac</span> <span class="k">as</span> <span class="nn">sp</span>
+</pre></div>
+</div>
+</div>
+<section id="Data-loading-and-preprocessing">
+<h2>Data loading and preprocessing<a class="headerlink" href="#Data-loading-and-preprocessing" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial, we consider a pancreatic endocrinogenesis dataset originally published by Bastidas-Ponce et al on the journal <a class="reference external" href="https://journals.biologists.com/dev/article/146/12/dev173849/19483">Development</a>. This dataset has been previously used in the <a class="reference external" href="https://scvelo.readthedocs.io/VelocityBasics/">scVelo tutorial</a>, which we will follow to download and preprocess that data. First, we upload the dataset using scVelo’s built-in import method.</p>
+<p>Note: the scv.datasets.pancreas() method will generate a path data/Pancreas/endocrinogenesis_day15.h5ad in your local folder. In the spliceJAC repository, we include a filtered version of this dataset under the datasets/Pancreas/pancreas.h5ad path.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">panc_data</span> <span class="o">=</span> <span class="n">scv</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">pancreas</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "dc477633b8d14bd98b8baaa68832cfbe", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>spliceJAC uses the unsplice and spliced RNA counts to infer the state specific regulatory interactions. The input dataset to spliceJAC should therefore have both the ‘spliced’ and ‘unspliced’ layers, as seen here:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">panc_data</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+AnnData object with n_obs × n_vars = 3696 × 27998
+    obs: &#39;clusters_coarse&#39;, &#39;clusters&#39;, &#39;S_score&#39;, &#39;G2M_score&#39;
+    var: &#39;highly_variable_genes&#39;
+    uns: &#39;clusters_coarse_colors&#39;, &#39;clusters_colors&#39;, &#39;day_colors&#39;, &#39;neighbors&#39;, &#39;pca&#39;
+    obsm: &#39;X_pca&#39;, &#39;X_umap&#39;
+    layers: &#39;spliced&#39;, &#39;unspliced&#39;
+    obsp: &#39;distances&#39;, &#39;connectivities&#39;
+</pre></div></div>
+</div>
+<p>To extract unspliced RNA counts from raw scRNA-seq data files, you can follow separate tutorials using tools such as <a class="reference external" href="http://velocyto.org/">velocyto</a> or <a class="reference external" href="https://www.kallistobus.tools/">kallisto</a>.</p>
+<p>To preprocess the dataset, we filter genes with low counts and normalize counts using scVelo. We further select only the top 2000 genes for further analysis. All these filtering steps maintain the same filetring parameters of the original scVelo example, where you can also find a more detailed discussion of each individual scVelo function.</p>
+<p>This dataset has 8 separate cell states following the differentiation from Ductal cells into differentiated Alpha, Beta, Delta and Epsilon cells. The cell states can be visualized using spliceJAC’s umap_scatter function. The umap_scatter function includes several optional parameters to adjust and customize figure size, font size, colors, and legend position.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scv</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">filter_genes</span><span class="p">(</span><span class="n">panc_data</span><span class="p">,</span> <span class="n">min_shared_counts</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">scv</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">normalize_per_cell</span><span class="p">(</span><span class="n">panc_data</span><span class="p">)</span>
+<span class="n">scv</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">filter_genes_dispersion</span><span class="p">(</span><span class="n">panc_data</span><span class="p">,</span> <span class="n">n_top_genes</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+<span class="n">scv</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">panc_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Filtered out 20801 genes that are detected 20 counts (shared).
+Normalized count data: X, spliced, unspliced.
+Extracted 2000 highly variable genes.
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">umap_scatter</span><span class="p">(</span><span class="n">panc_data</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_GRN_Inference_12_0.png" src="../_images/notebooks_GRN_Inference_12_0.png" />
+</div>
+</div>
+</section>
+<section id="Running-spliceJAC">
+<h2>Running spliceJAC<a class="headerlink" href="#Running-spliceJAC" title="Permalink to this headline">¶</a></h2>
+<p>The most important parameter in spliceJAC is the number of selected genes. Since we want to compare the genes role across different cell states, we aim at selecting a set of genes. Furthermore, to ensure a unique solution, we require the number of genes, which are the variables in the regression problem, to be smaller than the number of cells, which are the observations. In this dataset, the Delta state has 70 cells and is thus the smaller state:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">panc_data</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;clusters&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Ductal           916
+Ngn3 high EP     642
+Pre-endocrine    592
+Beta             591
+Alpha            481
+Ngn3 low EP      262
+Epsilon          142
+Delta             70
+Name: clusters, dtype: int64
+</pre></div></div>
+</div>
+<p>Therefore, n=70 represents an upper bound to the number of selected genes. Furthermore, spliceJAC repeats the inference multiple times (nsim=10 by default), each time subsampling a percentage of the state’s cells. Using the default fraction value of p=0.9, each individual regression iteration of the Delta state will have only n*p=63 cells. The maximum number of top genes for spliceJAC inference is therefore n_top_genes=63. spliceJAC has a built-in check and will raise an error if the selected
+numebr of genes exceeds the upper limit. In this tutorial, we will round down to n_top_genes=50.</p>
+<p>The estimate_jacobian function includes other optional arguments, most importantly:</p>
+<ul class="simple">
+<li><p>The regression method can be chosen between linear, ridge or lasso regression (default=Ridge)</p></li>
+<li><p>The shrinkage coefficient for ridge or lasso regression (default=1)</p></li>
+</ul>
+<p>Furthermore, it is assumed that the cell annotations are found in the adata.obs[‘clusters’]. It is worth stressing that spliceJAC will treat each distinct cell annotation as a different stable cell state. Thus, you can edit your cell annotations, for instance by deleting or merging certain annotations, if you do not want to treat certain states as stable attractors.</p>
+<p>The cell state specific GRNs are identified with the estimate_jacobian function:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">estimate_jacobian</span><span class="p">(</span><span class="n">panc_data</span><span class="p">,</span> <span class="n">n_top_genes</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Filtered out 55 genes that are detected 20 counts (shared).
+WARNING: Did not normalize X as it looks processed already. To enforce normalization, set `enforce=True`.
+WARNING: Did not normalize spliced as it looks processed already. To enforce normalization, set `enforce=True`.
+WARNING: Did not normalize unspliced as it looks processed already. To enforce normalization, set `enforce=True`.
+Extracted 50 highly variable genes.
+WARNING: Did not modify X as it looks preprocessed already.
+computing neighbors
+    finished (0:00:08) --&gt; added
+    &#39;distances&#39; and &#39;connectivities&#39;, weighted adjacency matrices (adata.obsp)
+computing moments based on connectivities
+    finished (0:00:00) --&gt; added
+    &#39;Ms&#39; and &#39;Mu&#39;, moments of un/spliced abundances (adata.layers)
+Running quick regression...
+Running subset regression on the Delta cluster...
+Running subset regression on the Epsilon cluster...
+Running subset regression on the Ductal cluster...
+Running subset regression on the Beta cluster...
+Running subset regression on the Ngn3 high EP cluster...
+Running subset regression on the Alpha cluster...
+Running subset regression on the Pre-endocrine cluster...
+Running subset regression on the Ngn3 low EP cluster...
+</pre></div></div>
+</div>
+<section id="A-general-note-about-plotting-and-saving-figures">
+<h3>A general note about plotting and saving figures<a class="headerlink" href="#A-general-note-about-plotting-and-saving-figures" title="Permalink to this headline">¶</a></h3>
+<p>All spliceJAC’s plotting functions provide many possibilities to customize figure as well as exporting in all formats supported by <a class="reference external" href="https://matplotlib.org/">matplotlib</a>. In particular, four arguments allow figure plotting and saving:</p>
+<ul class="simple">
+<li><p>showfig (default=None): by providing showfig=True, the figure will be showcased in matplotlib’s plotting interface. showfig=None will still showcase the figure in a jupyter notebook.</p></li>
+<li><p>figname (default=None): a figname argument will be used to generate and save the figure. Therefore, figname should start with the file path and end with the file extension.</p></li>
+<li><p>format (default=‘pdf’): the figure format. Make sure that the figname extension and format arguments are not conflicting</p></li>
+<li><p>figsize (default depends on function): the size of the function can be customized, and it is provided as a tuple (width, height)</p></li>
+</ul>
+</section>
+</section>
+<section id="Overview-of-state-specific-GRN-and-stability-considerations">
+<h2>Overview of state-specific GRN and stability considerations<a class="headerlink" href="#Overview-of-state-specific-GRN-and-stability-considerations" title="Permalink to this headline">¶</a></h2>
+<p>We can visualize the context-specific interactions by plotting the gene-gene interaction matrices of each cell state in a heatmap-style plot when positive coefficients (red) imply an activation from the regulator gene (x-axis) to the target gene (y-axis), while negative coefficients (blue) imply inhibition.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">visualize_jacobian</span><span class="p">(</span><span class="n">panc_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_GRN_Inference_22_0.png" src="../_images/notebooks_GRN_Inference_22_0.png" />
+</div>
+</div>
+<p>Similarly, we can inspect the stability of the cell states with eigenvalue plots. Negative eigenvalues of the cell state Jacobian matrix imply stability, whereas positive eigenvalues imply instability. Therefore, the percentage of positive eigenvalues in each cell state is indicative of the relative stability of the state.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">eigen_spectrum</span><span class="p">(</span><span class="n">panc_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_GRN_Inference_24_0.png" src="../_images/notebooks_GRN_Inference_24_0.png" />
+</div>
+</div>
+</section>
+<section id="Visualize-the-GRNs-and-gene-signaling-roles">
+<h2>Visualize the GRNs and gene signaling roles<a class="headerlink" href="#Visualize-the-GRNs-and-gene-signaling-roles" title="Permalink to this headline">¶</a></h2>
+<p>We now explore the visualization and analysis of the state specific GRNs. The visualize_network function provides a way to plot the GRN of a cell state with varying levels of detail:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">visualize_network</span><span class="p">(</span><span class="n">panc_data</span><span class="p">,</span> <span class="s1">&#39;Ductal&#39;</span><span class="p">,</span> <span class="n">weight_quantile</span><span class="o">=</span><span class="mf">.98</span><span class="p">,</span> <span class="n">pos_style</span><span class="o">=</span><span class="s1">&#39;circle&#39;</span><span class="p">,</span> <span class="n">plot_interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+There exist multiple connected components. Choose the parameter cc_id to show other components
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_GRN_Inference_27_1.png" src="../_images/notebooks_GRN_Inference_27_1.png" />
+</div>
+</div>
+<p>In particular, the weight_quantile argument bounded in [0,1] allows to select only the strongest interactions in GRN. For example, setting weight_quantile=.98 selects only the strongest 2% of interactions. Furthermore, the pos_style controls the spatial locations of the nodes. pos_style=‘circle’ (as above) arranges the nodes in a circle, whereas the default pos_style=‘spring’ (below) uses the built-in Networkx method to arrange nodes randomly. More permissive weight_quantile thresholds result in
+larger networks, which might require adjustment of other function argument for visualization.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">visualize_network</span><span class="p">(</span><span class="n">panc_data</span><span class="p">,</span> <span class="s1">&#39;Ductal&#39;</span><span class="p">,</span> <span class="n">weight_quantile</span><span class="o">=</span><span class="mf">.95</span><span class="p">,</span> <span class="n">pos_style</span><span class="o">=</span><span class="s1">&#39;spring&#39;</span><span class="p">,</span>
+                        <span class="n">plot_interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_GRN_Inference_29_0.png" src="../_images/notebooks_GRN_Inference_29_0.png" />
+</div>
+</div>
+<p>Finally, setting plot_interactive=True (default option) will exploit Networkx’s interactive plotting tools to generate a version of the GRN that can be interactively rearranged for exploration. You can try this one out in your own notebook!</p>
+<p>The GRN of each cell state can be exported to csv file by calling the sp.tl.export_grn(adata, cluster, filename=None) method, where:</p>
+<ul class="simple">
+<li><p>adata is the count matrix object</p></li>
+<li><p>cluster is the name of cell state, such as ‘Ductal’</p></li>
+<li><p>filename is the name of the csv file including file path (optional). If no filename is provided, spliceJAC will create a results/exported_results/ folder and store the file therein.</p></li>
+</ul>
+<p>We can extract more quantitative information about the gene roles within each GRN by calling the method grn_statistics:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">grn_statistics</span><span class="p">(</span><span class="n">panc_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>After running the method, we can visualize the cell state specific signaling roles of genes in a incoming-outgoing signaling scatter plot, in this case for the Alpha cell state:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">plot_signaling_hubs</span><span class="p">(</span><span class="n">panc_data</span><span class="p">,</span> <span class="s1">&#39;Alpha&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_GRN_Inference_35_0.png" src="../_images/notebooks_GRN_Inference_35_0.png" />
+</div>
+</div>
+<p>In this plot, the incoming (x-axis) and outgoing (y-axis) signaling scores of each gene are quantified by the weighted sum of incoming/outgoing edges in the Pre-endocrine GRN, respectively. Furthermore, the colormap depicts the gene expression within the Pre-endocrine cell state.</p>
+</section>
+<section id="Quantify-signaling-role-variation-across-cell-states">
+<h2>Quantify signaling role variation across cell states<a class="headerlink" href="#Quantify-signaling-role-variation-across-cell-states" title="Permalink to this headline">¶</a></h2>
+<p>Furthermore, spliceJAC can quantify the change in gene roles across the cell states by comparing the GRN statistics across states. The gene_variation function provides an overview of the genes whose signaling roles are more or less conserved across the cell states:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">gene_variation</span><span class="p">(</span><span class="n">panc_data</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;inter_range&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_GRN_Inference_39_0.png" src="../_images/notebooks_GRN_Inference_39_0.png" />
+</div>
+</div>
+<p>The gene role comparison can be performed using various metrics, including: betweenness centrality of the gene in the GRN, incoming or outgoing signaling strength (defined in the previosu section), or “total signaling” defined as incoming+outgoing, which can be selected by modifying the ‘measure’ argument.</p>
+<p>Moreover, the comparison across clusters can be performed with different metrics as well, including standard deviation (‘SD’, default), range (‘range’) and interquartile range (‘inter_range’). You can use the ‘method’ argument to change the preferred comparison metric.</p>
+<p>The gene_var_detail function allows to zoom on the most variable genes and inspect their signaling roles across the different cell states in detail:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">gene_var_detail</span><span class="p">(</span><span class="n">panc_data</span><span class="p">,</span> <span class="n">measure</span><span class="o">=</span><span class="s1">&#39;centrality&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_GRN_Inference_41_0.png" src="../_images/notebooks_GRN_Inference_41_0.png" />
+</div>
+</div>
+<p>Finally, the ‘gene_var_scatter’ function provides a general overview of the genes that are both highly expressed and exhibit very state-specific behavior by plotting the inter-state gene variation as a function of average gene expression across clusters. This analysis can serve as an initial step to identify key genes for further investigation.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sp</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">gene_var_scatter</span><span class="p">(</span><span class="n">panc_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_GRN_Inference_43_0.png" src="../_images/notebooks_GRN_Inference_43_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">spliceJAC</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Federico Bocci.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/notebooks/GRN Inference.ipynb.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
