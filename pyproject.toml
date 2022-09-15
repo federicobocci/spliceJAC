@@ -4,3 +4,8 @@ requires = [
 	"wheel"
 ]
 build-backend = "setuptools.build_meta"
+
+[project.optional-dependencies]
+doc = [
+	"sphinx~=5.1.1"
+]
