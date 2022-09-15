@@ -19,6 +19,7 @@ This library is under heavy developemnt.
 :maxdepth: 2
 
 usage
+functions
 notebooks/GRN Inference
 notebooks/Transitions
 ```
