@@ -12,5 +12,5 @@ dynamic = ["version", "description"]
 
 [project.optional-dependencies]
 doc = [
-	"sphinx~=4.2.0"
+	"sphinx~=5.1.1"
 ]
