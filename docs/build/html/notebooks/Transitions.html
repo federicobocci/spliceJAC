@@ -1,41 +1,82 @@
-
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
-    <title>Transitions &#8212; spliceJAC 0.1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transitions &mdash; spliceJAC 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="GRN Inference" href="GRN%20Inference.html" />
-   
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+    <link rel="prev" title="GRN Inference" href="GRN%20Inference.html" /> 
+</head>
 
-  </head><body>
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> spliceJAC
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GRN%20Inference.html">GRN Inference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Transitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Preparing-the-data-for-spliceJAC-analysis">Preparing the data for spliceJAC analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Analysis-of-signaling-change-during-transitions">Analysis of signaling change during transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Identify-and-plot-the-top-transition-genes">Identify and plot the top transition genes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Identify-the-differential-and-conserved-interactions-during-cell-state-transitions">Identify the differential and conserved interactions during cell state transitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Compare-transition-genes-in-bifurcating-lineages">Compare transition genes in bifurcating lineages</a></li>
+</ul>
+</li>
+</ul>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
+        </div>
+      </div>
+    </nav>
 
-          <div class="body" role="main">
-            
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">spliceJAC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Transitions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/notebooks/Transitions.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   
 <style>
 /* CSS for nbsphinx extension */
@@ -291,9 +332,31 @@ div.rendered_html tbody tr:nth-child(odd) {
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
 </style>
 <section id="Transitions">
-<h1>Transitions<a class="headerlink" href="#Transitions" title="Permalink to this heading">¶</a></h1>
+<h1>Transitions<a class="headerlink" href="#Transitions" title="Permalink to this headline"></a></h1>
 <p>This tutorial shows the application of spliceJAC to study cell state transitions, the change in gene regulation, and the driver genes that guide transitions. Specifically, we will cover the following aspects:</p>
 <ul class="simple">
 <li><p>Proprocess that data and run spliceJAC</p></li>
@@ -313,7 +376,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Preparing-the-data-for-spliceJAC-analysis">
-<h2>Preparing the data for spliceJAC analysis<a class="headerlink" href="#Preparing-the-data-for-spliceJAC-analysis" title="Permalink to this heading">¶</a></h2>
+<h2>Preparing the data for spliceJAC analysis<a class="headerlink" href="#Preparing-the-data-for-spliceJAC-analysis" title="Permalink to this headline"></a></h2>
 <p>We will use the same pancreas endocrinogenesis dataset discussed in the GRN inference tutorial from <a class="reference external" href="https://journals.biologists.com/dev/article/146/12/dev173849/19483">Bastidas-Ponce et al</a>. We will follow the same steps of the GRN inference tutorial to import and filter the data:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
@@ -621,7 +684,7 @@ Running subset regression on the Ngn3 high EP cluster...
 </div>
 </section>
 <section id="Analysis-of-signaling-change-during-transitions">
-<h2>Analysis of signaling change during transitions<a class="headerlink" href="#Analysis-of-signaling-change-during-transitions" title="Permalink to this heading">¶</a></h2>
+<h2>Analysis of signaling change during transitions<a class="headerlink" href="#Analysis-of-signaling-change-during-transitions" title="Permalink to this headline"></a></h2>
 <p>In the GRN Inference tutorial, we quantified the state-specific gene signaling roles defined by the incoming and outgoing regulation of each node in the GRN. With knowledge of the transitions, we can quantify the change in signaling role, for instance in the transition from the Ductal to Ngn3 low EP cell state:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
@@ -641,7 +704,7 @@ Running subset regression on the Ngn3 high EP cluster...
 <p>By default, the plot_signaling_change function highlights the top 10 genes with largest change from the starting to final cell states. These can be controlled with the optional arguments ‘show_top_genes’ (default: True) and ‘top_genes’ (default: 10). Depending on the spatial distribution of data points, the figure can be customized based on font size and figure size to improve readability.</p>
 </section>
 <section id="Identify-and-plot-the-top-transition-genes">
-<h2>Identify and plot the top transition genes<a class="headerlink" href="#Identify-and-plot-the-top-transition-genes" title="Permalink to this heading">¶</a></h2>
+<h2>Identify and plot the top transition genes<a class="headerlink" href="#Identify-and-plot-the-top-transition-genes" title="Permalink to this headline"></a></h2>
 <p>First, we use Scanpy’s built-in function to identify the top differentially expressed genes (DEG) of each cell state:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
@@ -721,7 +784,7 @@ Running subset regression on the Ngn3 high EP cluster...
 <p>The plot highlights how Ductal DEGs tend to have high instability scores (i.e. strong driver genes) in the Ductal-Ngn3 low EP transition. However, there are instances of genes not identified through standard DEG analysis that are predicted as important drivers.</p>
 </section>
 <section id="Identify-the-differential-and-conserved-interactions-during-cell-state-transitions">
-<h2>Identify the differential and conserved interactions during cell state transitions<a class="headerlink" href="#Identify-the-differential-and-conserved-interactions-during-cell-state-transitions" title="Permalink to this heading">¶</a></h2>
+<h2>Identify the differential and conserved interactions during cell state transitions<a class="headerlink" href="#Identify-the-differential-and-conserved-interactions-during-cell-state-transitions" title="Permalink to this headline"></a></h2>
 <p>By comparing the inferred GRNs of the different cell states, we can further identify the key gene-gene interactions with important changes or highly conserved during cell state transitions.</p>
 <p>First, we can visualize a ‘Differential GRN’ highlighting the interactions with more dramatic change, in this case in the transition from Ngn3 high EP to Pre-endocrine:</p>
 <div class="nbinput docutils container">
@@ -793,7 +856,7 @@ Running subset regression on the Ngn3 high EP cluster...
 </div>
 </section>
 <section id="Compare-transition-genes-in-bifurcating-lineages">
-<h2>Compare transition genes in bifurcating lineages<a class="headerlink" href="#Compare-transition-genes-in-bifurcating-lineages" title="Permalink to this heading">¶</a></h2>
+<h2>Compare transition genes in bifurcating lineages<a class="headerlink" href="#Compare-transition-genes-in-bifurcating-lineages" title="Permalink to this headline"></a></h2>
 <p>Finally, we can study the transition genes involved in “bifurcating” lineages where cells from a single initial state can differentiate into multiple states. In this dataset, Pre-endocrine cells can assume the Alpha, Beta, Delta, or Epsilon state. For this command, the initial cell state and list of final cell states typically need to be provided explicitly by the user.</p>
 <p>First, we can visualize the driver genes associated with each transition. Some of these genes are shared between two or more transitions and which are unique to a single trasnition.</p>
 <div class="nbinput docutils container">
@@ -956,80 +1019,33 @@ if (outputEl) {{
 </section>
 
 
+           </div>
           </div>
-          
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="GRN%20Inference.html" class="btn btn-neutral float-left" title="GRN Inference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Federico Bocci.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">spliceJAC</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="GRN%20Inference.html">GRN Inference</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Transitions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#Preparing-the-data-for-spliceJAC-analysis">Preparing the data for spliceJAC analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Analysis-of-signaling-change-during-transitions">Analysis of signaling change during transitions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Identify-and-plot-the-top-transition-genes">Identify and plot the top transition genes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Identify-the-differential-and-conserved-interactions-during-cell-state-transitions">Identify the differential and conserved interactions during cell state transitions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Compare-transition-genes-in-bifurcating-lineages">Compare transition genes in bifurcating lineages</a></li>
-</ul>
-</li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="GRN%20Inference.html" title="previous chapter">GRN Inference</a></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2022, Federico Bocci.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="../_sources/notebooks/Transitions.ipynb.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>
