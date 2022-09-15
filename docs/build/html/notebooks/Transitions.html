@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -292,7 +293,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="Transitions">
-<h1>Transitions<a class="headerlink" href="#Transitions" title="Permalink to this headline">¶</a></h1>
+<h1>Transitions<a class="headerlink" href="#Transitions" title="Permalink to this heading">¶</a></h1>
 <p>This tutorial shows the application of spliceJAC to study cell state transitions, the change in gene regulation, and the driver genes that guide transitions. Specifically, we will cover the following aspects:</p>
 <ul class="simple">
 <li><p>Proprocess that data and run spliceJAC</p></li>
@@ -312,7 +313,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Preparing-the-data-for-spliceJAC-analysis">
-<h2>Preparing the data for spliceJAC analysis<a class="headerlink" href="#Preparing-the-data-for-spliceJAC-analysis" title="Permalink to this headline">¶</a></h2>
+<h2>Preparing the data for spliceJAC analysis<a class="headerlink" href="#Preparing-the-data-for-spliceJAC-analysis" title="Permalink to this heading">¶</a></h2>
 <p>We will use the same pancreas endocrinogenesis dataset discussed in the GRN inference tutorial from <a class="reference external" href="https://journals.biologists.com/dev/article/146/12/dev173849/19483">Bastidas-Ponce et al</a>. We will follow the same steps of the GRN inference tutorial to import and filter the data:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
@@ -620,7 +621,7 @@ Running subset regression on the Ngn3 high EP cluster...
 </div>
 </section>
 <section id="Analysis-of-signaling-change-during-transitions">
-<h2>Analysis of signaling change during transitions<a class="headerlink" href="#Analysis-of-signaling-change-during-transitions" title="Permalink to this headline">¶</a></h2>
+<h2>Analysis of signaling change during transitions<a class="headerlink" href="#Analysis-of-signaling-change-during-transitions" title="Permalink to this heading">¶</a></h2>
 <p>In the GRN Inference tutorial, we quantified the state-specific gene signaling roles defined by the incoming and outgoing regulation of each node in the GRN. With knowledge of the transitions, we can quantify the change in signaling role, for instance in the transition from the Ductal to Ngn3 low EP cell state:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
@@ -640,7 +641,7 @@ Running subset regression on the Ngn3 high EP cluster...
 <p>By default, the plot_signaling_change function highlights the top 10 genes with largest change from the starting to final cell states. These can be controlled with the optional arguments ‘show_top_genes’ (default: True) and ‘top_genes’ (default: 10). Depending on the spatial distribution of data points, the figure can be customized based on font size and figure size to improve readability.</p>
 </section>
 <section id="Identify-and-plot-the-top-transition-genes">
-<h2>Identify and plot the top transition genes<a class="headerlink" href="#Identify-and-plot-the-top-transition-genes" title="Permalink to this headline">¶</a></h2>
+<h2>Identify and plot the top transition genes<a class="headerlink" href="#Identify-and-plot-the-top-transition-genes" title="Permalink to this heading">¶</a></h2>
 <p>First, we use Scanpy’s built-in function to identify the top differentially expressed genes (DEG) of each cell state:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
@@ -720,7 +721,7 @@ Running subset regression on the Ngn3 high EP cluster...
 <p>The plot highlights how Ductal DEGs tend to have high instability scores (i.e. strong driver genes) in the Ductal-Ngn3 low EP transition. However, there are instances of genes not identified through standard DEG analysis that are predicted as important drivers.</p>
 </section>
 <section id="Identify-the-differential-and-conserved-interactions-during-cell-state-transitions">
-<h2>Identify the differential and conserved interactions during cell state transitions<a class="headerlink" href="#Identify-the-differential-and-conserved-interactions-during-cell-state-transitions" title="Permalink to this headline">¶</a></h2>
+<h2>Identify the differential and conserved interactions during cell state transitions<a class="headerlink" href="#Identify-the-differential-and-conserved-interactions-during-cell-state-transitions" title="Permalink to this heading">¶</a></h2>
 <p>By comparing the inferred GRNs of the different cell states, we can further identify the key gene-gene interactions with important changes or highly conserved during cell state transitions.</p>
 <p>First, we can visualize a ‘Differential GRN’ highlighting the interactions with more dramatic change, in this case in the transition from Ngn3 high EP to Pre-endocrine:</p>
 <div class="nbinput docutils container">
@@ -792,7 +793,7 @@ Running subset regression on the Ngn3 high EP cluster...
 </div>
 </section>
 <section id="Compare-transition-genes-in-bifurcating-lineages">
-<h2>Compare transition genes in bifurcating lineages<a class="headerlink" href="#Compare-transition-genes-in-bifurcating-lineages" title="Permalink to this headline">¶</a></h2>
+<h2>Compare transition genes in bifurcating lineages<a class="headerlink" href="#Compare-transition-genes-in-bifurcating-lineages" title="Permalink to this heading">¶</a></h2>
 <p>Finally, we can study the transition genes involved in “bifurcating” lineages where cells from a single initial state can differentiate into multiple states. In this dataset, Pre-endocrine cells can assume the Alpha, Beta, Delta, or Epsilon state. For this command, the initial cell state and list of final cell states typically need to be provided explicitly by the user.</p>
 <p>First, we can visualize the driver genes associated with each transition. Some of these genes are shared between two or more transitions and which are unique to a single trasnition.</p>
 <div class="nbinput docutils container">
@@ -1002,7 +1003,7 @@ if (outputEl) {{
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -1019,7 +1020,7 @@ if (outputEl) {{
       &copy;2022, Federico Bocci.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

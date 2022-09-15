@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
@@ -12,6 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -293,7 +294,7 @@ div.rendered_html tbody tr:hover {
 }
 </style>
 <section id="GRN-Inference">
-<h1>GRN Inference<a class="headerlink" href="#GRN-Inference" title="Permalink to this headline">¶</a></h1>
+<h1>GRN Inference<a class="headerlink" href="#GRN-Inference" title="Permalink to this heading">¶</a></h1>
 <p>This tutorial introduces the basic workflow of spliceJAC and the inference of cell state specific gene regulatory networks (GRNs). We will mostly discuss the main applications, whereas the theoretical foundation and motivations can be found elsewhere. Specifically, we will cover:</p>
 <ul class="simple">
 <li><p>How to prepare your dataset to input the spliceJAC algorithm</p></li>
@@ -313,7 +314,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <section id="Data-loading-and-preprocessing">
-<h2>Data loading and preprocessing<a class="headerlink" href="#Data-loading-and-preprocessing" title="Permalink to this headline">¶</a></h2>
+<h2>Data loading and preprocessing<a class="headerlink" href="#Data-loading-and-preprocessing" title="Permalink to this heading">¶</a></h2>
 <p>In this tutorial, we consider a pancreatic endocrinogenesis dataset originally published by Bastidas-Ponce et al on the journal <a class="reference external" href="https://journals.biologists.com/dev/article/146/12/dev173849/19483">Development</a>. This dataset has been previously used in the <a class="reference external" href="https://scvelo.readthedocs.io/VelocityBasics/">scVelo tutorial</a>, which we will follow to download and preprocess that data. First, we upload the dataset using scVelo’s built-in import method.</p>
 <p>Note: the scv.datasets.pancreas() method will generate a path data/Pancreas/endocrinogenesis_day15.h5ad in your local folder. In the spliceJAC repository, we include a filtered version of this dataset under the datasets/Pancreas/pancreas.h5ad path.</p>
 <div class="nbinput docutils container">
@@ -395,7 +396,7 @@ Extracted 2000 highly variable genes.
 </div>
 </section>
 <section id="Running-spliceJAC">
-<h2>Running spliceJAC<a class="headerlink" href="#Running-spliceJAC" title="Permalink to this headline">¶</a></h2>
+<h2>Running spliceJAC<a class="headerlink" href="#Running-spliceJAC" title="Permalink to this heading">¶</a></h2>
 <p>The most important parameter in spliceJAC is the number of selected genes. Since we want to compare the genes role across different cell states, we aim at selecting a set of genes. Furthermore, to ensure a unique solution, we require the number of genes, which are the variables in the regression problem, to be smaller than the number of cells, which are the observations. In this dataset, the Delta state has 70 cells and is thus the smaller state:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
@@ -468,7 +469,7 @@ Running subset regression on the Ngn3 low EP cluster...
 </pre></div></div>
 </div>
 <section id="A-general-note-about-plotting-and-saving-figures">
-<h3>A general note about plotting and saving figures<a class="headerlink" href="#A-general-note-about-plotting-and-saving-figures" title="Permalink to this headline">¶</a></h3>
+<h3>A general note about plotting and saving figures<a class="headerlink" href="#A-general-note-about-plotting-and-saving-figures" title="Permalink to this heading">¶</a></h3>
 <p>All spliceJAC’s plotting functions provide many possibilities to customize figure as well as exporting in all formats supported by <a class="reference external" href="https://matplotlib.org/">matplotlib</a>. In particular, four arguments allow figure plotting and saving:</p>
 <ul class="simple">
 <li><p>showfig (default=None): by providing showfig=True, the figure will be showcased in matplotlib’s plotting interface. showfig=None will still showcase the figure in a jupyter notebook.</p></li>
@@ -479,7 +480,7 @@ Running subset regression on the Ngn3 low EP cluster...
 </section>
 </section>
 <section id="Overview-of-state-specific-GRN-and-stability-considerations">
-<h2>Overview of state-specific GRN and stability considerations<a class="headerlink" href="#Overview-of-state-specific-GRN-and-stability-considerations" title="Permalink to this headline">¶</a></h2>
+<h2>Overview of state-specific GRN and stability considerations<a class="headerlink" href="#Overview-of-state-specific-GRN-and-stability-considerations" title="Permalink to this heading">¶</a></h2>
 <p>We can visualize the context-specific interactions by plotting the gene-gene interaction matrices of each cell state in a heatmap-style plot when positive coefficients (red) imply an activation from the regulator gene (x-axis) to the target gene (y-axis), while negative coefficients (blue) imply inhibition.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -514,7 +515,7 @@ Running subset regression on the Ngn3 low EP cluster...
 </div>
 </section>
 <section id="Visualize-the-GRNs-and-gene-signaling-roles">
-<h2>Visualize the GRNs and gene signaling roles<a class="headerlink" href="#Visualize-the-GRNs-and-gene-signaling-roles" title="Permalink to this headline">¶</a></h2>
+<h2>Visualize the GRNs and gene signaling roles<a class="headerlink" href="#Visualize-the-GRNs-and-gene-signaling-roles" title="Permalink to this heading">¶</a></h2>
 <p>We now explore the visualization and analysis of the state specific GRNs. The visualize_network function provides a way to plot the GRN of a cell state with varying levels of detail:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
@@ -592,7 +593,7 @@ larger networks, which might require adjustment of other function argument for v
 <p>In this plot, the incoming (x-axis) and outgoing (y-axis) signaling scores of each gene are quantified by the weighted sum of incoming/outgoing edges in the Pre-endocrine GRN, respectively. Furthermore, the colormap depicts the gene expression within the Pre-endocrine cell state.</p>
 </section>
 <section id="Quantify-signaling-role-variation-across-cell-states">
-<h2>Quantify signaling role variation across cell states<a class="headerlink" href="#Quantify-signaling-role-variation-across-cell-states" title="Permalink to this headline">¶</a></h2>
+<h2>Quantify signaling role variation across cell states<a class="headerlink" href="#Quantify-signaling-role-variation-across-cell-states" title="Permalink to this heading">¶</a></h2>
 <p>Furthermore, spliceJAC can quantify the change in gene roles across the cell states by comparing the GRN statistics across states. The gene_variation function provides an overview of the genes whose signaling roles are more or less conserved across the cell states:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
@@ -703,7 +704,7 @@ larger networks, which might require adjustment of other function argument for v
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -720,7 +721,7 @@ larger networks, which might require adjustment of other function argument for v
       &copy;2022, Federico Bocci.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.5.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
