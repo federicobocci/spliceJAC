@@ -1,4 +1,4 @@
-## spliceJAC: Identify transition driver genes and cell state specific regulatory interactions from single-cell transcriptome data
+### spliceJAC: Identify transition driver genes and cell state specific regulatory interactions from single-cell transcriptome data
 
 spliceJAC is a python-based toolkit to reconstruct cell state-specific gene regulatory networks (GRN) and predict transition driver genes leading to cell differentiation.
 
@@ -22,7 +22,7 @@ Application of spliceJAC include:
 
 #### Install the package from PyPl
 
-spliceJAC can be installed using pip:
+spliceJAC will be soon available as a python library to be installed with pip:
 
 ```console
 pip install -U splicejac
@@ -30,7 +30,7 @@ pip install -U splicejac
 
 #### Working within the spliceJAC repository
 
-Alternatively, you can zip download the spliceJAC repository from the green 'Code' bottom at the top right corner of this page and run your custom code and notebooks from within the repository.
+In the meantime, you can zip download the spliceJAC repository from the green 'Code' bottom at the top right corner of this page and run your custom code and notebooks from within the repository.
 
 #### Setting up a virtual environment 
 
@@ -42,12 +42,14 @@ spliceJAC requires the installation of dependencies including [Numpy](https://nu
 pip install -r requirements.txt
 ```
 
-### Getting started
+### Documentation
 
-This repository includes two in-depth notebook tutorials to demonstrate spliceJAC's applications in inferring cell state specific gene regulatory networks and analyze cell state transitions:
+You can check the spliceJAC documentation [here](https://splicejac.readthedocs.io/en/latest/). This documentation includes two in-depth notebook tutorials to demonstrate spliceJAC's applications in inferring cell state specific gene regulatory networks and analyze cell state transitions:
 
-- GRN inference
-- Transitions
+- [GRN inference](https://splicejac.readthedocs.io/en/latest/notebooks/GRN%20Inference.html)
+- [Transitions](https://splicejac.readthedocs.io/en/latest/notebooks/Transitions.html)
+
+Note: the documentation is currently under heavy development, check frequently for updates!
 
 ### References
 
