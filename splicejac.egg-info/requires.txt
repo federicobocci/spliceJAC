@@ -1,0 +1,5 @@
+
+[doc]
+sphinx~=4.2.0
+myst-parser
+sphinx_rtd_theme
