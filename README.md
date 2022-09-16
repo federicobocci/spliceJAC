@@ -30,7 +30,7 @@ pip install -U splicejac
 
 #### Working within the spliceJAC repository
 
-In the meantime, you can zip download the spliceJAC repository from the green 'Code' bottom at the top right corner of this page and run your custom code and notebooks from within the repository.
+Alternatively, you can zip download the spliceJAC repository from the green 'Code' bottom at the top right corner of this page and run your custom code and notebooks from within the repository.
 
 #### Setting up a virtual environment 
 
@@ -48,6 +48,8 @@ You can check the spliceJAC documentation [here](https://splicejac.readthedocs.i
 
 - [GRN inference](https://splicejac.readthedocs.io/en/latest/notebooks/GRN%20Inference.html)
 - [Transitions](https://splicejac.readthedocs.io/en/latest/notebooks/Transitions.html)
+
+A detailed documentation for all spliceJAC functions can be found [here](https://splicejac.readthedocs.io/en/latest/functions.html).
 
 Note: the documentation is currently under heavy development, check frequently for updates!
 
