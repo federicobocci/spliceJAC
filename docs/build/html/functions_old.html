@@ -18,9 +18,7 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="GRN Inference" href="notebooks/GRN%20Inference.html" />
-    <link rel="prev" title="Usage" href="usage.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,9 +37,9 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Function documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Function documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/GRN%20Inference.html">GRN Inference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Transitions.html">Transitions</a></li>
 </ul>
@@ -62,7 +60,7 @@
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
       <li>Function documentation</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/functions.md.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/functions_old.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -96,6 +94,8 @@
 </style>
 <section class="tex2jax_ignore mathjax_ignore" id="function-documentation">
 <h1>Function documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline"></a></h1>
+<section id="tools-and-analysis">
+<h2>Tools and Analysis<a class="headerlink" href="#tools-and-analysis" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="splicejac.tl.estimate_jacobian">
 <span class="sig-prename descclassname"><span class="pre">splicejac.tl.</span></span><span class="sig-name descname"><span class="pre">estimate_jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_moment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Ridge'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_and_norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_shared_counts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_top_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tl.estimate_jacobian" title="Permalink to this definition"></a></dt>
@@ -254,6 +254,9 @@ Results are stored in adata.uns[‘sens_summary’]</p>
 <p>None</p>
 </dd></dl>
 
+</section>
+<section id="plotting">
+<h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="splicejac.pl.plot_setup">
 <span class="sig-prename descclassname"><span class="pre">splicejac.pl.</span></span><span class="sig-name descname"><span class="pre">plot_setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">((0.4,</span> <span class="pre">0.7607843137254902,</span> <span class="pre">0.6470588235294118),</span> <span class="pre">(0.9882352941176471,</span> <span class="pre">0.5529411764705883,</span> <span class="pre">0.3843137254901961),</span> <span class="pre">(0.5529411764705883,</span> <span class="pre">0.6274509803921569,</span> <span class="pre">0.796078431372549),</span> <span class="pre">(0.9058823529411765,</span> <span class="pre">0.5411764705882353,</span> <span class="pre">0.7647058823529411),</span> <span class="pre">(0.6509803921568628,</span> <span class="pre">0.8470588235294118,</span> <span class="pre">0.32941176470588235),</span> <span class="pre">(1.0,</span> <span class="pre">0.8509803921568627,</span> <span class="pre">0.1843137254901961),</span> <span class="pre">(0.8980392156862745,</span> <span class="pre">0.7686274509803922,</span> <span class="pre">0.5803921568627451),</span> <span class="pre">(0.7019607843137254,</span> <span class="pre">0.7019607843137254,</span> <span class="pre">0.7019607843137254))</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.pl.plot_setup" title="Permalink to this definition"></a></dt>
@@ -1210,6 +1213,9 @@ whereas ‘circle’ arranges the nodes in a circle.</p>
 <p>None</p>
 </dd></dl>
 
+</section>
+<section id="export">
+<h2>Export<a class="headerlink" href="#export" title="Permalink to this headline"></a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="splicejac.tl.export_grn">
 <span class="sig-prename descclassname"><span class="pre">splicejac.tl.</span></span><span class="sig-name descname"><span class="pre">export_grn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tl.export_grn" title="Permalink to this definition"></a></dt>
@@ -1243,14 +1249,12 @@ file will be saved with default name “grn” + cluster + “.csv”</p>
 </dd></dl>
 
 </section>
+</section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="usage.html" class="btn btn-neutral float-left" title="Usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="notebooks/GRN%20Inference.html" class="btn btn-neutral float-right" title="GRN Inference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

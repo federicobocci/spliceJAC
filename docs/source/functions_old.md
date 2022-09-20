@@ -1,5 +1,6 @@
 # Function documentation
 
+## Tools and Analysis
 ```{eval-rst}
 .. autofunction:: splicejac.tl.estimate_jacobian
 .. autofunction:: splicejac.tl.trans_from_PAGA
@@ -8,6 +9,10 @@
 .. autofunction:: splicejac.tl.grn_statistics
 .. autofunction:: splicejac.tl.regr_method_sens
 .. autofunction:: splicejac.tl.subsampling_sens
+```
+
+## Plotting
+```{eval-rst}
 .. autofunction:: splicejac.pl.plot_setup
 .. autofunction:: splicejac.pl.umap_scatter
 .. autofunction:: splicejac.pl.adjecent_grn_score
@@ -34,6 +39,11 @@
 .. autofunction:: splicejac.pl.top_conserved_int
 .. autofunction:: splicejac.pl.core_GRN
 .. autofunction:: splicejac.pl.bif_GRN
+```
+
+## Export
+
+```{eval-rst}
 .. autofunction:: splicejac.tl.export_grn
 .. autofunction:: splicejac.tl.export_transition_scores
 ```
