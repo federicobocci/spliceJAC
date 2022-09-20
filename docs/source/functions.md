@@ -1,7 +1,6 @@
 # Function documentation
 
 ## Tools and Analysis
-
 ```{eval-rst}
 .. autofunction:: splicejac.tl.estimate_jacobian
 .. autofunction:: splicejac.tl.trans_from_PAGA
