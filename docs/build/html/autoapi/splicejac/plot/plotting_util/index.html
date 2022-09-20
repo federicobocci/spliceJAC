@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>splicejac.plot.plotting_util &mdash; spliceJAC 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> spliceJAC
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks/GRN%20Inference.html">GRN Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks/Transitions.html">Transitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">spliceJAC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot.plotting_util</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/splicejac/plot/plotting_util/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-splicejac.plot.plotting_util">
+<span id="splicejac-plot-plotting-util"></span><h1><a class="reference internal" href="#module-splicejac.plot.plotting_util" title="splicejac.plot.plotting_util"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot.plotting_util</span></code></a><a class="headerlink" href="#module-splicejac.plot.plotting_util" title="Permalink to this headline"></a></h1>
+<p>plotting utilities</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.plotting_util.plot_setup" title="splicejac.plot.plotting_util.plot_setup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_setup</span></code></a>(adata[, cmap])</p></td>
+<td><p>Assign a color to each cluster from a colormap</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.plotting_util.jac_regr_cons" title="splicejac.plot.plotting_util.jac_regr_cons"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jac_regr_cons</span></code></a>(adata, cluster)</p></td>
+<td><p>Check the consistency of Jacobian regression by computing element-wise distance between Jacobians from different</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.plotting_util.compare_wrong_signs" title="splicejac.plot.plotting_util.compare_wrong_signs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_wrong_signs</span></code></a>(j1, j2[, eps])</p></td>
+<td><p>Count fraction of wrong signs between two matrices</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.plotting_util.count_wrong_signs" title="splicejac.plot.plotting_util.count_wrong_signs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_wrong_signs</span></code></a>(adata, cluster[, eps])</p></td>
+<td><p>Quantify the fraction of wring signs between Jacobians of different simulations for the same cell state</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.plotting_util.count_pos_eig" title="splicejac.plot.plotting_util.count_pos_eig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_pos_eig</span></code></a>(adata, cluster)</p></td>
+<td><p>Count the number of positive eigenvalues of the Jacobians of different simulations for the same cell state</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.plotting_util.plot_setup">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.plotting_util.</span></span><span class="sig-name descname"><span class="pre">plot_setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">plt.cm.Set2.colors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.plotting_util.plot_setup" title="Permalink to this definition"></a></dt>
+<dd><p>Assign a color to each cluster from a colormap
+Results are stored in adata.uns[‘colors’]</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cmap: <cite>pyplot colormap</cite> (default: plt.cm.Set2.colors)</dt><dd><p>Colormap for cell state. To use another colormap, provide argument following the same syntax:
+plt.cm. + chosen_colormap + .colors. A list of accepted colormaps can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a></p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.plotting_util.jac_regr_cons">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.plotting_util.</span></span><span class="sig-name descname"><span class="pre">jac_regr_cons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.plotting_util.jac_regr_cons" title="Permalink to this definition"></a></dt>
+<dd><p>Check the consistency of Jacobian regression by computing element-wise distance between Jacobians from different
+simulations for the same cell state</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster: <cite>str</cite></dt><dd><p>cell state</p>
+</dd>
+</dl>
+<p>dev: a list of element-wise difference between all pairs of Jacobians</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.plotting_util.compare_wrong_signs">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.plotting_util.</span></span><span class="sig-name descname"><span class="pre">compare_wrong_signs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">j1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.plotting_util.compare_wrong_signs" title="Permalink to this definition"></a></dt>
+<dd><p>Count fraction of wrong signs between two matrices</p>
+<dl class="simple">
+<dt>j1: <cite>~numpy.ndarray</cite></dt><dd><p>matrix 1</p>
+</dd>
+<dt>j2: <cite>~numpy.ndarray</cite></dt><dd><p>matrix 2</p>
+</dd>
+<dt>eps: <cite>float</cite> (default: 0.9)</dt><dd><p>cutoff quantile to select only the largest elements (in absolute value) in the two matrices in the range [0,1]</p>
+</dd>
+</dl>
+<p>perc_sign: percentage of wrong signs between the two matrices</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.plotting_util.count_wrong_signs">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.plotting_util.</span></span><span class="sig-name descname"><span class="pre">count_wrong_signs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.plotting_util.count_wrong_signs" title="Permalink to this definition"></a></dt>
+<dd><p>Quantify the fraction of wring signs between Jacobians of different simulations for the same cell state</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster: <cite>str</cite></dt><dd><p>cell state</p>
+</dd>
+<dt>eps: <cite>float</cite> (default: 0.9)</dt><dd><p>cutoff quantile to select only the largest elements (in absolute value) in the two matrices in the range [0,1]</p>
+</dd>
+</dl>
+<p>wrong_sign: a list of wrong sign percentages between all pairs of Jacobians</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.plotting_util.count_pos_eig">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.plotting_util.</span></span><span class="sig-name descname"><span class="pre">count_pos_eig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.plotting_util.count_pos_eig" title="Permalink to this definition"></a></dt>
+<dd><p>Count the number of positive eigenvalues of the Jacobians of different simulations for the same cell state</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster: <cite>str</cite></dt><dd><p>cell state</p>
+</dd>
+</dl>
+<p>pos_eig: list with number of positive eigenvalues for each Jacobian matrix</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Federico Bocci.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

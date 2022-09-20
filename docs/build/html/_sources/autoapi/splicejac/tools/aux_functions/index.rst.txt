@@ -1,0 +1,124 @@
+:py:mod:`splicejac.tools.aux_functions`
+=======================================
+
+.. py:module:: splicejac.tools.aux_functions
+
+.. autoapi-nested-parse::
+
+   auxiliary functions for spliceJAC inference and analysis
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   splicejac.tools.aux_functions.parameter_regression
+   splicejac.tools.aux_functions.estimate_degr
+   splicejac.tools.aux_functions.construct_jac
+   splicejac.tools.aux_functions.set_gene_axes
+   splicejac.tools.aux_functions.instability_scores
+
+
+
+.. py:function:: parameter_regression(U_data, S_data, method='Ridge', alpha=1, fit_int=True)
+
+   Run regression to infer spliced-unspliced interaction coefficients
+
+   Parameters
+   ----------
+   U_data: `~numpy.ndarray`
+       count matrix of unspliced counts
+   S_data: `~numpy.ndarray`
+       count matrix of spliced counts
+   method: `str` (default: Ridge)
+       regression method, choose between Linear, Ridge or Lasso
+   alpha: `float` (default: 1)
+       regularization coefficient for Ridge and Lasso
+   fit_int: `Bool` (default: True)
+       if True, set the fit_intercept parameter to True
+
+   Returns
+   -------
+   mat: `~numpy.ndarray`
+       gene-gene interaction matrix
+   interc: `~numpy.ndarray`
+       intercept vector
+   degr: `~numpy.ndarray`
+       degradation coefficient vector
+
+
+
+.. py:function:: estimate_degr(adata, first_moment=True)
+
+   Estimate degradation rate coefficient vector
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   first_moment: `Bool` (default: True)
+       if True, use first moment of U and S to run regression
+
+   Returns
+   -------
+   degr: `~numpy.ndarray`
+       degradation coefficient vector
+
+
+
+.. py:function:: construct_jac(mat, degr, b=1)
+
+   Construct a Jacobian matrix given the gene-gene interactions and degradation rates
+
+   Parameters
+   ----------
+   mat: `~numpy.ndarray`
+       matrix of gene-gene interactions
+   degr: `~numpy.ndarray`
+       degradation coefficient vector
+   b: `float` (default: 1)
+       splicing rate constant
+
+   Returns
+   -------
+   J: Jacobian matrix
+
+
+
+.. py:function:: set_gene_axes(adata)
+
+   Set up a axes name list with unspliced and spliced genes
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: instability_scores(adata)
+
+   Construct an instability score for each gene in each cluster by looking at eigenvector components in the cluster
+   unstable manifold. Results are saved in adata.uns['inst_scores']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+
+   Returns
+   -------
+   None
+
+
+

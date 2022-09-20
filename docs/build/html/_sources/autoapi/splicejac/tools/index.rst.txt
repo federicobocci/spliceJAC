@@ -1,0 +1,277 @@
+:py:mod:`splicejac.tools`
+=========================
+
+.. py:module:: splicejac.tools
+
+.. autoapi-nested-parse::
+
+   __init__ file for the tools library
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   aux_functions/index.rst
+   estimate_jacobian/index.rst
+   export_methods/index.rst
+   grn_comparison/index.rst
+   grn_statistics/index.rst
+   regr_method_sens/index.rst
+   subsampling_sens/index.rst
+   transitions/index.rst
+
+
+Package Contents
+----------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   splicejac.tools.estimate_jacobian
+   splicejac.tools.trans_from_PAGA
+   splicejac.tools.transition_genes
+   splicejac.tools.grn_comparison
+   splicejac.tools.regr_method_sens
+   splicejac.tools.subsampling_sens
+   splicejac.tools.grn_statistics
+   splicejac.tools.export_grn
+   splicejac.tools.export_transition_scores
+
+
+
+.. py:function:: estimate_jacobian(adata, first_moment=True, method='Ridge', alpha=1, beta=1.0, rescale=True, nsim=10, frac=0.9, filter_and_norm=True, min_shared_counts=20, n_top_genes=20, eps=0.9, seed=100)
+
+   Run cluster-wise Jacobian inference
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   first_moment: `Bool` (default: True)
+       if True, use first moment of U and S to run regression
+   method: `str` (default: Ridge)
+       regression method, choose between Linear, Ridge or Lasso
+   alpha: `float` (default: 1)
+       regularization coefficient for Ridge and Lasso
+   beta: `float` (default: 1)
+       mRNA splicing rate constant
+   rescale: `Bool` (default: True)
+       if True, center counts on zero (default= True). rescale=True enforces fit_int=False
+   nsim: `int` (default: 10)
+       number of independent regressions per cluster
+   frac: `float` (default: 0.9)
+       fraction of cells to randomly select (bound in [0,1])
+   filter_and_norm: `Bool` (default: True)
+       if True, apply scvelo filter_and_normalize function to the count matrix
+   min_shared_count: `int` (default: 20)
+       minimum number of shared count for the scvelo filter_and_normalize function
+   n_top_genes: `int` (default: 20)
+       number of top genes for the scvelo filter_and_normalize function
+   eps: `float` (default= 0.9)
+       fraction of weakest Jacobian elements that are set to zero (by absolute value)
+   seed: `int` (default: 100)
+       seed for numpy random number generator (for reproducibility)
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: trans_from_PAGA(adata, dir_method='top_eig', eig_number=5, top_DEG=5, top_TG=5, first_moment=True)
+
+   Compute the gene instability scores for all transitions identified with PAGA
+   PAGA transitions must be stored as a dataframe in adata.uns['PAGA_paths']
+   results are stored in adata.uns['transitions']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   dir_method: `str` (default: 'top_eig')
+       method to select the unstable directions, choose between 'top_eig' and 'positive'.
+       'top_eig' uses the largest eigenvalues irrespective of sign; 'positive' strictly uses positive eigenvalues
+   eig_number: `int` (default: 5)
+       number of largest eigenvalues to consider, required for dir_method='top_eig'
+   top_DEG: `int` (default: 5)
+       number of top DEG to select
+   top_TG: `int` (default: 5)
+       number of top TG to select
+   first_moment: `Bool` (default: True)
+       if True, use first moments of unspliced/spliced counts
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: transition_genes(adata, cluster1, cluster2, dir_method='top_eig', eig_number=5, top_DEG=5, top_TG=5, first_moment=True)
+
+   Compute the gene instability scores for transition from cluster1 to cluster2
+   Results are stored in adata.uns['transitions']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster1: `str`
+       starting cell state
+   cluster2: `str`
+       final cell states
+   dir_method: `str` (default: 'top_eig')
+       method to select the unstable directions, choose between 'top_eig' and 'positive'.
+       'top_eig' uses the largest eigenvalues irrespective of sign; 'positive' strictly uses positive eigenvalues
+   eig_number: `int` (default: 5)
+       number of largest eigenvalues to consider, required for dir_method='top_eig'
+   top_DEG: `int` (default: 5)
+       number of top DEG to select
+   top_TG: `int` (default: 5)
+       number of top TG to select
+   first_moment: `Bool` (default: True)
+       if True, use first moments of unspliced/spliced counts
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: grn_comparison(adata)
+
+   Compute AUROC/AUPRC scores for all pairs of state-specific gene regulatory networks
+   Results are stored in adata.uns['comparison_scores']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: regr_method_sens(adata, alpha_ridge=np.array([0.01, 0.1, 1, 10, 100]), alpha_lasso=np.array([0.0001, 0.001, 0.01, 0.1, 1]))
+
+   Compare methods for gene-gene interaction parameter regression
+   Results are stored in adata.uns['method_sens'] and adata.uns['sens_coeff']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   alpha_ridge: `~numpy.ndarray` (default: numpy.array([0.01, 0.1, 1, 10, 100]))
+       array of shrinkage coefficients to test for Ridge regression
+   alpha_lasso: `~numpy.ndarray` (default: numpy.array([0.0001, 0.001, 0.01, 0.1, 1]))
+       array of shrinkage coefficients to test for Lasso regression
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: subsampling_sens(adata, frac=np.arange(0.1, 0.91, 0.1), seed=100, nsim=10)
+
+   Test the inference of gene-gene interaction matrix as a function of fraction of selected cells
+   Results are stored in adata.uns['sens_summary']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   frac: `~numpy.ndarray` (default: numpy.arange(0.1, 0.91, 0.1))
+       fraction of cells to randomly select
+   seed: `int` (default=100)
+       seed for random cell selection for reproducibility
+   nsim: `int` (default: 10)
+       number of independent simulations
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: grn_statistics(adata, weight_quantile=0.5, k=None, normalized=True, weight=None, endpoints=False, seed=None)
+
+   Computes various statistics on the cell state specific GRNs. The statistics are added to adata.uns['GRN_statistics']
+
+   For a more detailed discussion of several of the parameters, please see the betweenness_centrality from Networkx
+   (https://networkx.org/documentation/networkx-1.10/reference/generated/networkx.algorithms.centrality.betweenness_centrality.html)
+   Results are stored in adata.uns['GRN_statistics'], adata.uns['cluster_variation'] and adata.uns['cluster_average']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   weight_quantile: `float` (default: 0.5)
+       cutoff for weak gene-gene interactions between 0 and 1
+   k: `int` or `None` (default=`None`)
+       number of nodes considered to compute betweenness centrality. k=None implies that all edges are used
+   normalized: `Bool` (default: True)
+       if True, betweenness centrality values are normalized
+   weight: `str` (default: `None`)
+       If None, all edge weights are considered equal
+   endpoints: `Bool` (default: False)
+       If True, include the endpoints in the shortest path counts during betweenness centrality calculation
+   seed: `int` (default: None)
+       seed for betweenness centrality calculation
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: export_grn(adata, cluster, filename=None)
+
+   Export the GRN of a cell state to a csv file
+
+   If no filename is provided, a local folder results/exported_results/ will be created (if not existing) and the GRN
+   file will be saved with default name "grn" + cluster + ".csv"
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster: `str`
+       cell state
+   filename: `str` (default: None)
+       the name of export file, including path and .csv extension
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: export_transition_scores(adata, filename=None)
+
+   Export gene transition scores for all transitions in a csv file
+
+   If no filename is provided, a local folder results/exported_results/ will be created (if not existing) and the GRN
+   file will be saved with default name "grn" + cluster + ".csv"
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   filename: `str` (defaul: None)
+       the name of export file, including path and .csv extension
+
+   Returns
+   -------
+   None
+
+
+

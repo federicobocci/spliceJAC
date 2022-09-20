@@ -1,0 +1,63 @@
+:py:mod:`splicejac.tools.regr_method_sens`
+==========================================
+
+.. py:module:: splicejac.tools.regr_method_sens
+
+.. autoapi-nested-parse::
+
+   test the sensitivity to the regression method and parameters
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   splicejac.tools.regr_method_sens.coeff_dist
+   splicejac.tools.regr_method_sens.regr_method_sens
+
+
+
+.. py:function:: coeff_dist(G, x=np.logspace(-5, 0, num=100))
+
+   Construct the coefficient distribution for the gene-gene interaction matrix G
+
+   Parameters
+   ----------
+   G: `~numpy.ndarray`
+       interaction matrix
+   x: `~numpy.ndarray` (default: numpy.logspace(-5, 0, num=100))
+       vector of thresholds to group matrix coefficients
+
+   Returns
+   -------
+   y: `~numpy.ndarray`
+       The distribution of coefficients
+
+
+
+.. py:function:: regr_method_sens(adata, alpha_ridge=np.array([0.01, 0.1, 1, 10, 100]), alpha_lasso=np.array([0.0001, 0.001, 0.01, 0.1, 1]))
+
+   Compare methods for gene-gene interaction parameter regression
+   Results are stored in adata.uns['method_sens'] and adata.uns['sens_coeff']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   alpha_ridge: `~numpy.ndarray` (default: numpy.array([0.01, 0.1, 1, 10, 100]))
+       array of shrinkage coefficients to test for Ridge regression
+   alpha_lasso: `~numpy.ndarray` (default: numpy.array([0.0001, 0.001, 0.01, 0.1, 1]))
+       array of shrinkage coefficients to test for Lasso regression
+
+   Returns
+   -------
+   None
+
+
+

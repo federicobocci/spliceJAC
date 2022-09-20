@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>splicejac.tools.transitions &mdash; spliceJAC 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> spliceJAC
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks/GRN%20Inference.html">GRN Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks/Transitions.html">Transitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">spliceJAC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.tools.transitions</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/splicejac/tools/transitions/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-splicejac.tools.transitions">
+<span id="splicejac-tools-transitions"></span><h1><a class="reference internal" href="#module-splicejac.tools.transitions" title="splicejac.tools.transitions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.tools.transitions</span></code></a><a class="headerlink" href="#module-splicejac.tools.transitions" title="Permalink to this headline"></a></h1>
+<p>functions to identify transition driver genes</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.tools.transitions.find_dir" title="splicejac.tools.transitions.find_dir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_dir</span></code></a>(w, v[, dir_method, eig_number])</p></td>
+<td><p>Identify the unstable transition directions given the eigenspectrum of the starting cell state</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.tools.transitions.find_trans_genes" title="splicejac.tools.transitions.find_trans_genes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_trans_genes</span></code></a>(adata, cluster1, cluster2[, ...])</p></td>
+<td><p>Compute the gene instability scores for transition from cluster1 to cluster2</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.tools.transitions.select_top_trans_genes" title="splicejac.tools.transitions.select_top_trans_genes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">select_top_trans_genes</span></code></a>(adata, cluster1, cluster2[, ...])</p></td>
+<td><p>Returns lists of top differentially expressed genes (DEG), transition genes (TF), and both for transition from</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.tools.transitions.transition_genes" title="splicejac.tools.transitions.transition_genes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transition_genes</span></code></a>(adata, cluster1, cluster2[, ...])</p></td>
+<td><p>Compute the gene instability scores for transition from cluster1 to cluster2</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.tools.transitions.trans_from_PAGA" title="splicejac.tools.transitions.trans_from_PAGA"><code class="xref py py-obj docutils literal notranslate"><span class="pre">trans_from_PAGA</span></code></a>(adata[, dir_method, eig_number, ...])</p></td>
+<td><p>Compute the gene instability scores for all transitions identified with PAGA</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.transitions.find_dir">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.transitions.</span></span><span class="sig-name descname"><span class="pre">find_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'top_eig'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eig_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.transitions.find_dir" title="Permalink to this definition"></a></dt>
+<dd><p>Identify the unstable transition directions given the eigenspectrum of the starting cell state</p>
+<dl class="simple">
+<dt>w: <cite>~numpy.ndarray</cite></dt><dd><p>eigenvalues of cell state Jacobian</p>
+</dd>
+<dt>v: <cite>~numpy.ndarray</cite></dt><dd><p>eigenvectors of cell state Jacobian</p>
+</dd>
+<dt>dir_method: <cite>str</cite> (default: ‘top_eig’)</dt><dd><p>method to select the unstable directions, choose between ‘top_eig’ and ‘positive’.
+‘top_eig’ uses the largest eigenvalues irrespective of sign; ‘positive’ strictly uses positive eigenvalues</p>
+</dd>
+<dt>eig_number: <cite>int</cite> (default: 5)</dt><dd><p>number of largest eigenvalues to consider, required for dir_method=’top_eig’</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>dir: <cite>~numpy.ndarray</cite></dt><dd><p>set of unstable directions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.transitions.find_trans_genes">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.transitions.</span></span><span class="sig-name descname"><span class="pre">find_trans_genes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'top_eig'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eig_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_moment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.transitions.find_trans_genes" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the gene instability scores for transition from cluster1 to cluster2</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster1: <cite>str</cite></dt><dd><p>starting cell state</p>
+</dd>
+<dt>cluster2: <cite>str</cite></dt><dd><p>final cell states</p>
+</dd>
+<dt>dir_method: <cite>str</cite> (default: ‘top_eig’)</dt><dd><p>method to select the unstable directions, choose between ‘top_eig’ and ‘positive’.
+‘top_eig’ uses the largest eigenvalues irrespective of sign; ‘positive’ strictly uses positive eigenvalues</p>
+</dd>
+<dt>eig_number: <cite>int</cite> (default: 5)</dt><dd><p>number of largest eigenvalues to consider, required for dir_method=’top_eig’</p>
+</dd>
+<dt>first_moment: <cite>Bool</cite> (default: True)</dt><dd><p>if True, use first moments of unspliced/spliced counts</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>weight: <cite>~numpy.ndarray</cite></dt><dd><p>weight of each gene for the specified transition</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.transitions.select_top_trans_genes">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.transitions.</span></span><span class="sig-name descname"><span class="pre">select_top_trans_genes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_DEG</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_TG</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.transitions.select_top_trans_genes" title="Permalink to this definition"></a></dt>
+<dd><p>Returns lists of top differentially expressed genes (DEG), transition genes (TF), and both for transition from
+cluster1 to cluster2</p>
+<p>If some genes are both top DEG and top TG, they are classified in the both_list,
+and n genes are selected until a total of top_DEG+top_TG genes are selected
+Results are stored in adata.uns[‘transitions’]</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster1: <cite>str</cite></dt><dd><p>starting cell state</p>
+</dd>
+<dt>cluster2: <cite>str</cite></dt><dd><p>final cell states</p>
+</dd>
+<dt>top_DEG: <cite>int</cite> (default: 5)</dt><dd><p>number of top DEG to select</p>
+</dd>
+<dt>top_TG: <cite>int</cite> (default: 5)</dt><dd><p>number of top TG to select</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.transitions.transition_genes">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.transitions.</span></span><span class="sig-name descname"><span class="pre">transition_genes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'top_eig'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eig_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_DEG</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_TG</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_moment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.transitions.transition_genes" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the gene instability scores for transition from cluster1 to cluster2
+Results are stored in adata.uns[‘transitions’]</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster1: <cite>str</cite></dt><dd><p>starting cell state</p>
+</dd>
+<dt>cluster2: <cite>str</cite></dt><dd><p>final cell states</p>
+</dd>
+<dt>dir_method: <cite>str</cite> (default: ‘top_eig’)</dt><dd><p>method to select the unstable directions, choose between ‘top_eig’ and ‘positive’.
+‘top_eig’ uses the largest eigenvalues irrespective of sign; ‘positive’ strictly uses positive eigenvalues</p>
+</dd>
+<dt>eig_number: <cite>int</cite> (default: 5)</dt><dd><p>number of largest eigenvalues to consider, required for dir_method=’top_eig’</p>
+</dd>
+<dt>top_DEG: <cite>int</cite> (default: 5)</dt><dd><p>number of top DEG to select</p>
+</dd>
+<dt>top_TG: <cite>int</cite> (default: 5)</dt><dd><p>number of top TG to select</p>
+</dd>
+<dt>first_moment: <cite>Bool</cite> (default: True)</dt><dd><p>if True, use first moments of unspliced/spliced counts</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.transitions.trans_from_PAGA">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.transitions.</span></span><span class="sig-name descname"><span class="pre">trans_from_PAGA</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'top_eig'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eig_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_DEG</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_TG</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_moment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.transitions.trans_from_PAGA" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the gene instability scores for all transitions identified with PAGA
+PAGA transitions must be stored as a dataframe in adata.uns[‘PAGA_paths’]
+results are stored in adata.uns[‘transitions’]</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>dir_method: <cite>str</cite> (default: ‘top_eig’)</dt><dd><p>method to select the unstable directions, choose between ‘top_eig’ and ‘positive’.
+‘top_eig’ uses the largest eigenvalues irrespective of sign; ‘positive’ strictly uses positive eigenvalues</p>
+</dd>
+<dt>eig_number: <cite>int</cite> (default: 5)</dt><dd><p>number of largest eigenvalues to consider, required for dir_method=’top_eig’</p>
+</dd>
+<dt>top_DEG: <cite>int</cite> (default: 5)</dt><dd><p>number of top DEG to select</p>
+</dd>
+<dt>top_TG: <cite>int</cite> (default: 5)</dt><dd><p>number of top TG to select</p>
+</dd>
+<dt>first_moment: <cite>Bool</cite> (default: True)</dt><dd><p>if True, use first moments of unspliced/spliced counts</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Federico Bocci.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

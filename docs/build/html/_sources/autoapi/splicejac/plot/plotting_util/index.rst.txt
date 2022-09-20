@@ -1,0 +1,121 @@
+:py:mod:`splicejac.plot.plotting_util`
+======================================
+
+.. py:module:: splicejac.plot.plotting_util
+
+.. autoapi-nested-parse::
+
+   plotting utilities
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   splicejac.plot.plotting_util.plot_setup
+   splicejac.plot.plotting_util.jac_regr_cons
+   splicejac.plot.plotting_util.compare_wrong_signs
+   splicejac.plot.plotting_util.count_wrong_signs
+   splicejac.plot.plotting_util.count_pos_eig
+
+
+
+.. py:function:: plot_setup(adata, cmap=plt.cm.Set2.colors)
+
+   Assign a color to each cluster from a colormap
+   Results are stored in adata.uns['colors']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cmap: `pyplot colormap` (default: plt.cm.Set2.colors)
+       Colormap for cell state. To use another colormap, provide argument following the same syntax:
+       plt.cm. + chosen_colormap + .colors. A list of accepted colormaps can be found at:
+       https://matplotlib.org/stable/tutorials/colors/colormaps.html
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: jac_regr_cons(adata, cluster)
+
+   Check the consistency of Jacobian regression by computing element-wise distance between Jacobians from different
+   simulations for the same cell state
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster: `str`
+       cell state
+
+   Returns
+   -------
+   dev: a list of element-wise difference between all pairs of Jacobians
+
+
+
+.. py:function:: compare_wrong_signs(j1, j2, eps=0.9)
+
+   Count fraction of wrong signs between two matrices
+
+   Parameters
+   ----------
+   j1: `~numpy.ndarray`
+       matrix 1
+   j2: `~numpy.ndarray`
+       matrix 2
+   eps: `float` (default: 0.9)
+       cutoff quantile to select only the largest elements (in absolute value) in the two matrices in the range [0,1]
+
+   Returns
+   -------
+   perc_sign: percentage of wrong signs between the two matrices
+
+
+
+.. py:function:: count_wrong_signs(adata, cluster, eps=0.9)
+
+   Quantify the fraction of wring signs between Jacobians of different simulations for the same cell state
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster: `str`
+       cell state
+   eps: `float` (default: 0.9)
+       cutoff quantile to select only the largest elements (in absolute value) in the two matrices in the range [0,1]
+
+   Returns
+   -------
+   wrong_sign: a list of wrong sign percentages between all pairs of Jacobians
+
+
+
+.. py:function:: count_pos_eig(adata, cluster)
+
+   Count the number of positive eigenvalues of the Jacobians of different simulations for the same cell state
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster: `str`
+       cell state
+
+   Returns
+   -------
+   pos_eig: list with number of positive eigenvalues for each Jacobian matrix
+
+
+

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>splicejac.tools.aux_functions &mdash; spliceJAC 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> spliceJAC
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks/GRN%20Inference.html">GRN Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks/Transitions.html">Transitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">spliceJAC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.tools.aux_functions</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/splicejac/tools/aux_functions/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-splicejac.tools.aux_functions">
+<span id="splicejac-tools-aux-functions"></span><h1><a class="reference internal" href="#module-splicejac.tools.aux_functions" title="splicejac.tools.aux_functions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.tools.aux_functions</span></code></a><a class="headerlink" href="#module-splicejac.tools.aux_functions" title="Permalink to this headline"></a></h1>
+<p>auxiliary functions for spliceJAC inference and analysis</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.tools.aux_functions.parameter_regression" title="splicejac.tools.aux_functions.parameter_regression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parameter_regression</span></code></a>(U_data, S_data[, method, alpha, ...])</p></td>
+<td><p>Run regression to infer spliced-unspliced interaction coefficients</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.tools.aux_functions.estimate_degr" title="splicejac.tools.aux_functions.estimate_degr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_degr</span></code></a>(adata[, first_moment])</p></td>
+<td><p>Estimate degradation rate coefficient vector</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.tools.aux_functions.construct_jac" title="splicejac.tools.aux_functions.construct_jac"><code class="xref py py-obj docutils literal notranslate"><span class="pre">construct_jac</span></code></a>(mat, degr[, b])</p></td>
+<td><p>Construct a Jacobian matrix given the gene-gene interactions and degradation rates</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.tools.aux_functions.set_gene_axes" title="splicejac.tools.aux_functions.set_gene_axes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_gene_axes</span></code></a>(adata)</p></td>
+<td><p>Set up a axes name list with unspliced and spliced genes</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.tools.aux_functions.instability_scores" title="splicejac.tools.aux_functions.instability_scores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">instability_scores</span></code></a>(adata)</p></td>
+<td><p>Construct an instability score for each gene in each cluster by looking at eigenvector components in the cluster</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.aux_functions.parameter_regression">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.aux_functions.</span></span><span class="sig-name descname"><span class="pre">parameter_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">U_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Ridge'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_int</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.aux_functions.parameter_regression" title="Permalink to this definition"></a></dt>
+<dd><p>Run regression to infer spliced-unspliced interaction coefficients</p>
+<dl class="simple">
+<dt>U_data: <cite>~numpy.ndarray</cite></dt><dd><p>count matrix of unspliced counts</p>
+</dd>
+<dt>S_data: <cite>~numpy.ndarray</cite></dt><dd><p>count matrix of spliced counts</p>
+</dd>
+<dt>method: <cite>str</cite> (default: Ridge)</dt><dd><p>regression method, choose between Linear, Ridge or Lasso</p>
+</dd>
+<dt>alpha: <cite>float</cite> (default: 1)</dt><dd><p>regularization coefficient for Ridge and Lasso</p>
+</dd>
+<dt>fit_int: <cite>Bool</cite> (default: True)</dt><dd><p>if True, set the fit_intercept parameter to True</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>mat: <cite>~numpy.ndarray</cite></dt><dd><p>gene-gene interaction matrix</p>
+</dd>
+<dt>interc: <cite>~numpy.ndarray</cite></dt><dd><p>intercept vector</p>
+</dd>
+<dt>degr: <cite>~numpy.ndarray</cite></dt><dd><p>degradation coefficient vector</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.aux_functions.estimate_degr">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.aux_functions.</span></span><span class="sig-name descname"><span class="pre">estimate_degr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_moment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.aux_functions.estimate_degr" title="Permalink to this definition"></a></dt>
+<dd><p>Estimate degradation rate coefficient vector</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>first_moment: <cite>Bool</cite> (default: True)</dt><dd><p>if True, use first moment of U and S to run regression</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>degr: <cite>~numpy.ndarray</cite></dt><dd><p>degradation coefficient vector</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.aux_functions.construct_jac">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.aux_functions.</span></span><span class="sig-name descname"><span class="pre">construct_jac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.aux_functions.construct_jac" title="Permalink to this definition"></a></dt>
+<dd><p>Construct a Jacobian matrix given the gene-gene interactions and degradation rates</p>
+<dl class="simple">
+<dt>mat: <cite>~numpy.ndarray</cite></dt><dd><p>matrix of gene-gene interactions</p>
+</dd>
+<dt>degr: <cite>~numpy.ndarray</cite></dt><dd><p>degradation coefficient vector</p>
+</dd>
+<dt>b: <cite>float</cite> (default: 1)</dt><dd><p>splicing rate constant</p>
+</dd>
+</dl>
+<p>J: Jacobian matrix</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.aux_functions.set_gene_axes">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.aux_functions.</span></span><span class="sig-name descname"><span class="pre">set_gene_axes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.aux_functions.set_gene_axes" title="Permalink to this definition"></a></dt>
+<dd><p>Set up a axes name list with unspliced and spliced genes</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.aux_functions.instability_scores">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.aux_functions.</span></span><span class="sig-name descname"><span class="pre">instability_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.aux_functions.instability_scores" title="Permalink to this definition"></a></dt>
+<dd><p>Construct an instability score for each gene in each cluster by looking at eigenvector components in the cluster
+unstable manifold. Results are saved in adata.uns[‘inst_scores’]</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Federico Bocci.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

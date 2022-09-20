@@ -1,0 +1,87 @@
+:py:mod:`splicejac.tools.export_methods`
+========================================
+
+.. py:module:: splicejac.tools.export_methods
+
+.. autoapi-nested-parse::
+
+   methods to export spliceJAC's results
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   splicejac.tools.export_methods.grn_to_csv
+   splicejac.tools.export_methods.export_grn
+   splicejac.tools.export_methods.export_transition_scores
+
+
+
+.. py:function:: grn_to_csv(adata, cluster, filename)
+
+   Export the GRN of clusters to a csv file
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster: `str`
+       cell state
+   filename: `str`
+       the name of export file, including path and .csv extension
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: export_grn(adata, cluster, filename=None)
+
+   Export the GRN of a cell state to a csv file
+
+   If no filename is provided, a local folder results/exported_results/ will be created (if not existing) and the GRN
+   file will be saved with default name "grn" + cluster + ".csv"
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster: `str`
+       cell state
+   filename: `str` (default: None)
+       the name of export file, including path and .csv extension
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: export_transition_scores(adata, filename=None)
+
+   Export gene transition scores for all transitions in a csv file
+
+   If no filename is provided, a local folder results/exported_results/ will be created (if not existing) and the GRN
+   file will be saved with default name "grn" + cluster + ".csv"
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   filename: `str` (defaul: None)
+       the name of export file, including path and .csv extension
+
+   Returns
+   -------
+   None
+
+
+

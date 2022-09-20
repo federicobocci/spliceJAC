@@ -1,0 +1,108 @@
+:py:mod:`splicejac.tools.grn_statistics`
+========================================
+
+.. py:module:: splicejac.tools.grn_statistics
+
+.. autoapi-nested-parse::
+
+   evaluate gene statistics of the state-specific GRNs
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   splicejac.tools.grn_statistics.signaling_score
+   splicejac.tools.grn_statistics.compute_metrics
+   splicejac.tools.grn_statistics.GRN_cluster_variation
+   splicejac.tools.grn_statistics.grn_statistics
+
+
+
+.. py:function:: signaling_score(adata)
+
+   Compute the signaling scores of all genes in each cell states
+
+   Scores are defined based on number of incoming/outgoing edges and weighted sum of incoming/outgoing edges
+   Results are saved in  adata.uns['signaling_scores']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: compute_metrics(dat)
+
+   Compute statistical metrics including standard deviation, range, and interquartile range of a 1D vector
+
+   Parameters
+   ----------
+   dat: `~numpy.ndarray`
+       1D array of measurements
+
+   Returns
+   -------
+   metrics_df: `~pandas.dataFrame`
+       dataframe of metrics
+
+
+
+.. py:function:: GRN_cluster_variation(adata)
+
+   Compute state-specific GRN statistics including gene centrality, incoming, outgoing and total signaling strength
+   Results are stored in adata.uns['cluster_variation'] and adata.uns['cluster_average']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: grn_statistics(adata, weight_quantile=0.5, k=None, normalized=True, weight=None, endpoints=False, seed=None)
+
+   Computes various statistics on the cell state specific GRNs. The statistics are added to adata.uns['GRN_statistics']
+
+   For a more detailed discussion of several of the parameters, please see the betweenness_centrality from Networkx
+   (https://networkx.org/documentation/networkx-1.10/reference/generated/networkx.algorithms.centrality.betweenness_centrality.html)
+   Results are stored in adata.uns['GRN_statistics'], adata.uns['cluster_variation'] and adata.uns['cluster_average']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   weight_quantile: `float` (default: 0.5)
+       cutoff for weak gene-gene interactions between 0 and 1
+   k: `int` or `None` (default=`None`)
+       number of nodes considered to compute betweenness centrality. k=None implies that all edges are used
+   normalized: `Bool` (default: True)
+       if True, betweenness centrality values are normalized
+   weight: `str` (default: `None`)
+       If None, all edge weights are considered equal
+   endpoints: `Bool` (default: False)
+       If True, include the endpoints in the shortest path counts during betweenness centrality calculation
+   seed: `int` (default: None)
+       seed for betweenness centrality calculation
+
+   Returns
+   -------
+   None
+
+
+

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>splicejac.tools.regr_method_sens &mdash; spliceJAC 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> spliceJAC
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks/GRN%20Inference.html">GRN Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks/Transitions.html">Transitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">spliceJAC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.tools.regr_method_sens</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/splicejac/tools/regr_method_sens/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-splicejac.tools.regr_method_sens">
+<span id="splicejac-tools-regr-method-sens"></span><h1><a class="reference internal" href="#module-splicejac.tools.regr_method_sens" title="splicejac.tools.regr_method_sens"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.tools.regr_method_sens</span></code></a><a class="headerlink" href="#module-splicejac.tools.regr_method_sens" title="Permalink to this headline"></a></h1>
+<p>test the sensitivity to the regression method and parameters</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.tools.regr_method_sens.coeff_dist" title="splicejac.tools.regr_method_sens.coeff_dist"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coeff_dist</span></code></a>(G[, x])</p></td>
+<td><p>Construct the coefficient distribution for the gene-gene interaction matrix G</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.tools.regr_method_sens.regr_method_sens" title="splicejac.tools.regr_method_sens.regr_method_sens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">regr_method_sens</span></code></a>(adata[, alpha_ridge, alpha_lasso])</p></td>
+<td><p>Compare methods for gene-gene interaction parameter regression</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.regr_method_sens.coeff_dist">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.regr_method_sens.</span></span><span class="sig-name descname"><span class="pre">coeff_dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">G</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.logspace(-</span> <span class="pre">5,</span> <span class="pre">0,</span> <span class="pre">num=100)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.regr_method_sens.coeff_dist" title="Permalink to this definition"></a></dt>
+<dd><p>Construct the coefficient distribution for the gene-gene interaction matrix G</p>
+<dl class="simple">
+<dt>G: <cite>~numpy.ndarray</cite></dt><dd><p>interaction matrix</p>
+</dd>
+<dt>x: <cite>~numpy.ndarray</cite> (default: numpy.logspace(-5, 0, num=100))</dt><dd><p>vector of thresholds to group matrix coefficients</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>y: <cite>~numpy.ndarray</cite></dt><dd><p>The distribution of coefficients</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.regr_method_sens.regr_method_sens">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.regr_method_sens.</span></span><span class="sig-name descname"><span class="pre">regr_method_sens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_ridge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.array([0.01,</span> <span class="pre">0.1,</span> <span class="pre">1,</span> <span class="pre">10,</span> <span class="pre">100])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha_lasso</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.array([0.0001,</span> <span class="pre">0.001,</span> <span class="pre">0.01,</span> <span class="pre">0.1,</span> <span class="pre">1])</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.regr_method_sens.regr_method_sens" title="Permalink to this definition"></a></dt>
+<dd><p>Compare methods for gene-gene interaction parameter regression
+Results are stored in adata.uns[‘method_sens’] and adata.uns[‘sens_coeff’]</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>alpha_ridge: <cite>~numpy.ndarray</cite> (default: numpy.array([0.01, 0.1, 1, 10, 100]))</dt><dd><p>array of shrinkage coefficients to test for Ridge regression</p>
+</dd>
+<dt>alpha_lasso: <cite>~numpy.ndarray</cite> (default: numpy.array([0.0001, 0.001, 0.01, 0.1, 1]))</dt><dd><p>array of shrinkage coefficients to test for Lasso regression</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Federico Bocci.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

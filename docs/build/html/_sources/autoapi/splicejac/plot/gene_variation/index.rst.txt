@@ -1,0 +1,205 @@
+:py:mod:`splicejac.plot.gene_variation`
+=======================================
+
+.. py:module:: splicejac.plot.gene_variation
+
+.. autoapi-nested-parse::
+
+   functions to plot gene variation across cell states
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   splicejac.plot.gene_variation.set_plot_name
+   splicejac.plot.gene_variation.gene_variation
+   splicejac.plot.gene_variation.gene_var_detail
+   splicejac.plot.gene_variation.gene_var_scatter
+   splicejac.plot.gene_variation.compare_standout_genes
+
+
+
+.. py:function:: set_plot_name(method, measure)
+
+   Set the plot name based on method and measure used
+
+   Parameters
+   ----------
+   method: `str`
+       method used
+   measure: `str`
+       measure used
+
+   Returns
+   -------
+   measure_name: `str`
+       string with name of measure
+   method_name: `str`
+       string with name of method
+
+
+
+.. py:function:: gene_variation(adata, n_genes='all', method='SD', measure='centrality', bar_color='paleturquoise', alpha=1, edge_color='mediumturquoise', edge_width=1, gene_label_rot=90, fontsize=10, showfig=None, savefig=None, format='pdf', figsize=(6, 3))
+
+   Bar plot of gene role variation across cell states
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   n_genes: `str` or `int` (default n_genes='all')
+       number of genes to consider. If an integer (n) is provided, the top n genes are selected.
+       Otherwise, all genes are used if n_genes='all'
+   method: `float` (default: "SD")
+       method to estimate gene role variation across cell states, choose between standard deviation ('SD'),
+       range ('range'), and interquartile range ('inter_range')
+   measure: `float` (default: 'centrality')
+       measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
+   bar_color: `str` (default: 'paleturquoise')
+       color for bar plot. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   alpha: `float` (default: 1)
+       shading of bar plot between 0 and 1
+   edge_color: `str` (default: 'paleturquoise')
+       edge color for bar plot. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   edge_width: `float` (default: 1)
+       edge width for bar plot
+   gene_label_rot: `int` (default: 90)
+       rotation of labels on x-axis
+   fontsize: `int` (default: 10)
+       fontsize of figure
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (6,3))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: gene_var_detail(adata, n_genes=5, select='top', method='SD', measure='centrality', loc='best', fontsize=10, legend=True, legend_font=10, gene_label_rot=45, showfig=None, savefig=None, format='pdf', figsize=(5, 4))
+
+   Plot the detailed variation in gene signaling role for the top genes in the dataset
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   n_genes: `int` (default:5)
+       number of top genes
+   select: `str` (default: 'top')
+       choose to select genes with larger variation between cell states (select='top')
+       or small variation (select='bottom')
+   method: `float` (default: "SD")
+       method to estimate gene role variation across cell states, choose between standard deviation ('SD'),
+       range ('range'), and interquartile range ('inter_range')
+   measure: `float` (default: 'centrality')
+       measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
+   legend_loc: `str` (default: 'best')
+       legend location.  Details on legend location can be found at:
+       https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+   fontsize: `int` (default: 10)
+       fontsize of figure
+   legend: `Bool` (default: True)
+       if True, include legend
+   legend_font: `int` (default: 10)
+       font of legend
+   gene_label_rot: `int` (default: 45)
+       rotation of labels on x-axis
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (5,4))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: gene_var_scatter(adata, method='SD', measure='centrality', top_genes=5, fontsize=10, color='b', showfig=None, savefig=None, format='pdf', figsize=(5, 4))
+
+   Scatter plot of gene role variation across cell states
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   method: `float` (default: "SD")
+       method to estimate gene role variation across cell states, choose between standard deviation ('SD'),
+       range ('range'), and interquartile range ('inter_range')
+   measure: `float` (default: 'centrality')
+       measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
+   top_genes: `int` (default: 5)
+       top genes to annotate
+   fontsize: `int` (default: 10)
+       fontsize of figure
+   color: `str` (default: 'b')
+       color of scatter plot. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (5,4))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: compare_standout_genes(adata, cluster_list=None, top_genes=5, criterium='centrality', panel_height=1.5, panel_length=5, ylabel=False, showfig=None, savefig=None, format='pdf')
+
+   Boxplot to compare the standout genes with state-specific roles across many cell states
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster_list: `str`
+       list of cell states to compare
+   top_genes: `str` (default: 5)
+       number of top genes to consider
+   criterium: `str` (default='centrality')
+       measure to use to evaluate gene role, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
+   panel_height: `float` (default: 1.5)
+       height of each panel (in inches)
+   panel_length: `float` (default: 5)
+       length of each panel (in inches)
+   ylabel: `Bool` (default: False)
+       if True, print label of y-axis
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+
+   Returns
+   -------
+   None
+
+
+

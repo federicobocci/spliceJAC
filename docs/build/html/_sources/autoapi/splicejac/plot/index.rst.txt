@@ -1,0 +1,1171 @@
+:py:mod:`splicejac.plot`
+========================
+
+.. py:module:: splicejac.plot
+
+.. autoapi-nested-parse::
+
+   __init__file for plotting library
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   gene_variation/index.rst
+   grn_comparison/index.rst
+   grn_plots/index.rst
+   instability/index.rst
+   jacobian_visual/index.rst
+   plotting_util/index.rst
+   sankey_plots/index.rst
+   sensitivity/index.rst
+   signaling/index.rst
+   umap_scatter/index.rst
+
+
+Package Contents
+----------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   splicejac.plot.visualize_network
+   splicejac.plot.diff_network
+   splicejac.plot.diff_interactions
+   splicejac.plot.conserved_grn
+   splicejac.plot.top_conserved_int
+   splicejac.plot.core_GRN
+   splicejac.plot.bif_GRN
+   splicejac.plot.visualize_jacobian
+   splicejac.plot.eigen_spectrum
+   splicejac.plot.regression_sens
+   splicejac.plot.sampling_sens
+   splicejac.plot.subsample_stability
+   splicejac.plot.tg_bif_sankey
+   splicejac.plot.plot_signaling_hubs
+   splicejac.plot.plot_signaling_change
+   splicejac.plot.plot_trans_genes
+   splicejac.plot.scatter_scores
+   splicejac.plot.compare_scvelo_scores
+   splicejac.plot.gene_variation
+   splicejac.plot.gene_var_detail
+   splicejac.plot.gene_var_scatter
+   splicejac.plot.compare_standout_genes
+   splicejac.plot.umap_scatter
+   splicejac.plot.adjecent_grn_score
+   splicejac.plot.plot_grn_comparison
+   splicejac.plot.plot_setup
+
+
+
+.. py:function:: visualize_network(adata, cluster_name, genes=None, cc_id=0, node_size='expression', edge_width='weight', font_size=10, plot_interactive=True, weight_quantile=0.5, node_color='centrality', pos_style='spring', title=True, base_node_size=300, diff_node_size=600, pos_edge_color='b', neg_edge_color='r', arrowsize=10, arrow_alpha=0.75, conn_style='straight', colorbar=True, fontweight='normal', showfig=None, savefig=None, format='pdf', figsize=(4, 3))
+
+   Plot the gene regulatory network of a cluster
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster_name: `str`
+       cell state
+   genes: `list` (default: `None`)
+       list of genes to include. If None, all genes are included
+   cc_id: `int` (default: 0)
+       connected component of the GRN to plot
+   node_size: `int` or `str` (default: 200)
+       size of nodes. If node_size='expression', the node size is scaled based on gene expression.
+       Otherwise, node_size can be a fixed integer
+   edge_width: `float` (default: 1)
+       width of connection arrows
+   fontsize: `int` (default: 10)
+       fontsize for node labels.
+   plot_interactive: `Bool` (default=True)
+       plot the GRN interactively in notebook of figure
+   weight_quantile: `float` (default=0.5)
+       threshold to filter weak interactions between 0 and 1
+   node_color: `str` (default: 'centrality')
+       color of nodes. If node_color='centrality', the color is based on the node centrality.
+       Otherwise, a matplotlib color name can be provided. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   pos_style: `str` (default: 'spring')
+       position of nodes. The options are 'spring' and 'circle'. 'spring' uses the networkx spring position function,
+       whereas 'circle' arranges the nodes in a circle.
+   title: `Bool` (default=True)
+       if True, plot title
+   base_node_size: `float` (default: 300)
+       Minimum node size (used if node_size='expression')
+   diff_node_size: `float` (default: 600)
+       difference between minimum and maximal node size (used if node_size='expression')
+   pos_edge_color: `str` (default: 'b')
+       color for positive regulation arrow. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   neg_edge_color: `str` (default: 'r')
+       color for negative regulation arrow. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   arrowsize: `float` (default: 10)
+       size of interaction arrows
+   arrow_alpha: `float` (default: 0.75)
+       shading of interaction arrows in [0,1]
+   conn_style: `str` (default: 'straight')
+       style of interaction arrows. The admissible styles for networkx graphs can be found at:
+       https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html
+   colorbar: `Bool` (default: True)
+       if True, show colorbar (required if node_size='expression')
+   fontweight: `str` (default: 'normal')
+       style of text. Can select 'bold' for bold text.
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (5,4))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: diff_network(adata, cluster1, cluster2, genes=None, cc_id=0, node_size=500, edge_width='weight', font_size=10, weight_quantile=0.5, pos_style='spring', base_node_size=300, diff_node_size=600, pos_edge_color='b', neg_edge_color='r', arrowsize=10, arrow_alpha=0.75, conn_style='straight', colorbar=True, fontweight='normal', title=True, showfig=None, savefig=None, format='pdf', figsize=(3.5, 3))
+
+   Plot the differential network between two cell states
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster1: `str`
+       first cell state
+   cluster2: `str`
+       second cell state
+   genes: `list` (default: `None`)
+       list of genes to include. If None, all genes are included
+   cc_id: `int` (default: 0)
+       connected component of the GRN to plot
+   node_size: `float` (default=500)
+       size of nodes in the GRN
+   edge_width: `float` or `str` (default='weight')
+        width of GRN edges. If edge_width='weight', the edge width is proportional to the interaction strength.
+   fontsize: `int` (default: 10)
+       fontsize for figure.
+   weight_quantile: `float` (default: 0.5)
+       threshold to filter weak interactions between 0 and 1
+   pos_style: `str` (default: 'spring')
+       position of nodes. The options are 'spring' and 'circle'. 'spring' uses the networkx spring position function,
+       whereas 'circle' arranges the nodes in a circle.
+   base_node_size: `float` (default: 300)
+       Minimum node size (used if node_size='expression')
+   diff_node_size: `float` (default: 600)
+       difference between minimum and maximal node size (used if node_size='expression')
+   pos_edge_color: `str` (default: 'b')
+       color for positive regulation arrow. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   neg_edge_color: `str` (default: 'r')
+       color for negative regulation arrow. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   arrowsize: `float` (default: 10)
+       size of interaction arrows
+   arrow_alpha: `float` (default: 0.75)
+       shading of interaction arrows in [0,1]
+   conn_style: `str` (default: 'straight')
+       style of interaction arrows. The admissible styles for networkx graphs can be found at:
+       https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html
+   colorbar: `Bool` (default: True)
+       if True, show colorbar (required if node_size='expression')
+   fontweight: `str` (default: 'normal')
+       style of text. Can select 'bold' for bold text.
+   title: `Bool` (default: True)
+       if True, plot title
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (3.5,3))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: diff_interactions(adata, cluster1, cluster2, top_int=10, loc='best', title=False, fontsize=10, legend_font=10, legend_col=1, showfig=None, savefig=None, format='pdf', figsize=(4, 5))
+
+   Plot the top differential interactions between two cell states
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster1: `str`
+       first cell state
+   cluster2: `str`
+       second cell state
+   top_int: `int` (default=10)
+       number of top changed interactions to plot
+   loc: `str` (default='best')
+       location of legend. Details on legend location can be found at:
+       https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+   title: `Bool` (default: False)
+       if True, plot title
+   fontsize: `int` (default: 10)
+       fontsize for figure.
+   legend_font: `int` (default: 10)
+       fontsize of legend
+   legend_col: `int` (default: 1)
+       number of columns in legend
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (4,5))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: conserved_grn(adata, cluster1, cluster2, genes=None, cc_id=0, node_size=500, edge_width='weight', font_size=10, weight_quantile=0.5, pos_style='spring', title=True, base_node_size=300, diff_node_size=600, pos_edge_color='b', neg_edge_color='r', arrowsize=10, arrow_alpha=0.75, conn_style='straight', colorbar=True, fontweight='normal', showfig=None, savefig=None, format='pdf', figsize=(3.5, 3))
+
+   Plot the conserved network between two cell states
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster1: `str`
+       first cell state
+   cluster2: `str`
+       second cell state
+   genes: `list` or `None` (default: `None`)
+       list of genes to consider. If None, all genes are considered
+   cc_id: `int` (default: 0)
+       connected component of the GRN to plot
+   node_size: `int` (default: 500)
+       size of nodes in the GRN
+   edge_width: `str` or `int` (default: 'weight')
+       width of GRN edges. If edge_width='weight', the edge width is proportional to the interaction strength.
+   fontsize: `int` (default: 10)
+       fontsize for figure.
+   weight_quantile: `float` (default: 0.5)
+       threshold to filter weak interactions between 0 and 1
+   pos_style: `str` (default: 'spring')
+       position of nodes. The options are 'spring' and 'circle'. 'spring' uses the networkx spring position function,
+       whereas 'circle' arranges the nodes in a circle.
+   title: `Bool` (default: True)
+       if True, plot title
+   base_node_size: `float` (default: 300)
+       Minimum node size (used if node_size='expression')
+   diff_node_size: `float` (default: 600)
+       difference between minimum and maximal node size (used if node_size='expression')
+   pos_edge_color: `str` (default: 'b')
+       color for positive regulation arrow. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   neg_edge_color: `str` (default: 'r')
+       color for negative regulation arrow. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   arrowsize: `float` (default: 10)
+       size of interaction arrows
+   arrow_alpha: `float` (default: 0.75)
+       shading of interaction arrows in [0,1]
+   conn_style: `str` (default: 'straight')
+       style of interaction arrows. The admissible styles for networkx graphs can be found at:
+       https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html
+   colorbar: `Bool` (default: True)
+       if True, show colorbar (required if node_size='expression')
+   fontweight: `str` (default: 'normal')
+       style of text. Can select 'bold' for bold text.
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (3.5,3))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: top_conserved_int(adata, cluster1, cluster2, top_int=10, title=False, fontsize=10, alpha=0.5, showfig=None, savefig=None, format='pdf', figsize=(4, 5))
+
+   Plot the top conserved interactions between two cell states
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster1: `str`
+       first cell state
+   cluster2: `str`
+       second cell state
+   top_int: `int` (default=10)
+       number of top chnaged interactions to plot
+   title: `Bool` (default: False)
+       if True, plot title
+   fontsize: `int` (default: 10)
+       fontsize for figure.
+   alpha: `float` (default=0.5)
+       shading of bar plot
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (4,5))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: core_GRN(adata, cluster1, cluster2, type_color=['orange', 'plum', 'yellowgreen'], pos_edge_color='b', neg_edge_color='r', node_size=500, node_alpha=0.5, arrowsize=10, arrow_alpha=0.75, conn_style='arc3, rad=0.1', node_font=8, legend=True, legend_font=10, legend_ncol=2, legend_loc='lower center', axis=False, xlim=[-1.2, 1.2], ylim=None, showfig=None, savefig=None, format='pdf', figsize=(3, 3))
+
+   Plot a reduced GRN including the top DEG of the starting cluster and the top transition genes
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster1: `str`
+       first cell state
+   cluster2: `str`
+       second cell state
+   type_color: `list` (default=['orange', 'plum', 'yellowgreen'])
+       colors for nodes that are DEG, transition genes and both. A list of accepted colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   pos_edge_color: `str` (default: 'b')
+       color for positive regulation arrow. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   neg_edge_color: `str` (default: 'r')
+       color for negative regulation arrow. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   node_size: 'int' (default: 500)
+       size of nodes
+   node_alpha: `float` (default: 0.5)
+       shading of nodes
+   arrowsize: `float` (default: 10)
+       size of interaction arrows
+   arrow_alpha: `float` (default: 0.75)
+       shading of interaction arrows in [0,1]
+   conn_style: `str` (default: 'arc3, rad=0.1')
+       style of interaction arrows. The admissible styles for networkx graphs can be found at:
+       https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html
+   node_font: `int` (default: 8)
+       fontsize for node labels.
+   legend: `Bool` (default=True)
+       if True, include legend
+   legend_font: `int` (default=10)
+       font size for legend
+   legend_ncol: `int` (default=2)
+       number of columns in legend
+   legend_loc: `str` (default: 'lower center')
+       legend location.  Details on legend location can be found at:
+       https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+   axis: `Bool` (default=False)
+       if True, plot axes
+   xlim: `list` (default=[-1.2, 1.2])
+       inteval on x-axis
+   ylim: `list` or `None` (default=None)
+       inteval on y-axis
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (3,3))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: bif_GRN(adata, start, end, pos_edge_color='b', neg_edge_color='r', node_size=750, node_alpha=0.5, arrowsize=10, arrow_alpha=0.75, arrowstyle='arc3, rad=0.1', node_font=10, legend=True, legend_font=10, legend_ncol=3, legend_loc='lower center', axis=True, xlim=[-1.2, 1.2], ylim=None, showfig=None, savefig=None, format='pdf', figsize=(6, 6))
+
+   Plot the reduced GRN of transition genes involved in different cell state transitions
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   start: `str`
+       starting cell state
+   end: `list`
+       list of ending cell states
+   pos_edge_color: `str` (default: 'b')
+       color for positive regulation arrow. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   neg_edge_color: `str` (default: 'r')
+       color for negative regulation arrow. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   node_size: `int` (default: 500)
+       size of nodes
+   node_alpha: `float` (default: 0.5)
+       shading of nodes
+   arrowsize: `float` (default: 10)
+       size of interaction arrows
+   arrow_alpha: `float` (default: 0.75)
+       shading of interaction arrows in [0,1]
+   conn_style: `str` (default: 'arc3, rad=0.1')
+       style of interaction arrows. The admissible styles for networkx graphs can be found at:
+       https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html
+   node_font: `int` (default=8)
+       font size of node labels
+   legend: `Bool` (default=True)
+       if True, include legend
+   legend_font: `int` (default=10)
+       font size for legend
+   legend_ncol: `int` (default=2)
+       number of columns in legend
+   legend_loc: `str` (default='lower center')
+       legend location.  Details on legend location can be found at:
+       https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+   axis: `Bool` (default=False)
+       if True, plot axes
+   xlim: `list` (default=[-1.2, 1.2])
+       inteval on x-axis
+   ylim: `list` or `None` (default=None)
+       inteval on y-axis
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (6,6))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: visualize_jacobian(adata, panel_height=3, panel_length=3.5, pan_per_row=4, fontsize=10, cmap='RdBu_r', showfig=None, savefig=None, format='pdf')
+
+   Plot the inferred gene-gene interaction matrices of each cell state
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   panel_height: `float` (default: 3)
+       height of each panel (in inches)
+   panel_length: `float` (default: 3.5)
+       length of each panel (in inches)
+   pan_per_row: `int` (default: 4)
+       number of panels per row
+   fontsize: `int` (default: 10)
+       fontsize for labels
+   cmap: `str` (default: 'RdBu_r')
+       colormap for Jacobian visualization. Accepted colormaps ca be found at:
+       https://matplotlib.org/stable/tutorials/colors/colormaps.html
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: eigen_spectrum(adata, panel_height=4, panel_length=4, pan_per_row=4, fontsize=10, show_frac=True, loc='lower right', show_zero=True, showfig=None, savefig=None, format='pdf')
+
+   Plot the eigenvalues of each cell state
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   panel_height: `float` (default: 3)
+       height of each panel (in inches)
+   panel_length: `float` (default: 3.5)
+       length of each panel (in inches)
+   pan_per_row: `int` (default: 4)
+       number of panels per row
+   fontsize: `int` (default: 10)
+       fontsize for labels
+   show_frac: `Bool` (default: True)
+       show legend with fraction of positive eigenvalues
+   loc: `str` (default: 'lower right')
+       location of legend. Accepted legend positions can be found at:
+       https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+   show_zero: `Bool` (default: True)
+       plot horizontal line to highlight change of sign
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: regression_sens(adata, font_size=10, legend_font=10, title_font=12, legend_loc='best', showfig=None, savefig=None, format='pdf', figsize=(12, 4))
+
+   Plot the summary of spliceJAC inference as a function of regression methods and parameters
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   font_size: `int` (default: 10)
+       fontsize of axes and legend labels
+   legend_font: `int` (default=12)
+       font size of legend
+   title_font: `int` (default=12)
+       font size of title
+   legend_loc: `str` (default='best')
+       legend location
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (12,4))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: sampling_sens(adata, font_size=10, legend_font=10, legend_loc='best', showfig=None, savefig=None, format='pdf', figsize=(12, 4))
+
+   Plot the summary of spliceJAC inference sensitivity to subsampling of cells in each cell state
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   font_size: `int` (default: 10)
+       fontsize of axes and legend labels
+   legend_font: `int` (default=10)
+       font size of legend
+   legend_loc: `str` (default='best')
+       legend location
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (12,4))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: subsample_stability(adata, font_size=10, dist_color='firebrick', sign_color='seagreen', eig_color='mediumturquoise', showfig=None, savefig=None, format='pdf', figsize=(12, 4))
+
+   Summary plot of the robustness of spliceJAC inference over multiple inferences with a fraction of the total
+   number of cells in each cell state
+
+   Details on accepted colors for pyplot boxplot can be found at:
+   https://matplotlib.org/stable/gallery/color/named_colors.html
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   font_size: `int` (default: 10)
+       fontsize of axes and legend labels
+   dist_color: `str` (default: 'firebrick')
+       face color for jacobian distance boxplot
+   sign_color: `str` (default: 'seagreen')
+       face color for wrong sign boxplot
+   eig_color: `str` (default: 'mediumturquoise')
+       face color for positive eigenvalues boxplot
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (12,4))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: tg_bif_sankey(adata, start, end, gene_colormap=plt.cm.Set3.colors, width=400, height=600, font_size=15, pad=0, thickness=40, label_columns=True, showfig=True, savefig=None, format='pdf')
+
+   Plot a Sankey diagram of the top transition genes involved in different cell state transitions
+
+   More details about static export of images in python can be found at: https://plotly.com/python/static-image-export/
+   More details about the arguments of plotly objects can be fount at: https://plotly.com/python/graph-objects/
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   start: `str`
+       starting cell state
+   end: `list`
+       list of final cell states
+   gene_colormap: `pyplot colormap` (default: plt.cm.Set3.colors)
+       Colormap for transition genes on the left side of the Sankey diagram. To use another colormap, provide argument
+       following the same syntax: plt.cm. + chosen_colormap + .colors. A list of accepted colormaps can be found at:
+       https://matplotlib.org/stable/tutorials/colors/colormaps.html
+   width: `int` (default=400)
+       width of plotly figure
+   height: `int` (default=600)
+       height of plotly figure
+   font_size: `int` (default: 15)
+       font size of figure
+   pad: `float` (default: 0)
+       vertical gap between nodes of the Sankey plot
+   thickness: `float` (default: 40)
+       line thickness of the Sankey plot
+   label_columns: `Bool` (default=True)
+       if True, label the diagram columns
+   showfig: `Bool` (default=True)
+       if True, show the figure
+   savefig: `Bool` or `None` (default=None)
+       if True, save the figure using the savefig path
+   format: `str` (default='pdf')
+       format of saved figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: plot_signaling_hubs(adata, cluster, fontsize=10, top_genes=5, line_width=0.5, show_top_genes=True, criterium='weights', cmap='Reds', showfig=None, savefig=None, format='pdf', figsize=(3.5, 3))
+
+   Scatterplot of genes based on their signaling scores in a cell state
+
+   Parameters of matplotlib.pyplot.scatter are explained at:
+   https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster: `str`
+       cell state
+   fontsize: `int` (default=10)
+       fontsize of figure
+   top_genes: `int` (default=5)
+       number of top genes to label with gene name
+   line_width: `float` (default=0.5)
+       line width for scatter plot
+   show_top_genes: `Bool` (default=True)
+       if True, annotate the top genes
+   criterium: `str` (default='weights')
+       criterium to rank top genes. "weights" ranks genes based on the weighted edges of the cell state GRN,
+       "edges" ranks genes based on the number of edges
+   cmap: `str` (default: 'Reds')
+       the pyplot colormap for the scatter plot. A list of accepted color maps can be found at:
+       https://matplotlib.org/stable/tutorials/colors/colormaps.html
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+       if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       format of saved figure
+   figsize: `tuple` (default:(3.5,3))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: plot_signaling_change(adata, cluster1, cluster2, fontsize=10, top_genes=10, show_top_genes=True, criterium='weights', logscale_fc=True, x_shift=0.05, y_shift=0.05, cmap='coolwarm', line_width=0.5, showfig=None, savefig=None, format='pdf', figsize=(3.5, 3))
+
+   Scatterplot of the gene signaling changes between two cell states
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster1: `str`
+       first cell state
+   cluster2: `str`
+       second cell state
+   fontsize: `int` (default=10)
+       fontsize of figure
+   top_genes: `int` (default=10)
+       number of top genes to label with gene name
+   show_top_genes: `Bool` (default=True)
+       if True, annotate the top genes
+   criterium: `str` (default='weights')
+       criterium to rank top genes. "weights" ranks genes based on the weighted edges of the cell state GRN,
+       "edges" ranks genes based on the number of edges
+   logscale_fc: `Bool` (default=True)
+       if True, rescale signaling change scores to logarithmic scale
+   x_shift: `float` (default: 0.05)
+       displacement on x-axis for gene annotations
+   y_shift: `float` (default: 0.05)
+       displacement on y-axis for gene annotations
+   cmap: `str` (default: 'coolwarm')
+       the pyplot colormap for the scatter plot. A list of accepted color maps can be found at:
+       https://matplotlib.org/stable/tutorials/colors/colormaps.html
+   line_width: `float` (default=0.5)
+       line width for scatter plot
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+       if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       format of saved figure
+   figsize: `tuple` (default:(3.5,3))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: plot_trans_genes(adata, cluster1, cluster2, top_trans_genes=10, fontsize=10, color='r', alpha=0.5, showfig=None, savefig=None, format='pdf', figsize=(3, 3))
+
+   Plot the top transition genes between two cell states
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster1: `str`
+       starting cell state
+   cluster2: `str`
+       final cell state
+   top_trans_genes: `int` (default: 10)
+       top genes to include in the bar plot
+   fontsize: `int` (default: 10)
+       fontsize for labels
+   color: `str` (default: 'r')
+       color for bar plot. A list of named pyplot colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   alpha: `float` (default=0.5)
+       shading for bar plot in [0,1]
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (3,3))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: scatter_scores(adata, cluster1, cluster2, fontsize=10, color='b', showfig=None, savefig=None, format='pdf', figsize=(3, 3))
+
+   Scatter plot to compare the spliceJAC transition scores with scanpy's DEG scores of the starting cell state
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster1: `str`
+       starting cell state
+   cluster2: `str`
+       final cell state
+   fontsize: `int` (default: 10)
+       fontsize for labels
+   color: `str` (default: 'b')
+       color for scatter plot. A list of named pyplot colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (3,3))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: compare_scvelo_scores(adata, annotate=True, top=5, color='b', panel_height=3, panel_length=3.5, pan_per_row=4, fontsize=10, showfig=None, savefig=None, format='pdf')
+
+   Scatter plots to compare spliceJAC's transition scores with scVelo's gene likelihood scores
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   annotate: `Bool` (default=True)
+       if True, annotate the genes with highest sum of scores
+   top: `int` (default=5)
+       number of top genes to annotate
+   color: `str` (default: 'b')
+       color for scatter plot. A list of named pyplot colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   panel_height: `float` (default: 3)
+       height of each panel (in inches)
+   panel_length: `float` (default: 3.5)
+       length of each panel (in inches)
+   pan_per_row: `int` (default: 4)
+       number of panels per row
+   fontsize: `int` (default: 10)
+       fontsize for labels
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: gene_variation(adata, n_genes='all', method='SD', measure='centrality', bar_color='paleturquoise', alpha=1, edge_color='mediumturquoise', edge_width=1, gene_label_rot=90, fontsize=10, showfig=None, savefig=None, format='pdf', figsize=(6, 3))
+
+   Bar plot of gene role variation across cell states
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   n_genes: `str` or `int` (default n_genes='all')
+       number of genes to consider. If an integer (n) is provided, the top n genes are selected.
+       Otherwise, all genes are used if n_genes='all'
+   method: `float` (default: "SD")
+       method to estimate gene role variation across cell states, choose between standard deviation ('SD'),
+       range ('range'), and interquartile range ('inter_range')
+   measure: `float` (default: 'centrality')
+       measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
+   bar_color: `str` (default: 'paleturquoise')
+       color for bar plot. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   alpha: `float` (default: 1)
+       shading of bar plot between 0 and 1
+   edge_color: `str` (default: 'paleturquoise')
+       edge color for bar plot. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   edge_width: `float` (default: 1)
+       edge width for bar plot
+   gene_label_rot: `int` (default: 90)
+       rotation of labels on x-axis
+   fontsize: `int` (default: 10)
+       fontsize of figure
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (6,3))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: gene_var_detail(adata, n_genes=5, select='top', method='SD', measure='centrality', loc='best', fontsize=10, legend=True, legend_font=10, gene_label_rot=45, showfig=None, savefig=None, format='pdf', figsize=(5, 4))
+
+   Plot the detailed variation in gene signaling role for the top genes in the dataset
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   n_genes: `int` (default:5)
+       number of top genes
+   select: `str` (default: 'top')
+       choose to select genes with larger variation between cell states (select='top')
+       or small variation (select='bottom')
+   method: `float` (default: "SD")
+       method to estimate gene role variation across cell states, choose between standard deviation ('SD'),
+       range ('range'), and interquartile range ('inter_range')
+   measure: `float` (default: 'centrality')
+       measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
+   legend_loc: `str` (default: 'best')
+       legend location.  Details on legend location can be found at:
+       https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+   fontsize: `int` (default: 10)
+       fontsize of figure
+   legend: `Bool` (default: True)
+       if True, include legend
+   legend_font: `int` (default: 10)
+       font of legend
+   gene_label_rot: `int` (default: 45)
+       rotation of labels on x-axis
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (5,4))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: gene_var_scatter(adata, method='SD', measure='centrality', top_genes=5, fontsize=10, color='b', showfig=None, savefig=None, format='pdf', figsize=(5, 4))
+
+   Scatter plot of gene role variation across cell states
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   method: `float` (default: "SD")
+       method to estimate gene role variation across cell states, choose between standard deviation ('SD'),
+       range ('range'), and interquartile range ('inter_range')
+   measure: `float` (default: 'centrality')
+       measure to estimate gene role variation, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
+   top_genes: `int` (default: 5)
+       top genes to annotate
+   fontsize: `int` (default: 10)
+       fontsize of figure
+   color: `str` (default: 'b')
+       color of scatter plot. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (5,4))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: compare_standout_genes(adata, cluster_list=None, top_genes=5, criterium='centrality', panel_height=1.5, panel_length=5, ylabel=False, showfig=None, savefig=None, format='pdf')
+
+   Boxplot to compare the standout genes with state-specific roles across many cell states
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster_list: `str`
+       list of cell states to compare
+   top_genes: `str` (default: 5)
+       number of top genes to consider
+   criterium: `str` (default='centrality')
+       measure to use to evaluate gene role, choose between 'centrality', 'incoming', 'outgoing', 'signaling'
+   panel_height: `float` (default: 1.5)
+       height of each panel (in inches)
+   panel_length: `float` (default: 5)
+       length of each panel (in inches)
+   ylabel: `Bool` (default: False)
+       if True, print label of y-axis
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: umap_scatter(adata, ax=None, order=None, axis=False, fontsize=10, alpha=0.5, show_cluster_center=True, s=2, s_center=50, line_width=0.5, legens_pos=(0.5, 1.2), legend_loc='upper center', ncol=4, figsize=(4, 4), showfig=None, savefig=None, format='pdf')
+
+   2D UMAP plot of the data
+
+   Parameters of matplotlib.pyplot.scatter are explained at:
+   https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   ax: `pyplot axis` or `False` (default: False)
+       if False generate a new figure
+   order: `list` (default: `None`)
+       ordered list of cluster labels in the figure legend, if `None` the order is alphabetical
+   axis: `Bool` (default: False)
+       if true draw axes, otherwise do not show axes
+   fontsize: `int` (default: 10)
+       fontsize of axes and legend labels.
+   alpha: `float` (default=0.5)
+       shading of individual cells between [0,1]
+   show_cluster_center: `Bool` (default: True)
+       if True, plot the center of each cluster
+   s: `int` (default=2)
+       size of individual cells
+   s_center: `int` (default=50)
+       size of cluster center
+   line_width: `float` (default=0.5)
+       line width for cluster centers
+   legens_pos: `tuple` (default: (0.5, 1.2))
+       position of figure legend by axis coordinates. Details on legend location can be found at:
+       https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+   legend_loc: `str` (default='upper center')
+       position of figure legend
+   ncol: `int` (default: 4)
+       number of columns in the figure legend
+   figsize: `tuple` (default: (4,4))
+       size of figure
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: adjecent_grn_score(adata, path, score='AUPRC', edges='all', loc='best', fontsize=10, color='r', errorline_color='b', elinewidth=1, showfig=None, savefig=None, format='pdf', figsize=(5, 3))
+
+   Plot the pairwise GRN similarity between consecitive cell states along a transition
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   path: `list`
+       list of cell states along the transition path
+   score: `str` (default: 'AUPRC')
+       metric to use, choose between 'AUROC' and 'AUPRC'
+   edges: `str` (default: 'all')
+       which edges to consider for similarity, choose between 'all', 'positive', 'negative'
+   loc: `str` (default='best')
+       location of legend. Details on legend location can be found at:
+       https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+   fontsize: `int` (default: 10)
+       fontsize for figure
+   color: `str` (default: 'r')
+       color of plot. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   errorline_color: `str` (default: 'b')
+       color of deviation bars. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   elinewidth: `float` (default: 1)
+       width of deviation bars
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (5,3))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: plot_grn_comparison(adata, score='AUPRC', edges='all', cmap='Reds', title=False, fontsize=10, showfig=None, savefig=None, format='pdf', figsize=(5, 4))
+
+   Plot a heatmap of pairwise similarities between GRNs of different cell states
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   score: `str` (default: 'AUPRC')
+       metric to use, choose between 'AUROC' and 'AUPRC'
+   edges: `str` (default: 'all')
+       which edges to consider for similarity, choose between 'all', 'positive', 'negative'
+   cmap: `pyplot colormap` (default='Reds')
+       colormap to use. A list of accepted colormaps can be found at:
+       https://matplotlib.org/stable/tutorials/colors/colormaps.html
+   title: `str` or `Bool` (default='False')
+       plot title, must be provided as a string
+   fontsize: `int` (default: 10)
+       fontsize for figure
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (5,4))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: plot_setup(adata, cmap=plt.cm.Set2.colors)
+
+   Assign a color to each cluster from a colormap
+   Results are stored in adata.uns['colors']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cmap: `pyplot colormap` (default: plt.cm.Set2.colors)
+       Colormap for cell state. To use another colormap, provide argument following the same syntax:
+       plt.cm. + chosen_colormap + .colors. A list of accepted colormaps can be found at:
+       https://matplotlib.org/stable/tutorials/colors/colormaps.html
+
+   Returns
+   -------
+   None
+
+
+

@@ -1,0 +1,90 @@
+:py:mod:`splicejac.tools.grn_comparison`
+========================================
+
+.. py:module:: splicejac.tools.grn_comparison
+
+.. autoapi-nested-parse::
+
+   functions to quantify grn similarity across cell states
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   splicejac.tools.grn_comparison.edge_detection_score
+   splicejac.tools.grn_comparison.sign_detection_score
+   splicejac.tools.grn_comparison.grn_comparison
+
+
+
+.. py:function:: edge_detection_score(m1, m2)
+
+   Compute AUROC/AUPRC related metrics between matrices m1 and m2 disregarding the interaction signs
+
+   Parameters
+   ----------
+   m1: `~numpy.ndarray`
+       observation matrix
+   m2: `~numpy.ndarray`
+       ground truth matrix
+
+   Returns
+   -------
+   fpr: false positive rate
+   tpr: true positive rate
+   auroc: area under the receiver characteristic curve
+   precision: precision
+   recall: recall
+   auprc: area under the precision recall curve
+
+
+
+.. py:function:: sign_detection_score(m1, m2)
+
+   Compute AUROC/AUPRC related metrics between matrices m1 and m2 when considering the interaction signs
+
+   Parameters
+   ----------
+   m1: observation matrix
+   m2: ground truth matrix
+
+   Returns
+   -------
+   fpr: `float`
+       false positive rate
+   tpr: `float`
+       true positive rate
+   auroc: `float`
+       area under the receiver characteristic curve
+   precision: `float`
+       precision
+   recall: `float`
+       recall
+   auprc: `float`
+       area under the precision recall curve
+
+
+
+.. py:function:: grn_comparison(adata)
+
+   Compute AUROC/AUPRC scores for all pairs of state-specific gene regulatory networks
+   Results are stored in adata.uns['comparison_scores']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+
+   Returns
+   -------
+   None
+
+
+

@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>splicejac.plot &mdash; spliceJAC 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> spliceJAC
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks/GRN%20Inference.html">GRN Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notebooks/Transitions.html">Transitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">spliceJAC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/autoapi/splicejac/plot/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-splicejac.plot">
+<span id="splicejac-plot"></span><h1><a class="reference internal" href="#module-splicejac.plot" title="splicejac.plot"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot</span></code></a><a class="headerlink" href="#module-splicejac.plot" title="Permalink to this headline"></a></h1>
+<p>__init__file for plotting library</p>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gene_variation/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot.gene_variation</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="grn_comparison/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot.grn_comparison</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="grn_plots/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot.grn_plots</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="instability/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot.instability</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="jacobian_visual/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot.jacobian_visual</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotting_util/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot.plotting_util</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="sankey_plots/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot.sankey_plots</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="sensitivity/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot.sensitivity</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="signaling/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot.signaling</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="umap_scatter/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot.umap_scatter</span></code></a></li>
+</ul>
+</div>
+</section>
+<section id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this headline"></a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.visualize_network" title="splicejac.plot.visualize_network"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualize_network</span></code></a>(adata, cluster_name[, genes, cc_id, ...])</p></td>
+<td><p>Plot the gene regulatory network of a cluster</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.diff_network" title="splicejac.plot.diff_network"><code class="xref py py-obj docutils literal notranslate"><span class="pre">diff_network</span></code></a>(adata, cluster1, cluster2[, genes, ...])</p></td>
+<td><p>Plot the differential network between two cell states</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.diff_interactions" title="splicejac.plot.diff_interactions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">diff_interactions</span></code></a>(adata, cluster1, cluster2[, ...])</p></td>
+<td><p>Plot the top differential interactions between two cell states</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.conserved_grn" title="splicejac.plot.conserved_grn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conserved_grn</span></code></a>(adata, cluster1, cluster2[, genes, ...])</p></td>
+<td><p>Plot the conserved network between two cell states</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.top_conserved_int" title="splicejac.plot.top_conserved_int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">top_conserved_int</span></code></a>(adata, cluster1, cluster2[, ...])</p></td>
+<td><p>Plot the top conserved interactions between two cell states</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.core_GRN" title="splicejac.plot.core_GRN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">core_GRN</span></code></a>(adata, cluster1, cluster2[, type_color, ...])</p></td>
+<td><p>Plot a reduced GRN including the top DEG of the starting cluster and the top transition genes</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.bif_GRN" title="splicejac.plot.bif_GRN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bif_GRN</span></code></a>(adata, start, end[, pos_edge_color, ...])</p></td>
+<td><p>Plot the reduced GRN of transition genes involved in different cell state transitions</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.visualize_jacobian" title="splicejac.plot.visualize_jacobian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">visualize_jacobian</span></code></a>(adata[, panel_height, ...])</p></td>
+<td><p>Plot the inferred gene-gene interaction matrices of each cell state</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.eigen_spectrum" title="splicejac.plot.eigen_spectrum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eigen_spectrum</span></code></a>(adata[, panel_height, panel_length, ...])</p></td>
+<td><p>Plot the eigenvalues of each cell state</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.regression_sens" title="splicejac.plot.regression_sens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">regression_sens</span></code></a>(adata[, font_size, legend_font, ...])</p></td>
+<td><p>Plot the summary of spliceJAC inference as a function of regression methods and parameters</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.sampling_sens" title="splicejac.plot.sampling_sens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sampling_sens</span></code></a>(adata[, font_size, legend_font, ...])</p></td>
+<td><p>Plot the summary of spliceJAC inference sensitivity to subsampling of cells in each cell state</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.subsample_stability" title="splicejac.plot.subsample_stability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">subsample_stability</span></code></a>(adata[, font_size, dist_color, ...])</p></td>
+<td><p>Summary plot of the robustness of spliceJAC inference over multiple inferences with a fraction of the total</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.tg_bif_sankey" title="splicejac.plot.tg_bif_sankey"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tg_bif_sankey</span></code></a>(adata, start, end[, gene_colormap, ...])</p></td>
+<td><p>Plot a Sankey diagram of the top transition genes involved in different cell state transitions</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.plot_signaling_hubs" title="splicejac.plot.plot_signaling_hubs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_signaling_hubs</span></code></a>(adata, cluster[, fontsize, ...])</p></td>
+<td><p>Scatterplot of genes based on their signaling scores in a cell state</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.plot_signaling_change" title="splicejac.plot.plot_signaling_change"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_signaling_change</span></code></a>(adata, cluster1, cluster2[, ...])</p></td>
+<td><p>Scatterplot of the gene signaling changes between two cell states</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.plot_trans_genes" title="splicejac.plot.plot_trans_genes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_trans_genes</span></code></a>(adata, cluster1, cluster2[, ...])</p></td>
+<td><p>Plot the top transition genes between two cell states</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.scatter_scores" title="splicejac.plot.scatter_scores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scatter_scores</span></code></a>(adata, cluster1, cluster2[, fontsize, ...])</p></td>
+<td><p>Scatter plot to compare the spliceJAC transition scores with scanpy's DEG scores of the starting cell state</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.compare_scvelo_scores" title="splicejac.plot.compare_scvelo_scores"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_scvelo_scores</span></code></a>(adata[, annotate, top, color, ...])</p></td>
+<td><p>Scatter plots to compare spliceJAC's transition scores with scVelo's gene likelihood scores</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.gene_variation" title="splicejac.plot.gene_variation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gene_variation</span></code></a>(adata[, n_genes, method, measure, ...])</p></td>
+<td><p>Bar plot of gene role variation across cell states</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.gene_var_detail" title="splicejac.plot.gene_var_detail"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gene_var_detail</span></code></a>(adata[, n_genes, select, method, ...])</p></td>
+<td><p>Plot the detailed variation in gene signaling role for the top genes in the dataset</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.gene_var_scatter" title="splicejac.plot.gene_var_scatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gene_var_scatter</span></code></a>(adata[, method, measure, top_genes, ...])</p></td>
+<td><p>Scatter plot of gene role variation across cell states</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.compare_standout_genes" title="splicejac.plot.compare_standout_genes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compare_standout_genes</span></code></a>(adata[, cluster_list, ...])</p></td>
+<td><p>Boxplot to compare the standout genes with state-specific roles across many cell states</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="umap_scatter/index.html#module-splicejac.plot.umap_scatter" title="splicejac.plot.umap_scatter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">umap_scatter</span></code></a></p></td>
+<td><p>functions for umap scatter plot visualization</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.adjecent_grn_score" title="splicejac.plot.adjecent_grn_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjecent_grn_score</span></code></a>(adata, path[, score, edges, loc, ...])</p></td>
+<td><p>Plot the pairwise GRN similarity between consecitive cell states along a transition</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.plot_grn_comparison" title="splicejac.plot.plot_grn_comparison"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_grn_comparison</span></code></a>(adata[, score, edges, cmap, ...])</p></td>
+<td><p>Plot a heatmap of pairwise similarities between GRNs of different cell states</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.plot_setup" title="splicejac.plot.plot_setup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_setup</span></code></a>(adata[, cmap])</p></td>
+<td><p>Assign a color to each cluster from a colormap</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.visualize_network">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">visualize_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cc_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'expression'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'weight'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_interactive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_quantile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'centrality'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spring'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_node_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diff_node_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">600</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos_edge_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neg_edge_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrowsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrow_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.75</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conn_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'straight'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontweight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'normal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(4,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.visualize_network" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the gene regulatory network of a cluster</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster_name: <cite>str</cite></dt><dd><p>cell state</p>
+</dd>
+<dt>genes: <cite>list</cite> (default: <cite>None</cite>)</dt><dd><p>list of genes to include. If None, all genes are included</p>
+</dd>
+<dt>cc_id: <cite>int</cite> (default: 0)</dt><dd><p>connected component of the GRN to plot</p>
+</dd>
+<dt>node_size: <cite>int</cite> or <cite>str</cite> (default: 200)</dt><dd><p>size of nodes. If node_size=’expression’, the node size is scaled based on gene expression.
+Otherwise, node_size can be a fixed integer</p>
+</dd>
+<dt>edge_width: <cite>float</cite> (default: 1)</dt><dd><p>width of connection arrows</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize for node labels.</p>
+</dd>
+<dt>plot_interactive: <cite>Bool</cite> (default=True)</dt><dd><p>plot the GRN interactively in notebook of figure</p>
+</dd>
+<dt>weight_quantile: <cite>float</cite> (default=0.5)</dt><dd><p>threshold to filter weak interactions between 0 and 1</p>
+</dd>
+<dt>node_color: <cite>str</cite> (default: ‘centrality’)</dt><dd><p>color of nodes. If node_color=’centrality’, the color is based on the node centrality.
+Otherwise, a matplotlib color name can be provided. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>pos_style: <cite>str</cite> (default: ‘spring’)</dt><dd><p>position of nodes. The options are ‘spring’ and ‘circle’. ‘spring’ uses the networkx spring position function,
+whereas ‘circle’ arranges the nodes in a circle.</p>
+</dd>
+<dt>title: <cite>Bool</cite> (default=True)</dt><dd><p>if True, plot title</p>
+</dd>
+<dt>base_node_size: <cite>float</cite> (default: 300)</dt><dd><p>Minimum node size (used if node_size=’expression’)</p>
+</dd>
+<dt>diff_node_size: <cite>float</cite> (default: 600)</dt><dd><p>difference between minimum and maximal node size (used if node_size=’expression’)</p>
+</dd>
+<dt>pos_edge_color: <cite>str</cite> (default: ‘b’)</dt><dd><p>color for positive regulation arrow. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>neg_edge_color: <cite>str</cite> (default: ‘r’)</dt><dd><p>color for negative regulation arrow. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>arrowsize: <cite>float</cite> (default: 10)</dt><dd><p>size of interaction arrows</p>
+</dd>
+<dt>arrow_alpha: <cite>float</cite> (default: 0.75)</dt><dd><p>shading of interaction arrows in [0,1]</p>
+</dd>
+<dt>conn_style: <cite>str</cite> (default: ‘straight’)</dt><dd><p>style of interaction arrows. The admissible styles for networkx graphs can be found at:
+<a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html">https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html</a></p>
+</dd>
+<dt>colorbar: <cite>Bool</cite> (default: True)</dt><dd><p>if True, show colorbar (required if node_size=’expression’)</p>
+</dd>
+<dt>fontweight: <cite>str</cite> (default: ‘normal’)</dt><dd><p>style of text. Can select ‘bold’ for bold text.</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (5,4))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.diff_network">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">diff_network</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cc_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'weight'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_quantile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spring'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_node_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diff_node_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">600</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos_edge_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neg_edge_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrowsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrow_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.75</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conn_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'straight'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontweight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'normal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(3.5,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.diff_network" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the differential network between two cell states</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster1: <cite>str</cite></dt><dd><p>first cell state</p>
+</dd>
+<dt>cluster2: <cite>str</cite></dt><dd><p>second cell state</p>
+</dd>
+<dt>genes: <cite>list</cite> (default: <cite>None</cite>)</dt><dd><p>list of genes to include. If None, all genes are included</p>
+</dd>
+<dt>cc_id: <cite>int</cite> (default: 0)</dt><dd><p>connected component of the GRN to plot</p>
+</dd>
+<dt>node_size: <cite>float</cite> (default=500)</dt><dd><p>size of nodes in the GRN</p>
+</dd>
+<dt>edge_width: <cite>float</cite> or <cite>str</cite> (default=’weight’)</dt><dd><p>width of GRN edges. If edge_width=’weight’, the edge width is proportional to the interaction strength.</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize for figure.</p>
+</dd>
+<dt>weight_quantile: <cite>float</cite> (default: 0.5)</dt><dd><p>threshold to filter weak interactions between 0 and 1</p>
+</dd>
+<dt>pos_style: <cite>str</cite> (default: ‘spring’)</dt><dd><p>position of nodes. The options are ‘spring’ and ‘circle’. ‘spring’ uses the networkx spring position function,
+whereas ‘circle’ arranges the nodes in a circle.</p>
+</dd>
+<dt>base_node_size: <cite>float</cite> (default: 300)</dt><dd><p>Minimum node size (used if node_size=’expression’)</p>
+</dd>
+<dt>diff_node_size: <cite>float</cite> (default: 600)</dt><dd><p>difference between minimum and maximal node size (used if node_size=’expression’)</p>
+</dd>
+<dt>pos_edge_color: <cite>str</cite> (default: ‘b’)</dt><dd><p>color for positive regulation arrow. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>neg_edge_color: <cite>str</cite> (default: ‘r’)</dt><dd><p>color for negative regulation arrow. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>arrowsize: <cite>float</cite> (default: 10)</dt><dd><p>size of interaction arrows</p>
+</dd>
+<dt>arrow_alpha: <cite>float</cite> (default: 0.75)</dt><dd><p>shading of interaction arrows in [0,1]</p>
+</dd>
+<dt>conn_style: <cite>str</cite> (default: ‘straight’)</dt><dd><p>style of interaction arrows. The admissible styles for networkx graphs can be found at:
+<a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html">https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html</a></p>
+</dd>
+<dt>colorbar: <cite>Bool</cite> (default: True)</dt><dd><p>if True, show colorbar (required if node_size=’expression’)</p>
+</dd>
+<dt>fontweight: <cite>str</cite> (default: ‘normal’)</dt><dd><p>style of text. Can select ‘bold’ for bold text.</p>
+</dd>
+<dt>title: <cite>Bool</cite> (default: True)</dt><dd><p>if True, plot title</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (3.5,3))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.diff_interactions">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">diff_interactions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_int</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'best'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_col</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(4,</span> <span class="pre">5)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.diff_interactions" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the top differential interactions between two cell states</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster1: <cite>str</cite></dt><dd><p>first cell state</p>
+</dd>
+<dt>cluster2: <cite>str</cite></dt><dd><p>second cell state</p>
+</dd>
+<dt>top_int: <cite>int</cite> (default=10)</dt><dd><p>number of top changed interactions to plot</p>
+</dd>
+<dt>loc: <cite>str</cite> (default=’best’)</dt><dd><p>location of legend. Details on legend location can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html</a></p>
+</dd>
+<dt>title: <cite>Bool</cite> (default: False)</dt><dd><p>if True, plot title</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize for figure.</p>
+</dd>
+<dt>legend_font: <cite>int</cite> (default: 10)</dt><dd><p>fontsize of legend</p>
+</dd>
+<dt>legend_col: <cite>int</cite> (default: 1)</dt><dd><p>number of columns in legend</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (4,5))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.conserved_grn">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">conserved_grn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cc_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'weight'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_quantile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'spring'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_node_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">300</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diff_node_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">600</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos_edge_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neg_edge_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrowsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrow_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.75</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conn_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'straight'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colorbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontweight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'normal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(3.5,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.conserved_grn" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the conserved network between two cell states</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster1: <cite>str</cite></dt><dd><p>first cell state</p>
+</dd>
+<dt>cluster2: <cite>str</cite></dt><dd><p>second cell state</p>
+</dd>
+<dt>genes: <cite>list</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>list of genes to consider. If None, all genes are considered</p>
+</dd>
+<dt>cc_id: <cite>int</cite> (default: 0)</dt><dd><p>connected component of the GRN to plot</p>
+</dd>
+<dt>node_size: <cite>int</cite> (default: 500)</dt><dd><p>size of nodes in the GRN</p>
+</dd>
+<dt>edge_width: <cite>str</cite> or <cite>int</cite> (default: ‘weight’)</dt><dd><p>width of GRN edges. If edge_width=’weight’, the edge width is proportional to the interaction strength.</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize for figure.</p>
+</dd>
+<dt>weight_quantile: <cite>float</cite> (default: 0.5)</dt><dd><p>threshold to filter weak interactions between 0 and 1</p>
+</dd>
+<dt>pos_style: <cite>str</cite> (default: ‘spring’)</dt><dd><p>position of nodes. The options are ‘spring’ and ‘circle’. ‘spring’ uses the networkx spring position function,
+whereas ‘circle’ arranges the nodes in a circle.</p>
+</dd>
+<dt>title: <cite>Bool</cite> (default: True)</dt><dd><p>if True, plot title</p>
+</dd>
+<dt>base_node_size: <cite>float</cite> (default: 300)</dt><dd><p>Minimum node size (used if node_size=’expression’)</p>
+</dd>
+<dt>diff_node_size: <cite>float</cite> (default: 600)</dt><dd><p>difference between minimum and maximal node size (used if node_size=’expression’)</p>
+</dd>
+<dt>pos_edge_color: <cite>str</cite> (default: ‘b’)</dt><dd><p>color for positive regulation arrow. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>neg_edge_color: <cite>str</cite> (default: ‘r’)</dt><dd><p>color for negative regulation arrow. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>arrowsize: <cite>float</cite> (default: 10)</dt><dd><p>size of interaction arrows</p>
+</dd>
+<dt>arrow_alpha: <cite>float</cite> (default: 0.75)</dt><dd><p>shading of interaction arrows in [0,1]</p>
+</dd>
+<dt>conn_style: <cite>str</cite> (default: ‘straight’)</dt><dd><p>style of interaction arrows. The admissible styles for networkx graphs can be found at:
+<a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html">https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html</a></p>
+</dd>
+<dt>colorbar: <cite>Bool</cite> (default: True)</dt><dd><p>if True, show colorbar (required if node_size=’expression’)</p>
+</dd>
+<dt>fontweight: <cite>str</cite> (default: ‘normal’)</dt><dd><p>style of text. Can select ‘bold’ for bold text.</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (3.5,3))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.top_conserved_int">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">top_conserved_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_int</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(4,</span> <span class="pre">5)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.top_conserved_int" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the top conserved interactions between two cell states</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster1: <cite>str</cite></dt><dd><p>first cell state</p>
+</dd>
+<dt>cluster2: <cite>str</cite></dt><dd><p>second cell state</p>
+</dd>
+<dt>top_int: <cite>int</cite> (default=10)</dt><dd><p>number of top chnaged interactions to plot</p>
+</dd>
+<dt>title: <cite>Bool</cite> (default: False)</dt><dd><p>if True, plot title</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize for figure.</p>
+</dd>
+<dt>alpha: <cite>float</cite> (default=0.5)</dt><dd><p>shading of bar plot</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (4,5))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.core_GRN">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">core_GRN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['orange',</span> <span class="pre">'plum',</span> <span class="pre">'yellowgreen']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos_edge_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neg_edge_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrowsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrow_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.75</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conn_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'arc3,</span> <span class="pre">rad=0.1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_ncol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lower</span> <span class="pre">center'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-</span> <span class="pre">1.2,</span> <span class="pre">1.2]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(3,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.core_GRN" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a reduced GRN including the top DEG of the starting cluster and the top transition genes</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster1: <cite>str</cite></dt><dd><p>first cell state</p>
+</dd>
+<dt>cluster2: <cite>str</cite></dt><dd><p>second cell state</p>
+</dd>
+<dt>type_color: <cite>list</cite> (default=[‘orange’, ‘plum’, ‘yellowgreen’])</dt><dd><p>colors for nodes that are DEG, transition genes and both. A list of accepted colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>pos_edge_color: <cite>str</cite> (default: ‘b’)</dt><dd><p>color for positive regulation arrow. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>neg_edge_color: <cite>str</cite> (default: ‘r’)</dt><dd><p>color for negative regulation arrow. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>node_size: ‘int’ (default: 500)</dt><dd><p>size of nodes</p>
+</dd>
+<dt>node_alpha: <cite>float</cite> (default: 0.5)</dt><dd><p>shading of nodes</p>
+</dd>
+<dt>arrowsize: <cite>float</cite> (default: 10)</dt><dd><p>size of interaction arrows</p>
+</dd>
+<dt>arrow_alpha: <cite>float</cite> (default: 0.75)</dt><dd><p>shading of interaction arrows in [0,1]</p>
+</dd>
+<dt>conn_style: <cite>str</cite> (default: ‘arc3, rad=0.1’)</dt><dd><p>style of interaction arrows. The admissible styles for networkx graphs can be found at:
+<a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html">https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html</a></p>
+</dd>
+<dt>node_font: <cite>int</cite> (default: 8)</dt><dd><p>fontsize for node labels.</p>
+</dd>
+<dt>legend: <cite>Bool</cite> (default=True)</dt><dd><p>if True, include legend</p>
+</dd>
+<dt>legend_font: <cite>int</cite> (default=10)</dt><dd><p>font size for legend</p>
+</dd>
+<dt>legend_ncol: <cite>int</cite> (default=2)</dt><dd><p>number of columns in legend</p>
+</dd>
+<dt>legend_loc: <cite>str</cite> (default: ‘lower center’)</dt><dd><p>legend location.  Details on legend location can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html</a></p>
+</dd>
+<dt>axis: <cite>Bool</cite> (default=False)</dt><dd><p>if True, plot axes</p>
+</dd>
+<dt>xlim: <cite>list</cite> (default=[-1.2, 1.2])</dt><dd><p>inteval on x-axis</p>
+</dd>
+<dt>ylim: <cite>list</cite> or <cite>None</cite> (default=None)</dt><dd><p>inteval on y-axis</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (3,3))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.bif_GRN">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">bif_GRN</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos_edge_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">neg_edge_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">750</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrowsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrow_alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.75</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arrowstyle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'arc3,</span> <span class="pre">rad=0.1'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_ncol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lower</span> <span class="pre">center'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-</span> <span class="pre">1.2,</span> <span class="pre">1.2]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(6,</span> <span class="pre">6)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.bif_GRN" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the reduced GRN of transition genes involved in different cell state transitions</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>start: <cite>str</cite></dt><dd><p>starting cell state</p>
+</dd>
+<dt>end: <cite>list</cite></dt><dd><p>list of ending cell states</p>
+</dd>
+<dt>pos_edge_color: <cite>str</cite> (default: ‘b’)</dt><dd><p>color for positive regulation arrow. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>neg_edge_color: <cite>str</cite> (default: ‘r’)</dt><dd><p>color for negative regulation arrow. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>node_size: <cite>int</cite> (default: 500)</dt><dd><p>size of nodes</p>
+</dd>
+<dt>node_alpha: <cite>float</cite> (default: 0.5)</dt><dd><p>shading of nodes</p>
+</dd>
+<dt>arrowsize: <cite>float</cite> (default: 10)</dt><dd><p>size of interaction arrows</p>
+</dd>
+<dt>arrow_alpha: <cite>float</cite> (default: 0.75)</dt><dd><p>shading of interaction arrows in [0,1]</p>
+</dd>
+<dt>conn_style: <cite>str</cite> (default: ‘arc3, rad=0.1’)</dt><dd><p>style of interaction arrows. The admissible styles for networkx graphs can be found at:
+<a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html">https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html</a></p>
+</dd>
+<dt>node_font: <cite>int</cite> (default=8)</dt><dd><p>font size of node labels</p>
+</dd>
+<dt>legend: <cite>Bool</cite> (default=True)</dt><dd><p>if True, include legend</p>
+</dd>
+<dt>legend_font: <cite>int</cite> (default=10)</dt><dd><p>font size for legend</p>
+</dd>
+<dt>legend_ncol: <cite>int</cite> (default=2)</dt><dd><p>number of columns in legend</p>
+</dd>
+<dt>legend_loc: <cite>str</cite> (default=’lower center’)</dt><dd><p>legend location.  Details on legend location can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html</a></p>
+</dd>
+<dt>axis: <cite>Bool</cite> (default=False)</dt><dd><p>if True, plot axes</p>
+</dd>
+<dt>xlim: <cite>list</cite> (default=[-1.2, 1.2])</dt><dd><p>inteval on x-axis</p>
+</dd>
+<dt>ylim: <cite>list</cite> or <cite>None</cite> (default=None)</dt><dd><p>inteval on y-axis</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (6,6))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.visualize_jacobian">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">visualize_jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pan_per_row</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RdBu_r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.visualize_jacobian" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the inferred gene-gene interaction matrices of each cell state</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>panel_height: <cite>float</cite> (default: 3)</dt><dd><p>height of each panel (in inches)</p>
+</dd>
+<dt>panel_length: <cite>float</cite> (default: 3.5)</dt><dd><p>length of each panel (in inches)</p>
+</dd>
+<dt>pan_per_row: <cite>int</cite> (default: 4)</dt><dd><p>number of panels per row</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize for labels</p>
+</dd>
+<dt>cmap: <cite>str</cite> (default: ‘RdBu_r’)</dt><dd><p>colormap for Jacobian visualization. Accepted colormaps ca be found at:
+<a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a></p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.eigen_spectrum">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">eigen_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pan_per_row</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_frac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lower</span> <span class="pre">right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_zero</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.eigen_spectrum" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the eigenvalues of each cell state</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>panel_height: <cite>float</cite> (default: 3)</dt><dd><p>height of each panel (in inches)</p>
+</dd>
+<dt>panel_length: <cite>float</cite> (default: 3.5)</dt><dd><p>length of each panel (in inches)</p>
+</dd>
+<dt>pan_per_row: <cite>int</cite> (default: 4)</dt><dd><p>number of panels per row</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize for labels</p>
+</dd>
+<dt>show_frac: <cite>Bool</cite> (default: True)</dt><dd><p>show legend with fraction of positive eigenvalues</p>
+</dd>
+<dt>loc: <cite>str</cite> (default: ‘lower right’)</dt><dd><p>location of legend. Accepted legend positions can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html</a></p>
+</dd>
+<dt>show_zero: <cite>Bool</cite> (default: True)</dt><dd><p>plot horizontal line to highlight change of sign</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.regression_sens">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">regression_sens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'best'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.regression_sens" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the summary of spliceJAC inference as a function of regression methods and parameters</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>font_size: <cite>int</cite> (default: 10)</dt><dd><p>fontsize of axes and legend labels</p>
+</dd>
+<dt>legend_font: <cite>int</cite> (default=12)</dt><dd><p>font size of legend</p>
+</dd>
+<dt>title_font: <cite>int</cite> (default=12)</dt><dd><p>font size of title</p>
+</dd>
+<dt>legend_loc: <cite>str</cite> (default=’best’)</dt><dd><p>legend location</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (12,4))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.sampling_sens">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">sampling_sens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'best'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.sampling_sens" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the summary of spliceJAC inference sensitivity to subsampling of cells in each cell state</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>font_size: <cite>int</cite> (default: 10)</dt><dd><p>fontsize of axes and legend labels</p>
+</dd>
+<dt>legend_font: <cite>int</cite> (default=10)</dt><dd><p>font size of legend</p>
+</dd>
+<dt>legend_loc: <cite>str</cite> (default=’best’)</dt><dd><p>legend location</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (12,4))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.subsample_stability">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">subsample_stability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'firebrick'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sign_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'seagreen'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eig_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mediumturquoise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(12,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.subsample_stability" title="Permalink to this definition"></a></dt>
+<dd><p>Summary plot of the robustness of spliceJAC inference over multiple inferences with a fraction of the total
+number of cells in each cell state</p>
+<p>Details on accepted colors for pyplot boxplot can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>font_size: <cite>int</cite> (default: 10)</dt><dd><p>fontsize of axes and legend labels</p>
+</dd>
+<dt>dist_color: <cite>str</cite> (default: ‘firebrick’)</dt><dd><p>face color for jacobian distance boxplot</p>
+</dd>
+<dt>sign_color: <cite>str</cite> (default: ‘seagreen’)</dt><dd><p>face color for wrong sign boxplot</p>
+</dd>
+<dt>eig_color: <cite>str</cite> (default: ‘mediumturquoise’)</dt><dd><p>face color for positive eigenvalues boxplot</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (12,4))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.tg_bif_sankey">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">tg_bif_sankey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_colormap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">plt.cm.Set3.colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">400</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">600</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">40</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.tg_bif_sankey" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a Sankey diagram of the top transition genes involved in different cell state transitions</p>
+<p>More details about static export of images in python can be found at: <a class="reference external" href="https://plotly.com/python/static-image-export/">https://plotly.com/python/static-image-export/</a>
+More details about the arguments of plotly objects can be fount at: <a class="reference external" href="https://plotly.com/python/graph-objects/">https://plotly.com/python/graph-objects/</a></p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>start: <cite>str</cite></dt><dd><p>starting cell state</p>
+</dd>
+<dt>end: <cite>list</cite></dt><dd><p>list of final cell states</p>
+</dd>
+<dt>gene_colormap: <cite>pyplot colormap</cite> (default: plt.cm.Set3.colors)</dt><dd><p>Colormap for transition genes on the left side of the Sankey diagram. To use another colormap, provide argument
+following the same syntax: plt.cm. + chosen_colormap + .colors. A list of accepted colormaps can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a></p>
+</dd>
+<dt>width: <cite>int</cite> (default=400)</dt><dd><p>width of plotly figure</p>
+</dd>
+<dt>height: <cite>int</cite> (default=600)</dt><dd><p>height of plotly figure</p>
+</dd>
+<dt>font_size: <cite>int</cite> (default: 15)</dt><dd><p>font size of figure</p>
+</dd>
+<dt>pad: <cite>float</cite> (default: 0)</dt><dd><p>vertical gap between nodes of the Sankey plot</p>
+</dd>
+<dt>thickness: <cite>float</cite> (default: 40)</dt><dd><p>line thickness of the Sankey plot</p>
+</dd>
+<dt>label_columns: <cite>Bool</cite> (default=True)</dt><dd><p>if True, label the diagram columns</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> (default=True)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default=None)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default=’pdf’)</dt><dd><p>format of saved figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.plot_signaling_hubs">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">plot_signaling_hubs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_top_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterium</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'weights'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Reds'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(3.5,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.plot_signaling_hubs" title="Permalink to this definition"></a></dt>
+<dd><p>Scatterplot of genes based on their signaling scores in a cell state</p>
+<p>Parameters of matplotlib.pyplot.scatter are explained at:
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html</a></p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster: <cite>str</cite></dt><dd><p>cell state</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default=10)</dt><dd><p>fontsize of figure</p>
+</dd>
+<dt>top_genes: <cite>int</cite> (default=5)</dt><dd><p>number of top genes to label with gene name</p>
+</dd>
+<dt>line_width: <cite>float</cite> (default=0.5)</dt><dd><p>line width for scatter plot</p>
+</dd>
+<dt>show_top_genes: <cite>Bool</cite> (default=True)</dt><dd><p>if True, annotate the top genes</p>
+</dd>
+<dt>criterium: <cite>str</cite> (default=’weights’)</dt><dd><p>criterium to rank top genes. “weights” ranks genes based on the weighted edges of the cell state GRN,
+“edges” ranks genes based on the number of edges</p>
+</dd>
+<dt>cmap: <cite>str</cite> (default: ‘Reds’)</dt><dd><p>the pyplot colormap for the scatter plot. A list of accepted color maps can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a></p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>format of saved figure</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default:(3.5,3))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.plot_signaling_change">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">plot_signaling_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_top_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterium</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'weights'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logscale_fc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_shift</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'coolwarm'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(3.5,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.plot_signaling_change" title="Permalink to this definition"></a></dt>
+<dd><p>Scatterplot of the gene signaling changes between two cell states</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster1: <cite>str</cite></dt><dd><p>first cell state</p>
+</dd>
+<dt>cluster2: <cite>str</cite></dt><dd><p>second cell state</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default=10)</dt><dd><p>fontsize of figure</p>
+</dd>
+<dt>top_genes: <cite>int</cite> (default=10)</dt><dd><p>number of top genes to label with gene name</p>
+</dd>
+<dt>show_top_genes: <cite>Bool</cite> (default=True)</dt><dd><p>if True, annotate the top genes</p>
+</dd>
+<dt>criterium: <cite>str</cite> (default=’weights’)</dt><dd><p>criterium to rank top genes. “weights” ranks genes based on the weighted edges of the cell state GRN,
+“edges” ranks genes based on the number of edges</p>
+</dd>
+<dt>logscale_fc: <cite>Bool</cite> (default=True)</dt><dd><p>if True, rescale signaling change scores to logarithmic scale</p>
+</dd>
+<dt>x_shift: <cite>float</cite> (default: 0.05)</dt><dd><p>displacement on x-axis for gene annotations</p>
+</dd>
+<dt>y_shift: <cite>float</cite> (default: 0.05)</dt><dd><p>displacement on y-axis for gene annotations</p>
+</dd>
+<dt>cmap: <cite>str</cite> (default: ‘coolwarm’)</dt><dd><p>the pyplot colormap for the scatter plot. A list of accepted color maps can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a></p>
+</dd>
+<dt>line_width: <cite>float</cite> (default=0.5)</dt><dd><p>line width for scatter plot</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>format of saved figure</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default:(3.5,3))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.plot_trans_genes">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">plot_trans_genes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_trans_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(3,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.plot_trans_genes" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the top transition genes between two cell states</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster1: <cite>str</cite></dt><dd><p>starting cell state</p>
+</dd>
+<dt>cluster2: <cite>str</cite></dt><dd><p>final cell state</p>
+</dd>
+<dt>top_trans_genes: <cite>int</cite> (default: 10)</dt><dd><p>top genes to include in the bar plot</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize for labels</p>
+</dd>
+<dt>color: <cite>str</cite> (default: ‘r’)</dt><dd><p>color for bar plot. A list of named pyplot colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>alpha: <cite>float</cite> (default=0.5)</dt><dd><p>shading for bar plot in [0,1]</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (3,3))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.scatter_scores">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">scatter_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(3,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.scatter_scores" title="Permalink to this definition"></a></dt>
+<dd><p>Scatter plot to compare the spliceJAC transition scores with scanpy’s DEG scores of the starting cell state</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster1: <cite>str</cite></dt><dd><p>starting cell state</p>
+</dd>
+<dt>cluster2: <cite>str</cite></dt><dd><p>final cell state</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize for labels</p>
+</dd>
+<dt>color: <cite>str</cite> (default: ‘b’)</dt><dd><p>color for scatter plot. A list of named pyplot colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (3,3))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.compare_scvelo_scores">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">compare_scvelo_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pan_per_row</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.compare_scvelo_scores" title="Permalink to this definition"></a></dt>
+<dd><p>Scatter plots to compare spliceJAC’s transition scores with scVelo’s gene likelihood scores</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>annotate: <cite>Bool</cite> (default=True)</dt><dd><p>if True, annotate the genes with highest sum of scores</p>
+</dd>
+<dt>top: <cite>int</cite> (default=5)</dt><dd><p>number of top genes to annotate</p>
+</dd>
+<dt>color: <cite>str</cite> (default: ‘b’)</dt><dd><p>color for scatter plot. A list of named pyplot colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>panel_height: <cite>float</cite> (default: 3)</dt><dd><p>height of each panel (in inches)</p>
+</dd>
+<dt>panel_length: <cite>float</cite> (default: 3.5)</dt><dd><p>length of each panel (in inches)</p>
+</dd>
+<dt>pan_per_row: <cite>int</cite> (default: 4)</dt><dd><p>number of panels per row</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize for labels</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.gene_variation">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">gene_variation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SD'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'centrality'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bar_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'paleturquoise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mediumturquoise'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_label_rot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">90</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(6,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.gene_variation" title="Permalink to this definition"></a></dt>
+<dd><p>Bar plot of gene role variation across cell states</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>n_genes: <cite>str</cite> or <cite>int</cite> (default n_genes=’all’)</dt><dd><p>number of genes to consider. If an integer (n) is provided, the top n genes are selected.
+Otherwise, all genes are used if n_genes=’all’</p>
+</dd>
+<dt>method: <cite>float</cite> (default: “SD”)</dt><dd><p>method to estimate gene role variation across cell states, choose between standard deviation (‘SD’),
+range (‘range’), and interquartile range (‘inter_range’)</p>
+</dd>
+<dt>measure: <cite>float</cite> (default: ‘centrality’)</dt><dd><p>measure to estimate gene role variation, choose between ‘centrality’, ‘incoming’, ‘outgoing’, ‘signaling’</p>
+</dd>
+<dt>bar_color: <cite>str</cite> (default: ‘paleturquoise’)</dt><dd><p>color for bar plot. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>alpha: <cite>float</cite> (default: 1)</dt><dd><p>shading of bar plot between 0 and 1</p>
+</dd>
+<dt>edge_color: <cite>str</cite> (default: ‘paleturquoise’)</dt><dd><p>edge color for bar plot. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>edge_width: <cite>float</cite> (default: 1)</dt><dd><p>edge width for bar plot</p>
+</dd>
+<dt>gene_label_rot: <cite>int</cite> (default: 90)</dt><dd><p>rotation of labels on x-axis</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize of figure</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (6,3))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.gene_var_detail">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">gene_var_detail</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">select</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'top'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SD'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'centrality'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'best'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gene_label_rot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">45</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.gene_var_detail" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the detailed variation in gene signaling role for the top genes in the dataset</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>n_genes: <cite>int</cite> (default:5)</dt><dd><p>number of top genes</p>
+</dd>
+<dt>select: <cite>str</cite> (default: ‘top’)</dt><dd><p>choose to select genes with larger variation between cell states (select=’top’)
+or small variation (select=’bottom’)</p>
+</dd>
+<dt>method: <cite>float</cite> (default: “SD”)</dt><dd><p>method to estimate gene role variation across cell states, choose between standard deviation (‘SD’),
+range (‘range’), and interquartile range (‘inter_range’)</p>
+</dd>
+<dt>measure: <cite>float</cite> (default: ‘centrality’)</dt><dd><p>measure to estimate gene role variation, choose between ‘centrality’, ‘incoming’, ‘outgoing’, ‘signaling’</p>
+</dd>
+<dt>legend_loc: <cite>str</cite> (default: ‘best’)</dt><dd><p>legend location.  Details on legend location can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html</a></p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize of figure</p>
+</dd>
+<dt>legend: <cite>Bool</cite> (default: True)</dt><dd><p>if True, include legend</p>
+</dd>
+<dt>legend_font: <cite>int</cite> (default: 10)</dt><dd><p>font of legend</p>
+</dd>
+<dt>gene_label_rot: <cite>int</cite> (default: 45)</dt><dd><p>rotation of labels on x-axis</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (5,4))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.gene_var_scatter">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">gene_var_scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SD'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">measure</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'centrality'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.gene_var_scatter" title="Permalink to this definition"></a></dt>
+<dd><p>Scatter plot of gene role variation across cell states</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>method: <cite>float</cite> (default: “SD”)</dt><dd><p>method to estimate gene role variation across cell states, choose between standard deviation (‘SD’),
+range (‘range’), and interquartile range (‘inter_range’)</p>
+</dd>
+<dt>measure: <cite>float</cite> (default: ‘centrality’)</dt><dd><p>measure to estimate gene role variation, choose between ‘centrality’, ‘incoming’, ‘outgoing’, ‘signaling’</p>
+</dd>
+<dt>top_genes: <cite>int</cite> (default: 5)</dt><dd><p>top genes to annotate</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize of figure</p>
+</dd>
+<dt>color: <cite>str</cite> (default: ‘b’)</dt><dd><p>color of scatter plot. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (5,4))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.compare_standout_genes">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">compare_standout_genes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterium</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'centrality'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">panel_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.compare_standout_genes" title="Permalink to this definition"></a></dt>
+<dd><p>Boxplot to compare the standout genes with state-specific roles across many cell states</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cluster_list: <cite>str</cite></dt><dd><p>list of cell states to compare</p>
+</dd>
+<dt>top_genes: <cite>str</cite> (default: 5)</dt><dd><p>number of top genes to consider</p>
+</dd>
+<dt>criterium: <cite>str</cite> (default=’centrality’)</dt><dd><p>measure to use to evaluate gene role, choose between ‘centrality’, ‘incoming’, ‘outgoing’, ‘signaling’</p>
+</dd>
+<dt>panel_height: <cite>float</cite> (default: 1.5)</dt><dd><p>height of each panel (in inches)</p>
+</dd>
+<dt>panel_length: <cite>float</cite> (default: 5)</dt><dd><p>length of each panel (in inches)</p>
+</dd>
+<dt>ylabel: <cite>Bool</cite> (default: False)</dt><dd><p>if True, print label of y-axis</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.umap_scatter">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">umap_scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_cluster_center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s_center</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legens_pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.5,</span> <span class="pre">1.2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'upper</span> <span class="pre">center'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(4,</span> <span class="pre">4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.umap_scatter" title="Permalink to this definition"></a></dt>
+<dd><p>2D UMAP plot of the data</p>
+<p>Parameters of matplotlib.pyplot.scatter are explained at:
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html</a></p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>ax: <cite>pyplot axis</cite> or <cite>False</cite> (default: False)</dt><dd><p>if False generate a new figure</p>
+</dd>
+<dt>order: <cite>list</cite> (default: <cite>None</cite>)</dt><dd><p>ordered list of cluster labels in the figure legend, if <cite>None</cite> the order is alphabetical</p>
+</dd>
+<dt>axis: <cite>Bool</cite> (default: False)</dt><dd><p>if true draw axes, otherwise do not show axes</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize of axes and legend labels.</p>
+</dd>
+<dt>alpha: <cite>float</cite> (default=0.5)</dt><dd><p>shading of individual cells between [0,1]</p>
+</dd>
+<dt>show_cluster_center: <cite>Bool</cite> (default: True)</dt><dd><p>if True, plot the center of each cluster</p>
+</dd>
+<dt>s: <cite>int</cite> (default=2)</dt><dd><p>size of individual cells</p>
+</dd>
+<dt>s_center: <cite>int</cite> (default=50)</dt><dd><p>size of cluster center</p>
+</dd>
+<dt>line_width: <cite>float</cite> (default=0.5)</dt><dd><p>line width for cluster centers</p>
+</dd>
+<dt>legens_pos: <cite>tuple</cite> (default: (0.5, 1.2))</dt><dd><p>position of figure legend by axis coordinates. Details on legend location can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html</a></p>
+</dd>
+<dt>legend_loc: <cite>str</cite> (default=’upper center’)</dt><dd><p>position of figure legend</p>
+</dd>
+<dt>ncol: <cite>int</cite> (default: 4)</dt><dd><p>number of columns in the figure legend</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (4,4))</dt><dd><p>size of figure</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.adjecent_grn_score">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">adjecent_grn_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AUPRC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'best'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errorline_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elinewidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.adjecent_grn_score" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the pairwise GRN similarity between consecitive cell states along a transition</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>path: <cite>list</cite></dt><dd><p>list of cell states along the transition path</p>
+</dd>
+<dt>score: <cite>str</cite> (default: ‘AUPRC’)</dt><dd><p>metric to use, choose between ‘AUROC’ and ‘AUPRC’</p>
+</dd>
+<dt>edges: <cite>str</cite> (default: ‘all’)</dt><dd><p>which edges to consider for similarity, choose between ‘all’, ‘positive’, ‘negative’</p>
+</dd>
+<dt>loc: <cite>str</cite> (default=’best’)</dt><dd><p>location of legend. Details on legend location can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html</a></p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize for figure</p>
+</dd>
+<dt>color: <cite>str</cite> (default: ‘r’)</dt><dd><p>color of plot. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>errorline_color: <cite>str</cite> (default: ‘b’)</dt><dd><p>color of deviation bars. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>elinewidth: <cite>float</cite> (default: 1)</dt><dd><p>width of deviation bars</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (5,3))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.plot_grn_comparison">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">plot_grn_comparison</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AUPRC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Reds'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.plot_grn_comparison" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a heatmap of pairwise similarities between GRNs of different cell states</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>score: <cite>str</cite> (default: ‘AUPRC’)</dt><dd><p>metric to use, choose between ‘AUROC’ and ‘AUPRC’</p>
+</dd>
+<dt>edges: <cite>str</cite> (default: ‘all’)</dt><dd><p>which edges to consider for similarity, choose between ‘all’, ‘positive’, ‘negative’</p>
+</dd>
+<dt>cmap: <cite>pyplot colormap</cite> (default=’Reds’)</dt><dd><p>colormap to use. A list of accepted colormaps can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a></p>
+</dd>
+<dt>title: <cite>str</cite> or <cite>Bool</cite> (default=’False’)</dt><dd><p>plot title, must be provided as a string</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize for figure</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (5,4))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.plot_setup">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.</span></span><span class="sig-name descname"><span class="pre">plot_setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">plt.cm.Set2.colors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.plot_setup" title="Permalink to this definition"></a></dt>
+<dd><p>Assign a color to each cluster from a colormap
+Results are stored in adata.uns[‘colors’]</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>cmap: <cite>pyplot colormap</cite> (default: plt.cm.Set2.colors)</dt><dd><p>Colormap for cell state. To use another colormap, provide argument following the same syntax:
+plt.cm. + chosen_colormap + .colors. A list of accepted colormaps can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a></p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Federico Bocci.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+:py:mod:`splicejac.tools.subsampling_sens`
+==========================================
+
+.. py:module:: splicejac.tools.subsampling_sens
+
+.. autoapi-nested-parse::
+
+   test the inference sensitivity to cell subsampling
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   splicejac.tools.subsampling_sens.count_sign_change
+   splicejac.tools.subsampling_sens.mat_distance
+   splicejac.tools.subsampling_sens.count_weight_sign
+   splicejac.tools.subsampling_sens.test_sub_sampling
+   splicejac.tools.subsampling_sens.subsampling_sens
+
+
+
+.. py:function:: count_sign_change(v1, v2)
+
+   Count the number of sign changes between two matrices
+
+   Parameters
+   ----------
+   v1: `~numpy.ndarray`
+       matrix 1
+   v2: `~numpy.ndarray`
+       matrix 2
+
+   Returns
+   -------
+   sign_frac: `float`
+       fraction of changed signs
+
+
+
+.. py:function:: mat_distance(v1, v2)
+
+   Compute the distance between two matrices by summing element-wise difference
+
+   Parameters
+   ----------
+   v1: `~numpy.ndarray`
+       matrix 1
+   v2: `~numpy.ndarray`
+       matrix 2
+
+   Returns
+   -------
+   mat_dist: `float`
+       matrix distance normalized by number of elements
+
+
+
+.. py:function:: count_weight_sign(v1, v2)
+
+   Computes the distance between two matrices by summing element-wise difference
+
+   Parameters
+   ----------
+   v1: `~numpy.ndarray`
+       matrix 1
+   v2: `~numpy.ndarray`
+       matrix 2
+
+   Returns
+   -------
+   elem_dist: `~numpy.ndarray`
+       matrix distance normalized by number of elements
+
+
+
+.. py:function:: test_sub_sampling(adata, cluster, frac, nsim=10)
+
+   Test the inference of gene-gene interaction matrix with subsampling for a cluster
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   cluster: `str`
+       cluster selected for inference
+   frac: `float`
+       fraction of cells to randomly select between [0,1]
+   nsim: `int` (default: 10)
+       number of independent simulations
+
+   Returns
+   -------
+   sign_frac: `~numpy.ndarray`
+       fraction of correct signs
+   dist: `~numpy.ndarray`
+       distance between reference gene-gene interaction matrix and inferred matrix using only a fraction of cells
+   weight_sign: `~numpy.ndarray`
+       distance based on weighted sum of correct signs
+
+
+
+.. py:function:: subsampling_sens(adata, frac=np.arange(0.1, 0.91, 0.1), seed=100, nsim=10)
+
+   Test the inference of gene-gene interaction matrix as a function of fraction of selected cells
+   Results are stored in adata.uns['sens_summary']
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   frac: `~numpy.ndarray` (default: numpy.arange(0.1, 0.91, 0.1))
+       fraction of cells to randomly select
+   seed: `int` (default=100)
+       seed for random cell selection for reproducibility
+   nsim: `int` (default: 10)
+       number of independent simulations
+
+   Returns
+   -------
+   None
+
+
+

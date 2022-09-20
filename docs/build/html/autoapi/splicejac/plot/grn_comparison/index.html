@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>splicejac.plot.grn_comparison &mdash; spliceJAC 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> spliceJAC
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks/GRN%20Inference.html">GRN Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks/Transitions.html">Transitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">spliceJAC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot.grn_comparison</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/splicejac/plot/grn_comparison/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-splicejac.plot.grn_comparison">
+<span id="splicejac-plot-grn-comparison"></span><h1><a class="reference internal" href="#module-splicejac.plot.grn_comparison" title="splicejac.plot.grn_comparison"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.plot.grn_comparison</span></code></a><a class="headerlink" href="#module-splicejac.plot.grn_comparison" title="Permalink to this headline"></a></h1>
+<p>functions to quantitatively compare GRNs across cell states</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.plot.grn_comparison.plot_grn_comparison" title="splicejac.plot.grn_comparison.plot_grn_comparison"><code class="xref py py-obj docutils literal notranslate"><span class="pre">plot_grn_comparison</span></code></a>(adata[, score, edges, cmap, ...])</p></td>
+<td><p>Plot a heatmap of pairwise similarities between GRNs of different cell states</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.plot.grn_comparison.adjecent_grn_score" title="splicejac.plot.grn_comparison.adjecent_grn_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adjecent_grn_score</span></code></a>(adata, path[, score, edges, loc, ...])</p></td>
+<td><p>Plot the pairwise GRN similarity between consecitive cell states along a transition</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.grn_comparison.plot_grn_comparison">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.grn_comparison.</span></span><span class="sig-name descname"><span class="pre">plot_grn_comparison</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AUPRC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Reds'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">4)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.grn_comparison.plot_grn_comparison" title="Permalink to this definition"></a></dt>
+<dd><p>Plot a heatmap of pairwise similarities between GRNs of different cell states</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>score: <cite>str</cite> (default: ‘AUPRC’)</dt><dd><p>metric to use, choose between ‘AUROC’ and ‘AUPRC’</p>
+</dd>
+<dt>edges: <cite>str</cite> (default: ‘all’)</dt><dd><p>which edges to consider for similarity, choose between ‘all’, ‘positive’, ‘negative’</p>
+</dd>
+<dt>cmap: <cite>pyplot colormap</cite> (default=’Reds’)</dt><dd><p>colormap to use. A list of accepted colormaps can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/tutorials/colors/colormaps.html">https://matplotlib.org/stable/tutorials/colors/colormaps.html</a></p>
+</dd>
+<dt>title: <cite>str</cite> or <cite>Bool</cite> (default=’False’)</dt><dd><p>plot title, must be provided as a string</p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize for figure</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (5,4))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.plot.grn_comparison.adjecent_grn_score">
+<span class="sig-prename descclassname"><span class="pre">splicejac.plot.grn_comparison.</span></span><span class="sig-name descname"><span class="pre">adjecent_grn_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'AUPRC'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'best'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errorline_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'b'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elinewidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showfig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savefig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">3)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.plot.grn_comparison.adjecent_grn_score" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the pairwise GRN similarity between consecitive cell states along a transition</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>path: <cite>list</cite></dt><dd><p>list of cell states along the transition path</p>
+</dd>
+<dt>score: <cite>str</cite> (default: ‘AUPRC’)</dt><dd><p>metric to use, choose between ‘AUROC’ and ‘AUPRC’</p>
+</dd>
+<dt>edges: <cite>str</cite> (default: ‘all’)</dt><dd><p>which edges to consider for similarity, choose between ‘all’, ‘positive’, ‘negative’</p>
+</dd>
+<dt>loc: <cite>str</cite> (default=’best’)</dt><dd><p>location of legend. Details on legend location can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html">https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html</a></p>
+</dd>
+<dt>fontsize: <cite>int</cite> (default: 10)</dt><dd><p>fontsize for figure</p>
+</dd>
+<dt>color: <cite>str</cite> (default: ‘r’)</dt><dd><p>color of plot. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>errorline_color: <cite>str</cite> (default: ‘b’)</dt><dd><p>color of deviation bars. A full list of accepted named colors can be found at:
+<a class="reference external" href="https://matplotlib.org/stable/gallery/color/named_colors.html">https://matplotlib.org/stable/gallery/color/named_colors.html</a></p>
+</dd>
+<dt>elinewidth: <cite>float</cite> (default: 1)</dt><dd><p>width of deviation bars</p>
+</dd>
+<dt>showfig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, show the figure</p>
+</dd>
+<dt>savefig: <cite>Bool</cite> or <cite>None</cite> (default: <cite>None</cite>)</dt><dd><p>if True, save the figure using the savefig path</p>
+</dd>
+<dt>format: <cite>str</cite> (default: ‘pdf’)</dt><dd><p>figure format</p>
+</dd>
+<dt>figsize: <cite>tuple</cite> (default: (5,3))</dt><dd><p>size of figure</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Federico Bocci.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>splicejac.tools.estimate_jacobian &mdash; spliceJAC 0.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> spliceJAC
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks/GRN%20Inference.html">GRN Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../notebooks/Transitions.html">Transitions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">spliceJAC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.tools.estimate_jacobian</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/autoapi/splicejac/tools/estimate_jacobian/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-splicejac.tools.estimate_jacobian">
+<span id="splicejac-tools-estimate-jacobian"></span><h1><a class="reference internal" href="../index.html#splicejac.tools.estimate_jacobian" title="splicejac.tools.estimate_jacobian"><code class="xref py py-mod docutils literal notranslate"><span class="pre">splicejac.tools.estimate_jacobian</span></code></a><a class="headerlink" href="#module-splicejac.tools.estimate_jacobian" title="Permalink to this headline"></a></h1>
+<p>tools for jacobian inference</p>
+<section id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline"></a></h2>
+<section id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.tools.estimate_jacobian.initial_check" title="splicejac.tools.estimate_jacobian.initial_check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">initial_check</span></code></a>(adata, frac, n_top_genes)</p></td>
+<td><p>Check that the selected number of genes (n_top_genes) does not exceed the number of observables</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.tools.estimate_jacobian.rescale_counts" title="splicejac.tools.estimate_jacobian.rescale_counts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rescale_counts</span></code></a>(mat)</p></td>
+<td><p>Rescale count of each gene to a zero mean</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.tools.estimate_jacobian.quick_regression" title="splicejac.tools.estimate_jacobian.quick_regression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">quick_regression</span></code></a>(adata[, first_moment, method, alpha, ...])</p></td>
+<td><p>Run a single cluster-wise regression using all cells in each cluster</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.tools.estimate_jacobian.long_regression" title="splicejac.tools.estimate_jacobian.long_regression"><code class="xref py py-obj docutils literal notranslate"><span class="pre">long_regression</span></code></a>(adata[, first_moment, method, alpha, ...])</p></td>
+<td><p>Run cluster-wise Jacobian regression multiple times with a randomly-selected subset of cells</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#splicejac.tools.estimate_jacobian.compute_avg_jac" title="splicejac.tools.estimate_jacobian.compute_avg_jac"><code class="xref py py-obj docutils literal notranslate"><span class="pre">compute_avg_jac</span></code></a>(adata[, eps])</p></td>
+<td><p>Compute average Jacobian matrix from long_regression() results</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#splicejac.tools.estimate_jacobian.estimate_jacobian" title="splicejac.tools.estimate_jacobian.estimate_jacobian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">estimate_jacobian</span></code></a>(adata[, first_moment, method, ...])</p></td>
+<td><p>Run cluster-wise Jacobian inference</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.estimate_jacobian.initial_check">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.estimate_jacobian.</span></span><span class="sig-name descname"><span class="pre">initial_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_top_genes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.estimate_jacobian.initial_check" title="Permalink to this definition"></a></dt>
+<dd><p>Check that the selected number of genes (n_top_genes) does not exceed the number of observables</p>
+<p>The maximum value admitted for the n_top_genes variable to ensure a unique solution is given by the number of cells
+in the smaller cluster times the fraction of cells per cluster used during each iteration of inference (frac)</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>frac: <cite>float</cite></dt><dd><p>fraction of cell selected from each cluster for bootstrapping inference</p>
+</dd>
+<dt>n_top_genes: <cite>int</cite></dt><dd><p>number of top genes to keep when running spliceJAC</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.estimate_jacobian.rescale_counts">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.estimate_jacobian.</span></span><span class="sig-name descname"><span class="pre">rescale_counts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.estimate_jacobian.rescale_counts" title="Permalink to this definition"></a></dt>
+<dd><p>Rescale count of each gene to a zero mean</p>
+<dl class="simple">
+<dt>mat: <cite>~numpy.ndarray</cite></dt><dd><p>count matrix</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>rescaled: <cite>~numpy.ndarray</cite></dt><dd><p>rescaled count matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.estimate_jacobian.quick_regression">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.estimate_jacobian.</span></span><span class="sig-name descname"><span class="pre">quick_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_moment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Ridge'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.estimate_jacobian.quick_regression" title="Permalink to this definition"></a></dt>
+<dd><p>Run a single cluster-wise regression using all cells in each cluster
+Results are saved in adata.uns[‘all_cells’]</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>first_moment: <cite>Bool</cite> (default: True)</dt><dd><p>if True, use first moment of U and S to run regression</p>
+</dd>
+<dt>method: <cite>str</cite> (default: Ridge)</dt><dd><p>regression method, choose between Linear, Ridge or Lasso</p>
+</dd>
+<dt>alpha: <cite>float</cite> (default: 1)</dt><dd><p>regularization coefficient for Ridge and Lasso</p>
+</dd>
+<dt>beta: <cite>float</cite> (default: 1)</dt><dd><p>mRNA splicing rate constant</p>
+</dd>
+<dt>rescale: <cite>Bool</cite> (default: True)</dt><dd><p>if True, center counts on zero (default= True). rescale=True enforces fit_int=False</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.estimate_jacobian.long_regression">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.estimate_jacobian.</span></span><span class="sig-name descname"><span class="pre">long_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_moment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Ridge'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.estimate_jacobian.long_regression" title="Permalink to this definition"></a></dt>
+<dd><p>Run cluster-wise Jacobian regression multiple times with a randomly-selected subset of cells
+results are saved in adata.uns[‘jacobian_lists’]</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>first_moment: <cite>Bool</cite> (default: True)</dt><dd><p>if True, use first moment of U and S to run regression</p>
+</dd>
+<dt>method: <cite>str</cite> (default: Ridge)</dt><dd><p>regression method, choose between Linear, Ridge or Lasso</p>
+</dd>
+<dt>alpha: <cite>float</cite> (default: 1)</dt><dd><p>regularization coefficient for Ridge and Lasso</p>
+</dd>
+<dt>beta: <cite>float</cite> (default: 1)</dt><dd><p>mRNA splicing rate constant</p>
+</dd>
+<dt>rescale: <cite>Bool</cite> (default: True)</dt><dd><p>if True, center counts on zero (default= True). rescale=True enforces fit_int=False</p>
+</dd>
+<dt>nsim: <cite>int</cite> (default: 10)</dt><dd><p>number of independent regressions per cluster</p>
+</dd>
+<dt>frac: <cite>float</cite> (default: 0.9)</dt><dd><p>fraction of cells to randomly select (bound in [0,1])</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.estimate_jacobian.compute_avg_jac">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.estimate_jacobian.</span></span><span class="sig-name descname"><span class="pre">compute_avg_jac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.estimate_jacobian.compute_avg_jac" title="Permalink to this definition"></a></dt>
+<dd><p>Compute average Jacobian matrix from long_regression() results
+The percentage of smallest Jacobian elements (by absolute value) are set to zero based on the parameter epsilon</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>eps: <cite>float</cite> (default= 0.9)</dt><dd><p>fraction of weakest Jacobian elements that are set to zero (by absolute value)</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splicejac.tools.estimate_jacobian.estimate_jacobian">
+<span class="sig-prename descclassname"><span class="pre">splicejac.tools.estimate_jacobian.</span></span><span class="sig-name descname"><span class="pre">estimate_jacobian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_moment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Ridge'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rescale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nsim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_and_norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_shared_counts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_top_genes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splicejac.tools.estimate_jacobian.estimate_jacobian" title="Permalink to this definition"></a></dt>
+<dd><p>Run cluster-wise Jacobian inference</p>
+<dl class="simple">
+<dt>adata: <cite>~anndata.AnnData</cite></dt><dd><p>count matrix</p>
+</dd>
+<dt>first_moment: <cite>Bool</cite> (default: True)</dt><dd><p>if True, use first moment of U and S to run regression</p>
+</dd>
+<dt>method: <cite>str</cite> (default: Ridge)</dt><dd><p>regression method, choose between Linear, Ridge or Lasso</p>
+</dd>
+<dt>alpha: <cite>float</cite> (default: 1)</dt><dd><p>regularization coefficient for Ridge and Lasso</p>
+</dd>
+<dt>beta: <cite>float</cite> (default: 1)</dt><dd><p>mRNA splicing rate constant</p>
+</dd>
+<dt>rescale: <cite>Bool</cite> (default: True)</dt><dd><p>if True, center counts on zero (default= True). rescale=True enforces fit_int=False</p>
+</dd>
+<dt>nsim: <cite>int</cite> (default: 10)</dt><dd><p>number of independent regressions per cluster</p>
+</dd>
+<dt>frac: <cite>float</cite> (default: 0.9)</dt><dd><p>fraction of cells to randomly select (bound in [0,1])</p>
+</dd>
+<dt>filter_and_norm: <cite>Bool</cite> (default: True)</dt><dd><p>if True, apply scvelo filter_and_normalize function to the count matrix</p>
+</dd>
+<dt>min_shared_count: <cite>int</cite> (default: 20)</dt><dd><p>minimum number of shared count for the scvelo filter_and_normalize function</p>
+</dd>
+<dt>n_top_genes: <cite>int</cite> (default: 20)</dt><dd><p>number of top genes for the scvelo filter_and_normalize function</p>
+</dd>
+<dt>eps: <cite>float</cite> (default= 0.9)</dt><dd><p>fraction of weakest Jacobian elements that are set to zero (by absolute value)</p>
+</dd>
+<dt>seed: <cite>int</cite> (default: 100)</dt><dd><p>seed for numpy random number generator (for reproducibility)</p>
+</dd>
+</dl>
+<p>None</p>
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Federico Bocci.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -36,12 +36,13 @@ extensions = [
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.autodoc",
     "nbsphinx",
-
-
+    "autoapi.extension"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+autoapi_dirs = ['../../splicejac']
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.

@@ -1,0 +1,101 @@
+:py:mod:`splicejac.plot.grn_comparison`
+=======================================
+
+.. py:module:: splicejac.plot.grn_comparison
+
+.. autoapi-nested-parse::
+
+   functions to quantitatively compare GRNs across cell states
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   splicejac.plot.grn_comparison.plot_grn_comparison
+   splicejac.plot.grn_comparison.adjecent_grn_score
+
+
+
+.. py:function:: plot_grn_comparison(adata, score='AUPRC', edges='all', cmap='Reds', title=False, fontsize=10, showfig=None, savefig=None, format='pdf', figsize=(5, 4))
+
+   Plot a heatmap of pairwise similarities between GRNs of different cell states
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   score: `str` (default: 'AUPRC')
+       metric to use, choose between 'AUROC' and 'AUPRC'
+   edges: `str` (default: 'all')
+       which edges to consider for similarity, choose between 'all', 'positive', 'negative'
+   cmap: `pyplot colormap` (default='Reds')
+       colormap to use. A list of accepted colormaps can be found at:
+       https://matplotlib.org/stable/tutorials/colors/colormaps.html
+   title: `str` or `Bool` (default='False')
+       plot title, must be provided as a string
+   fontsize: `int` (default: 10)
+       fontsize for figure
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (5,4))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
+.. py:function:: adjecent_grn_score(adata, path, score='AUPRC', edges='all', loc='best', fontsize=10, color='r', errorline_color='b', elinewidth=1, showfig=None, savefig=None, format='pdf', figsize=(5, 3))
+
+   Plot the pairwise GRN similarity between consecitive cell states along a transition
+
+   Parameters
+   ----------
+   adata: `~anndata.AnnData`
+       count matrix
+   path: `list`
+       list of cell states along the transition path
+   score: `str` (default: 'AUPRC')
+       metric to use, choose between 'AUROC' and 'AUPRC'
+   edges: `str` (default: 'all')
+       which edges to consider for similarity, choose between 'all', 'positive', 'negative'
+   loc: `str` (default='best')
+       location of legend. Details on legend location can be found at:
+       https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.legend.html
+   fontsize: `int` (default: 10)
+       fontsize for figure
+   color: `str` (default: 'r')
+       color of plot. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   errorline_color: `str` (default: 'b')
+       color of deviation bars. A full list of accepted named colors can be found at:
+       https://matplotlib.org/stable/gallery/color/named_colors.html
+   elinewidth: `float` (default: 1)
+       width of deviation bars
+   showfig: `Bool` or `None` (default: `None`)
+       if True, show the figure
+   savefig: `Bool` or `None` (default: `None`)
+        if True, save the figure using the savefig path
+   format: `str` (default: 'pdf')
+       figure format
+   figsize: `tuple` (default: (5,3))
+       size of figure
+
+   Returns
+   -------
+   None
+
+
+
